@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muktangan - Donate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/online.css">
+    <link rel="stylesheet" href="css/donate.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Muktangan</h1>
+                    <p>Health is Wealth</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="projects.html">Our Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="donate.html">Donate</a>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobileMenu()">Home</a>
+    <a href="about.html" onclick="closeMobileMenu()">About Us</a>
+    <a href="projects.html" onclick="closeMobileMenu()">Our Projects</a>
+    <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+    <a href="donate.html" onclick="closeMobileMenu()">Donate</a>
+</div>
+
+<section id="donate" class="donate">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge purple">Join Our Mission</div>
+            <h2 class="section-title">Make a Difference Today</h2>
+            <p class="section-description">
+                Your financial support helps us provide essential care and resources to mothers and children in need. 
+                Every contribution makes a meaningful difference in building healthier communities.
+            </p>
+        </div>
+
+        <div class="donate-content">
+            <!-- Donation Impact Section with Image -->
+            <div class="donation-impact">
+                <h3>Your Impact</h3>
+                
+                <!-- Animated Image Section -->
+                <div class="impact-image-container">
+                    <div class="floating-elements">
+                        <div class="floating-heart heart-1">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="floating-heart heart-2">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="floating-heart heart-3">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="main-image">
+                        <img src="/img/logo1.png" alt="Healthcare Support" />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-hands-helping"></i>
+                                <h4>Together We Care</h4>
+                                <p>Supporting mothers & children</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pulse-rings">
+                        <div class="pulse-ring ring-1"></div>
+                        <div class="pulse-ring ring-2"></div>
+                        <div class="pulse-ring ring-3"></div>
+                    </div>
+                </div>
+                
+                <div class="impact-cards">
+                    <div class="impact-card">
+                        <div class="impact-icon pink">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="impact-content">
+                            <div class="impact-amount">₹500</div>
+                            <p>Provides basic healthcare supplies for one family</p>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon purple">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="impact-content">
+                            <div class="impact-amount">₹1000</div>
+                            <p>Supports prenatal care for expecting mothers</p>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon pink">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="impact-content">
+                            <div class="impact-amount">₹2000</div>
+                            <p>Covers complete maternal health checkup</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank Details Section -->
+            <div class="bank-details-container">
+                <div class="bank-details-header">
+                    <div class="bank-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Bank Details for Donation</h3>
+                    <p>You can directly transfer your donation to our bank account</p>
+                </div>
+                
+                <div class="bank-details-card">
+                    <div class="bank-detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-building"></i>
+                            Bank Name:
+                        </div>
+                        <div class="detail-value">HDFC Bank</div>
+                        <button class="copy-btn" onclick="copyToClipboard('HDFC Bank')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="bank-detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-user"></i>
+                            Account Name:
+                        </div>
+                        <div class="detail-value"> MUKTANGAN BAHUUDDESHIYA SANSTHA YAWATMAL</div>
+                        <button class="copy-btn" onclick="copyToClipboard('MUKTANGAN BAHUUDDESHIYA SANSTHA YAWATMAL')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="bank-detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-hashtag"></i>
+                            Account Number:
+                        </div>
+                        <div class="detail-value">50100826986982</div>
+                        <button class="copy-btn" onclick="copyToClipboard('50100826986982')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="bank-detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-code"></i>
+                            IFSC Code:
+                        </div>
+                        <div class="detail-value">HDFC0001017</div>
+                        <button class="copy-btn" onclick="copyToClipboard('HDFC0001017')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="bank-detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Branch Name:
+                        </div>
+                        <div class="detail-value">YAVATMAL</div>
+                        <button class="copy-btn" onclick="copyToClipboard('YAWATMAL')">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="donation-note">
+                    <div class="note-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="note-content">
+                        <h4>Important Note</h4>
+                        <p>After making your donation, please send us a screenshot or receipt at <strong>muktanganhealthcare@gmail.com</strong> so we can acknowledge your contribution and provide you with a donation receipt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h3>Ready to Make a Difference?</h3>
+                <p>Join thousands of supporters who are helping us create healthier communities</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="scrollToBankDetails()">
+                        <i class="fas fa-heart"></i>
+                        Donate Now
+                    </button>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="footer-logo-text">
+                        <h3>Muktangan</h3>
+                        <p>Health is Wealth</p>
+                    </div>
+                </div>
+                <p class="footer-description">
+                   Transforming lives with better health, awareness, and care one community at a time.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="projects.html">Our Projects</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Our Projects</h4>
+                <ul class="footer-links">
+                    <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
+                    <li><a href="projects.html#project-1">Thalassemia Mukt Bharat</a></li>
+                    <li><a href="projects.html#project-1">Cancer awareness</a></li>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="footer-contact">
+                    <p>Flat no 6 Ujwal Nagar,</p>
+                    <p>Yavatmal 4450011</p>
+                    <p>Phone: +91 8380876308</p>
+                    <p style="white-space: nowrap;">Email: muktanganhealthcare@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Muktangan. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p class="designed-by">Designed by <span class="gradient-text">Vaibhav Thakare</span></p>
+        </div>
+    </div>
+</footer>
+  <!-- End Footer -->
+
+<script>
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('active');
+    }
+    
+    function closeMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.remove('active');
+    }
+    
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            showCopySuccess();
+        }).catch(function(err) {
+            console.error('Could not copy text: ', err);
+        });
+    }
+    
+    function showCopySuccess() {
+        const successMsg = document.createElement('div');
+        successMsg.className = 'copy-success';
+        successMsg.textContent = 'Copied to clipboard!';
+        document.body.appendChild(successMsg);
+        
+        setTimeout(() => {
+            successMsg.remove();
+        }, 2000);
+    }
+    
+    function scrollToBankDetails() {
+        document.querySelector('.bank-details-container').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+</script>
+</body>
+</html>

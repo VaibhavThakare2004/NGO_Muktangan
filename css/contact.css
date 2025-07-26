@@ -1,0 +1,310 @@
+/* Define CSS Variables for colors - same as about.css */
+:root {
+    --pink-50: #FFF0F5; /* Light pink background for the contact section */
+    --pink-300: #F472B6; /* Medium pink for pulse/hover border */
+    --pink-500: #EC4899; /* Darker pink for gradient */
+    --purple-300: #C084FC; /* Light purple for pulse */
+    --purple-600: #9333EA; /* Darker purple for gradient/badge */
+    --gray-600: #4B5563; /* Text color */
+    --gray-800: #1F2937; /* Heading color */
+}
+
+/* Styles specific to the Contact Us page */
+.contact {
+    background: var(--pink-50); /* Light pink background for the contact section */
+    padding: 3rem 0; /* Added padding for section */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header .badge {
+    display: inline-block;
+    border-radius: 9999px; /* Full rounded */
+    padding: 0.25rem 0.75rem; /* px-3 py-1 */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 600; /* font-semibold */
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.section-header .badge.purple {
+    background-color: var(--purple-600);
+}
+
+.section-header .section-title {
+    font-size: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+}
+
+.section-header .section-description {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--gray-600);
+    max-width: 48rem; /* max-w-3xl */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+    margin-top: 3rem;
+}
+
+.contact-info h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 2rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+.contact-icon.pink {
+    background-color: var(--pink-500);
+}
+
+.contact-icon.purple {
+    background-color: var(--purple-600);
+}
+
+.contact-icon i {
+    font-size: 1.25rem;
+    color: white !important;
+    z-index: 10;
+    position: relative;
+    display: block;
+    line-height: 1;
+}
+
+/* Ensure Font Awesome icons are properly loaded and visible */
+.contact-icon .fas,
+.contact-icon .fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+    font-weight: 900 !important;
+    color: white !important;
+    font-size: 1.25rem !important;
+}
+
+.contact-text h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.25rem;
+}
+
+.contact-text p {
+    color: var(--gray-600);
+    font-size: 1rem;
+}
+
+.social-media h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+}
+
+.social-link.facebook {
+    background-color: #1877F2;
+}
+
+.social-link.instagram {
+    background: linear-gradient(45deg, #F56040, #E1306C, #C13584, #833AB4);
+}
+
+.social-link.youtube {
+    background-color: #FF0000;
+}
+
+/* Ensure social media icons are visible */
+.social-link i {
+    color: white !important;
+    font-size: 1rem !important;
+}
+
+.social-link .fab {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+}
+
+.contact-form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form-header h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 0.5rem;
+}
+
+.contact-form-header p {
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--pink-500);
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--pink-500), var(--purple-600));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+    
+    .section-header .section-title {
+        font-size: 2rem;
+    }
+    
+    .contact-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    .contact-icon i {
+        font-size: 1rem;
+    }
+}
+
+/* Additional fallback for Font Awesome loading issues */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* Force icon visibility */
+.fas, .fab {
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
