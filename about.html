@@ -11,38 +11,85 @@
 </head>
 <body>
 <header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <div class="logo-text">
-                    <h1>Muktangan</h1>
-                    <p>Health is Wealth</p>
-                </div>
-            </div>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="projects.html">Our Projects</a>
-                <a href="contact.html">Contact</a>
-                <a href="donate.html">Donate</a>
-            </nav>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-heart"></i>
         </div>
+        <div class="logo-text">
+          <h1>Muktangan</h1>
+          <p>Health is Wealth</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        
+        <!-- Projects Dropdown -->
+        <div class="nav-dropdown">
+          <a href="projects.html" class="nav-link">
+            Our Projects <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-content">
+            <a href="projects.html#project-1" class="dropdown-item">
+              <div class="dropdown-item-content">
+                <i class="fas fa-heart-pulse"></i>
+                <div>
+                  <strong>Anandi Aai Anandi Bal</strong>
+                  <span>Maternal & Child Health</span>
+                </div>
+              </div>
+            </a>
+            <a href="projects.html#project-2" class="dropdown-item">
+              <div class="dropdown-item-content">
+                <i class="fas fa-shield-heart"></i>
+                <div>
+                  <strong>Thalassemia Mukt Bharat</strong>
+                  <span>Disease Prevention Campaign</span>
+                </div>
+              </div>
+            </a>
+            <a href="projects.html#project-3" class="dropdown-item">
+              <div class="dropdown-item-content">
+                <i class="fas fa-ribbon"></i>
+                <div>
+                  <strong>Cancer Awareness</strong>
+                  <span>Early Detection & Support</span>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="projects.html" class="dropdown-item view-all">
+              <div class="dropdown-item-content">
+                <i class="fas fa-th-large"></i>
+                <div>
+                  <strong>View All Projects</strong>
+                  <span>See complete project portfolio</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <a href="contact.html">Contact</a>
+        <a href="donate.html">Donate</a>
+      </nav>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
     </div>
+  </div>
 </header>
+
 <div class="mobile-menu" id="mobileMenu">
     <a href="index.html" onclick="closeMobileMenu()">Home</a>
     <a href="about.html" onclick="closeMobileMenu()">About Us</a>
@@ -95,16 +142,16 @@
         <div class="vision-card">
           <h3>Our Vision</h3>
           <p>
-            To envision a future where every mother and child, regardless of their socio-economic background,
-            has access to quality healthcare, education, and a nurturing environment, ensuring a healthy and
-            prosperous life.
+            To build a healthier and empowered Maharashtra, where every mother and 
+            child thrives — free from preventable illness, enriched by awareness, and 
+            supported by compassionate, holistic care.
+
           </p>
         </div>
         <div class="mission-card">
           <h3>Our Mission</h3>
           <p>
-            To ensure safe childbirth, promote maternal health, and provide continuous support for both mother and
-            child from birth through early childhood, especially in underserved communities.
+            At Muktangan, we are committed to:
           </p>
           <div class="features">
             <div class="feature">
@@ -112,8 +159,8 @@
                 <i class="fas fa-shield-alt"></i>
               </div>
               <div class="feature-content">
-                <h4>Comprehensive Care</h4>
-                <p>From prenatal to postnatal support, we're with you every step.</p>
+                <h4>Health Care</h4>
+                <p>Safeguarding maternal and child health through accessible healthcare, education, and nutritional support.</p>
               </div>
             </div>
             <div class="feature">
@@ -121,8 +168,8 @@
                 <i class="fas fa-heart"></i>
               </div>
               <div class="feature-content">
-                <h4>Community Focus</h4>
-                <p>Reaching the most vulnerable communities with essential services.</p>
+                <h4>Disease</h4>
+                <p>Eliminating thalassemia via community outreach, screening programs, and genetic counseling.</p>
               </div>
             </div>
             <div class="feature">
@@ -130,8 +177,8 @@
                 <i class="fas fa-users"></i>
               </div>
               <div class="feature-content">
-                <h4>Holistic Approach</h4>
-                <p>Addressing physical, emotional, and educational needs.</p>
+                <h4>Awareness</h4>
+                <p>Raising cancer awareness for early detection and timely intervention, especially in underserved communities.</p>
               </div>
             </div>
           </div>
@@ -179,7 +226,7 @@
             <div class="footer-section">
                 <h4>Contact Info</h4>
                 <div class="footer-contact">
-                    <p>Flat no 6 Ujwal Nagar,</p>
+                    <p>Flat no 6 Ujwal Nagar</p>
                     <p>Yavatmal 4450011</p>
                     <p>Phone: +91 8380876308</p>
                     <p style="white-space: nowrap;">Email: muktanganhealthcare@gmail.com</p>
