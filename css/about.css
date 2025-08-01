@@ -1,33 +1,51 @@
 :root {
-  --pink-50: #FFF0F5;
-  --pink-300: #F472B6;
-  --pink-500: #EC4899;
-  --purple-300: #C084FC;
-  --purple-600: #9333EA;
-  --gray-600: #4B5563;
-  --gray-800: #1F2937;
+  --pink-50: #fff0f5;
+  --pink-300: #f472b6;
+  --pink-500: #ec4899;
+  --purple-300: #c084fc;
+  --purple-600: #9333ea;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --blue-accent: #3b82f6; /* A blue color for the left border */
+  --light-blue-bg: #eff6ff; /* Light blue background for impact items */
+  --story-bg-light-pink: #fdf2f8; /* A very light pink for the story section background */
+  --story-dot-active: var(--pink-500); /* Pink for active dot */
+  --story-dot-inactive: var(--purple-300); /* Purple for inactive dot */
 }
 
 /* Section Background and Entry Animation */
 .about {
   background: var(--pink-50);
   padding: 3rem 0;
-  animation: about-in 0.9s cubic-bezier(.19,1,.22,1);
+  animation: about-in 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 }
+
 @keyframes about-in {
-  0% { opacity: 0; transform: translateY(35px);}
-  80% { opacity: 1; transform: translateY(-3px);}
-  100% { opacity: 1; transform: translateY(0);}
+  0% {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
+
 .section-header {
   text-align: center;
   margin-bottom: 3rem;
 }
+
 .section-header .badge {
   display: inline-block;
   border-radius: 9999px;
@@ -38,9 +56,15 @@
   color: white;
   margin-bottom: 1rem;
 }
+
 .section-header .badge.purple {
   background-color: var(--purple-600);
 }
+
+.section-header .badge.pink {
+  background-color: var(--pink-500);
+}
+
 .section-header .section-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -51,6 +75,16 @@
   background-clip: text;
   color: transparent;
 }
+
+/* Specific gradient for Difference Cause section title */
+.difference-cause .section-title {
+  background: linear-gradient(90deg, var(--purple-600), var(--pink-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .section-header .section-description {
   font-size: 1.125rem;
   color: var(--gray-600);
@@ -68,6 +102,7 @@
   margin-top: 2rem;
   margin-bottom: 2.8rem;
 }
+
 .about-side {
   flex: 1 1 0;
   display: flex;
@@ -76,25 +111,29 @@
   justify-content: center;
   min-width: 110px;
 }
+
 .about-feature-center {
   flex: 0 1 320px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .side-content {
   text-align: center;
   max-width: 130px;
-  color: #9333EA;
+  color: #9333ea;
 }
+
 .side-quote {
   font-size: 1rem;
-  color: #4B5563;
+  color: var(--gray-600);
   margin-top: 0.8rem;
 }
+
 .about-side i {
   font-size: 2.3rem;
-  color: #EC4899;
+  color: var(--pink-500);
 }
 
 /* Visual Abstract Graphic */
@@ -107,6 +146,7 @@
   align-items: center;
   animation: float 6s ease-in-out infinite;
 }
+
 .graphic-core {
   width: 150px;
   height: 150px;
@@ -120,9 +160,11 @@
   align-items: center;
   transition: box-shadow 0.3s;
 }
+
 .abstract-graphic:hover .graphic-core {
-  box-shadow: 0 15px 30px rgba(147,51,234,0.25);
+  box-shadow: 0 15px 30px rgba(147, 51, 234, 0.25);
 }
+
 .graphic-pulse {
   position: absolute;
   border-radius: 50%;
@@ -131,18 +173,21 @@
   animation: pulse-grow 3s infinite ease-out;
   z-index: 1;
 }
+
 .graphic-pulse-1 {
   width: 180px;
   height: 180px;
   border-color: var(--pink-300);
   animation-delay: 0s;
 }
+
 .graphic-pulse-2 {
   width: 220px;
   height: 220px;
   border-color: var(--purple-300);
   animation-delay: 1.5s;
 }
+
 .graphic-text {
   position: absolute;
   z-index: 3;
@@ -156,16 +201,30 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   user-select: none;
 }
+
 .graphic-text i {
   font-size: 2rem;
 }
+
 @keyframes pulse-grow {
-  0% { transform: scale(0.5); opacity: 0.7; }
-  100% { transform: scale(1.2); opacity: 0; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
 }
+
 @keyframes float {
-  0%, 100% { transform: translateY(0);}
-  50% { transform: translateY(-15px);}
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 /* About Text Cards */
@@ -174,6 +233,7 @@
   flex-direction: column;
   gap: 2rem;
 }
+
 .vision-card,
 .mission-card {
   background: white;
@@ -181,25 +241,31 @@
   border-radius: 1.25rem;
   box-shadow: 0 4px 16px rgba(236, 72, 153, 0.04), 0 2px 6px rgba(147, 51, 234, 0.06);
   border: 1.5px solid transparent;
-  transition: all 0.3s cubic-bezier(.22,1,.36,1);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
 }
+
 .vision-card:hover,
 .mission-card:hover {
   transform: translateY(-7px) scale(1.022);
   box-shadow: 0 12px 32px rgba(236, 72, 153, 0.12), 0 2px 12px rgba(147, 51, 234, 0.13);
   border-color: var(--pink-300);
 }
-.vision-card::before, .mission-card::before {
+
+.vision-card::before,
+.mission-card::before {
   content: "";
   display: block;
   position: absolute;
-  top: -8px; left: 24px;
-  width: 32px; height: 6px;
+  top: -8px;
+  left: 24px;
+  width: 32px;
+  height: 6px;
   border-radius: 8px;
   background: linear-gradient(90deg, var(--pink-300), var(--purple-600));
   opacity: 0.18;
 }
+
 .vision-card h3,
 .mission-card h3 {
   font-size: 1.75rem;
@@ -207,6 +273,7 @@
   color: var(--gray-800);
   margin-bottom: 1rem;
 }
+
 .vision-card p,
 .mission-card p {
   font-size: 1.125rem;
@@ -221,6 +288,7 @@
   display: grid;
   gap: 1.5rem;
 }
+
 .feature {
   display: flex;
   align-items: flex-start;
@@ -229,9 +297,11 @@
   border-radius: 0.75rem;
   padding: 0.25rem;
 }
+
 .feature:hover {
-  background: rgba(236,72,153,0.08);
+  background: rgba(236, 72, 153, 0.08);
 }
+
 .feature-icon {
   flex-shrink: 0;
   width: 3.2rem;
@@ -246,17 +316,21 @@
   filter: brightness(1.08);
   transition: transform 0.23s, box-shadow 0.23s;
 }
+
 .feature-icon.pink {
   background-color: var(--pink-500);
 }
+
 .feature-icon.purple {
   background-color: var(--purple-600);
 }
+
 .feature:hover .feature-icon {
   transform: scale(1.18) rotate(-9deg);
-  box-shadow: 0 6px 24px rgba(147,51,234,0.25);
+  box-shadow: 0 6px 24px rgba(147, 51, 234, 0.25);
   filter: brightness(1.2) saturate(1.3);
 }
+
 .feature-content h4 {
   font-size: 1.142rem;
   font-weight: 600;
@@ -264,10 +338,249 @@
   margin-bottom: 0.23rem;
   letter-spacing: 0.01em;
 }
+
 .feature-content p {
   font-size: 0.96rem;
   color: var(--gray-600);
   margin-bottom: 0;
+}
+
+/* Difference Cause Section Styles - Now Horizontal */
+.difference-cause {
+  background: white;
+  padding: 4rem 0;
+}
+
+.impact-horizontal-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  justify-content: center; /* Center items horizontally */
+  gap: 1.5rem; /* Space between items */
+  margin-top: 3rem;
+  padding: 0 1rem; /* Add some padding to the wrapper itself */
+}
+
+.impact-item {
+  background-color: var(--light-blue-bg); /* Light blue background */
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.5rem;
+  border-left: 5px solid var(--blue-accent); /* Blue vertical line */
+  color: var(--gray-800);
+  font-size: 1rem;
+  line-height: 1.5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  flex: 1 1 calc(50% - 1.5rem); /* Two items per row on larger screens, accounting for gap */
+  max-width: calc(50% - 1.5rem); /* Max width for two items per row */
+  display: flex; /* Align icon and content horizontally within the item */
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.impact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.impact-item .impact-icon {
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  margin-bottom: 0; /* Remove bottom margin as it's now inline */
+  padding: 0.6rem; /* Smaller padding for icon */
+  font-size: 1.5rem; /* Smaller icon size */
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.impact-item .impact-icon i {
+  font-size: 1.5rem; /* Match container size */
+  color: var(--blue-accent); /* Use blue accent for icons */
+}
+
+.impact-item .impact-content {
+  flex-grow: 1; /* Allow content to take remaining space */
+  text-align: left; /* Align text to the left */
+}
+
+.impact-item .impact-number {
+  font-size: 1.8rem; /* Smaller number size */
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(90deg, var(--pink-500), var(--purple-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.impact-item .impact-title {
+  font-size: 1.1rem; /* Smaller title size */
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+}
+
+.impact-item .impact-description {
+  font-size: 0.9rem; /* Smaller description size */
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* Our Stories Section (Testimonial Carousel) Styles */
+.our-stories {
+  background-color: var(--story-bg-light-pink); /* Light pink background */
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden; /* Hide overflowing slides */
+}
+
+.our-stories .section-header .section-title {
+  background: linear-gradient(90deg, var(--pink-500), var(--purple-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.story-carousel-wrapper {
+  position: relative;
+  max-width: 900px; /* Max width for the visible carousel area */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-carousel-container {
+  width: 1000px; /* Take full width of wrapper */
+   /* Hide parts of slides outside this container */
+
+}
+
+.story-carousel {
+  display: flex;
+  gap: 2rem; /* Space between story cards */
+  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+  /* No overflow hidden here, it's on the container */
+  
+}
+
+.story-slide {
+  flex-shrink: 0; /* Prevent slides from shrinking */
+  width: 400px; /* Fixed width for each story card */
+  padding: 1rem; /* Padding around the card content */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.story-card {
+  background: white;
+  border-radius: 1.25rem; /* Rounded corners for the card */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Soft shadow */
+  padding: 2.5rem; /* Generous padding inside the card */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  height: 100%; /* Ensure cards take full height of slide */
+  width: 400px;
+}
+
+.story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.story-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--pink-300); /* Pink border around photo */
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.story-description-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--gray-600);
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic; /* Italicize the quote */
+}
+
+.story-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 0.25rem;
+}
+
+.story-role,
+.story-location {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  margin-bottom: 0.25rem;
+}
+
+.story-arrow {
+  background: var(--purple-300); /* Purple background for arrows */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 1.5rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 10; /* Ensure arrows are above slides */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.story-arrow:hover {
+  background: var(--purple-600); /* Darker purple on hover */
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-story-arrow {
+  left: -25px; /* Position arrows outside the visible carousel area */
+}
+
+.next-story-arrow {
+  right: -25px; /* Position arrows outside the visible carousel area */
+}
+
+.story-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+  gap: 0.75rem;
+}
+
+.story-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--story-dot-inactive);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.story-dot.active {
+  background-color: var(--story-dot-active);
+  transform: scale(1.2);
 }
 
 /* Responsive Design */
@@ -275,22 +588,59 @@
   .about-feature-row {
     gap: 1.3rem;
   }
+  .story-carousel-wrapper {
+    max-width: 700px; /* Adjust max width for smaller screens */
+  }
+  .story-slide {
+    width: 350px; /* Adjust slide width */
+  }
+  .prev-story-arrow {
+    left: -15px;
+  }
+  .next-story-arrow {
+    right: -15px;
+  }
 }
+
 @media (max-width: 900px) {
   .about-feature-row {
     flex-direction: column;
     gap: 2rem;
   }
-  .about-side, .about-feature-center {
+  .about-side,
+  .about-feature-center {
     min-width: 0;
     max-width: 100%;
   }
+  .impact-item {
+    flex: 1 1 calc(100% - 1.5rem); /* One item per row on medium screens */
+    max-width: calc(100% - 1.5rem);
+  }
+  .story-carousel-wrapper {
+    max-width: 500px; /* Further adjust max width */
+  }
+  .story-slide {
+    width: 300px; /* Further adjust slide width */
+  }
+  .story-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .prev-story-arrow {
+    left: -10px;
+  }
+  .next-story-arrow {
+    right: -10px;
+  }
 }
+
 @media (max-width: 850px) {
   .about-text {
     gap: 1.2rem;
   }
 }
+
 @media (max-width: 768px) {
   .container {
     padding: 0 0.5rem;
@@ -299,7 +649,7 @@
     gap: 1rem;
   }
   .section-header .section-title {
-    font-size: 1.4rem;
+    font-size: 1.8rem; /* Adjusted for smaller screens */
   }
   .abstract-graphic {
     width: 165px;
@@ -323,18 +673,91 @@
   .graphic-text i {
     font-size: 1.23rem;
   }
-  .vision-card, .mission-card {
+  .vision-card,
+  .mission-card {
     padding: 1.15rem;
     border-radius: 0.9rem;
   }
+  .impact-item {
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+  .impact-item .impact-icon {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  .impact-item .impact-icon i {
+    font-size: 1.2rem;
+  }
+  .impact-item .impact-number {
+    font-size: 1.5rem;
+  }
+  .impact-item .impact-title {
+    font-size: 1rem;
+  }
+  .impact-item .impact-description {
+    font-size: 0.85rem;
+  }
+  .our-stories {
+    padding: 3rem 0;
+  }
+  .story-card {
+    padding: 1.5rem;
+  }
+  .story-photo {
+    width: 90px;
+    height: 90px;
+  }
+  .story-description-text {
+    font-size: 0.9rem;
+  }
+  .story-name {
+    font-size: 1.2rem;
+  }
+  .story-role,
+  .story-location {
+    font-size: 0.85rem;
+  }
+  .story-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
 }
+
 @media (max-width: 550px) {
   .about {
     padding: 1.3rem 0;
   }
-  .section-header { margin-bottom: 2rem;}
-  .about-text { gap: 0.8rem;}
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  .about-text {
+    gap: 0.8rem;
+  }
   .about-feature-row {
     margin-bottom: 1.3rem;
+  }
+  .impact-horizontal-wrapper {
+    padding: 0 0.5rem;
+  }
+  .impact-item {
+    flex: 1 1 100%; /* Full width on very small screens */
+    max-width: 100%;
+  }
+  .story-carousel-wrapper {
+    max-width: 100%; /* Allow full width on very small screens */
+  }
+  .story-slide {
+    width: 100%; /* Make slides full width on very small screens */
+    padding: 0.5rem; /* Reduce padding */
+  }
+  .story-arrow {
+    position: static; /* Make arrows static on very small screens */
+    transform: none;
+    margin: 1rem auto; /* Center them if needed */
+  }
+  .story-carousel-wrapper {
+    flex-direction: column; /* Stack arrows and carousel vertically */
   }
 }
