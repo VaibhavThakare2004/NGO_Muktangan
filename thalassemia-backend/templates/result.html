@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Result</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    .container {
+        max-width: 600px;
+        width: 90%;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+    h2 {
+        color: #007BFF;
+        margin-bottom: 20px;
+    }
+    .result-box {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+    .positive {
+        background: #ffdddd;
+        color: #d8000c;
+        border: 2px solid #d8000c;
+    }
+    .negative {
+        background: #ddffdd;
+        color: #4F8A10;
+        border: 2px solid #4F8A10;
+    }
+    .details {
+        text-align: left;
+        margin-top: 25px;
+        font-size: 15px;
+        color: #333;
+    }
+    .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background: #0056b3;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Prediction Result</h2>
+
+    <!-- Result Message -->
+    {% if prediction == "Positive" %}
+        <div class="result-box positive">⚠️ Thalassemia Suspected</div>
+    {% else %}
+        <div class="result-box negative">✅ No Thalassemia Detected</div>
+    {% endif %}
+
+    <!-- Patient Details -->
+    <div class="details">
+        <h3>📋 Patient Details</h3>
+        <p><b>Name:</b> {{ name }}</p>
+        <p><b>Phone:</b> {{ phone }}</p>
+        <p><b>Email:</b> {{ email }}</p>
+        <p><b>Hemoglobin (Hb):</b> {{ hb }} g/dL</p>
+        <p><b>RBC Count:</b> {{ rbc }} million/µL</p>
+        <p><b>MCV:</b> {{ mcv }} fL</p>
+        <p><b>MCH:</b> {{ mch }} pg</p>
+        <p><b>MCHC:</b> {{ mchc }} g/dL</p>
+        <p><b>RDW:</b> {{ rdw }} %</p>
+    </div>
+
+    <a href="/" class="btn">🔄 Submit Another</a>
+</div>
+</body>
+</html>
