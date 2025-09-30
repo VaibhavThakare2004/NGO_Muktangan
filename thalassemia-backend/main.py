@@ -6,17 +6,33 @@ from datetime import datetime
 from utils import calculate_indices, predict_thalassemia
 
 app = FastAPI()
+
+# Templates inside 'templates/' folder (for thalassemia pages)
 templates = Jinja2Templates(directory="templates")
+
+# Template outside, in project root (for main index.html)
+root_templates = Jinja2Templates(directory=".")
 
 # Your SheetDB URL
 SHEETDB_URL = "https://sheetdb.io/api/v1/szpu493oaui2j"
 
+# ----------------------
+# Routes
+# ----------------------
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    """
+    Main homepage route (index.html outside templates folder)
+    """
+    return root_templates.TemplateResponse("index.html", {"request": request})
+
 
 @app.get("/thalassemia", response_class=HTMLResponse)
 async def thalassemia_page(request: Request):
+    """
+    Thalassemia detector page
+    """
     return templates.TemplateResponse("Thalassemia_detection.html", {"request": request})
 
 
@@ -33,6 +49,9 @@ async def submit(
     mchc: float = Form(...),
     rdw: float = Form(...)
 ):
+    """
+    Handles form submission from Thalassemia_detection.html
+    """
     # Timestamp
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
