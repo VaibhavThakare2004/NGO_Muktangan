@@ -12,8 +12,13 @@ templates = Jinja2Templates(directory="templates")
 SHEETDB_URL = "https://sheetdb.io/api/v1/szpu493oaui2j"
 
 @app.get("/", response_class=HTMLResponse)
-async def form(request: Request):
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/thalassemia", response_class=HTMLResponse)
+async def thalassemia_page(request: Request):
     return templates.TemplateResponse("Thalassemia_detection.html", {"request": request})
+
 
 @app.post("/submit", response_class=HTMLResponse)
 async def submit(
