@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prediction Result</title>
+<title>Thalassemia Prediction Result</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
     body {
@@ -17,25 +17,32 @@
         min-height: 100vh;
     }
     .container {
-        max-width: 600px;
+        max-width: 700px;
         width: 90%;
         background: white;
         padding: 40px;
         border-radius: 15px;
         box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
-        text-align: center;
         animation: fadeIn 1s ease-in-out;
     }
     h2 {
         color: #007BFF;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .timestamp {
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 30px;
     }
     .result-box {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 600;
-        padding: 20px;
+        padding: 25px;
         border-radius: 10px;
         margin: 20px 0;
+        text-align: center;
     }
     .positive {
         background: #ffdddd;
@@ -47,58 +54,198 @@
         color: #4F8A10;
         border: 2px solid #4F8A10;
     }
-    .details {
-        text-align: left;
-        margin-top: 25px;
-        font-size: 15px;
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 25px 0;
+    }
+    .detail-card {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #007BFF;
+    }
+    .detail-card h4 {
+        margin: 0 0 8px 0;
         color: #333;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .detail-card p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: #007BFF;
+    }
+    .indices-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+    }
+    .index-card {
+        background: #e8f4fd;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .index-card h4 {
+        margin: 0 0 8px 0;
+        font-size: 13px;
+        color: #555;
+    }
+    .index-card p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+    }
+    .interpretation {
+        background: #fff3cd;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #ffc107;
+    }
+    .btn-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
     }
     .btn {
         display: inline-block;
-        padding: 12px 20px;
-        background: #007BFF;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #007BFF, #0056b3);
         color: white;
         text-decoration: none;
         border-radius: 8px;
-        margin-top: 20px;
         font-weight: bold;
         transition: 0.3s;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .btn-outline {
+        background: white;
+        color: #007BFF;
+        border: 2px solid #007BFF;
     }
     .btn:hover {
-        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
+    .section-title {
+        color: #333;
+        margin: 25px 0 15px 0;
+        border-bottom: 2px solid #e1e5e9;
+        padding-bottom: 8px;
+    }
 </style>
 </head>
 <body>
 <div class="container">
-    <h2>Prediction Result</h2>
+    <h2>Thalassemia Detection Results</h2>
+    <div class="timestamp">Test conducted on: {{ timestamp }}</div>
 
-    <!-- Result Message -->
-    {% if prediction == "Positive" %}
-        <div class="result-box positive">⚠️ Thalassemia Suspected</div>
+    <!-- Prediction Result -->
+    {% if prediction == "Likely Thalassemia Minor" %}
+        <div class="result-box positive">⚠️ Likely Thalassemia Minor</div>
     {% else %}
-        <div class="result-box negative">✅ No Thalassemia Detected</div>
+        <div class="result-box negative">✅ Not Thalassemia Minor</div>
     {% endif %}
 
-    <!-- Patient Details -->
-    <div class="details">
-        <h3>📋 Patient Details</h3>
-        <p><b>Name:</b> {{ name }}</p>
-        <p><b>Phone:</b> {{ phone }}</p>
-        <p><b>Email:</b> {{ email }}</p>
-        <p><b>Hemoglobin (Hb):</b> {{ hb }} g/dL</p>
-        <p><b>RBC Count:</b> {{ rbc }} million/µL</p>
-        <p><b>MCV:</b> {{ mcv }} fL</p>
-        <p><b>MCH:</b> {{ mch }} pg</p>
-        <p><b>MCHC:</b> {{ mchc }} g/dL</p>
-        <p><b>RDW:</b> {{ rdw }} %</p>
+    <!-- Patient Information -->
+    <h3 class="section-title">📋 Patient Information</h3>
+    <div class="details-grid">
+        <div class="detail-card">
+            <h4>Full Name</h4>
+            <p>{{ name }}</p>
+        </div>
+        <div class="detail-card">
+            <h4>Phone Number</h4>
+            <p>{{ phone }}</p>
+        </div>
+        <div class="detail-card">
+            <h4>Email Address</h4>
+            <p>{{ email }}</p>
+        </div>
     </div>
 
-    <a href="/" class="btn">🔄 Submit Another</a>
+    <!-- CBC Parameters -->
+    <h3 class="section-title">🩸 CBC Parameters</h3>
+    <div class="details-grid">
+        <div class="detail-card">
+            <h4>Hemoglobin (Hb)</h4>
+            <p>{{ hb }} g/dL</p>
+        </div>
+        <div class="detail-card">
+            <h4>RBC Count</h4>
+            <p>{{ rbc }} million/µL</p>
+        </div>
+        <div class="detail-card">
+            <h4>MCV</h4>
+            <p>{{ mcv }} fL</p>
+            <small style="color: #666;">{% if mcv < 80 %}Microcytic (<80 fL){% else %}Normal{% endif %}</small>
+        </div>
+        <div class="detail-card">
+            <h4>MCH</h4>
+            <p>{{ mch }} pg</p>
+            <small style="color: #666;">{% if mch < 27 %}Hypochromic (<27 pg){% else %}Normal{% endif %}</small>
+        </div>
+        <div class="detail-card">
+            <h4>MCHC</h4>
+            <p>{{ mchc }} g/dL</p>
+        </div>
+        <div class="detail-card">
+            <h4>RDW</h4>
+            <p>{{ rdw }}%</p>
+        </div>
+    </div>
+
+    <!-- Calculated Indices -->
+    <h3 class="section-title">📊 Calculated Indices</h3>
+    <div class="indices-grid">
+        <div class="index-card">
+            <h4>Mentzer Index</h4>
+            <p>{{ mentzer }}</p>
+            <small style="color: #666;">{% if mentzer < 13 %}Suggestive of Thalassemia{% else %}Suggestive of Iron Deficiency{% endif %}</small>
+        </div>
+        <div class="index-card">
+            <h4>Shine & Lal Index</h4>
+            <p>{{ shine_lal }}</p>
+        </div>
+        <div class="index-card">
+            <h4>Srivastava Index</h4>
+            <p>{{ srivastava }}</p>
+        </div>
+        <div class="index-card">
+            <h4>Green & King Index</h4>
+            <p>{{ green_king }}</p>
+        </div>
+    </div>
+
+    <!-- Interpretation -->
+    <div class="interpretation">
+        <h4>💡 Interpretation Notes:</h4>
+        <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+            <li>Mentzer Index < 13 suggests Thalassemia</li>
+            <li>MCV < 80 fL indicates Microcytosis</li>
+            <li>MCH < 27 pg indicates Hypochromia</li>
+            <li>This is a screening tool - consult a hematologist for definitive diagnosis</li>
+        </ul>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="btn-group">
+        <a href="/thalassemia" class="btn">🔄 New Test</a>
+        <a href="/" class="btn btn-outline">🏠 Back to Home</a>
+    </div>
 </div>
 </body>
 </html>

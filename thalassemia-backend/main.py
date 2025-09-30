@@ -96,7 +96,7 @@ async def projects():
             return HTMLResponse(content=f.read())
     return HTMLResponse(content="Projects page not found", status_code=404)
 
-# ... rest of your routes (thalassemia, submit) remain the same
+# Thalassemia form route
 @app.get("/thalassemia", response_class=HTMLResponse)
 async def form(request: Request):
     return templates.TemplateResponse("Thalassemia_detection.html", {"request": request})
@@ -114,8 +114,63 @@ async def submit(
     mchc: float = Form(...),
     rdw: float = Form(...)
 ):
-    # ... your submit function code
-    pass
+    # Timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Calculate CBC indices
+    mentzer, shine_lal, srivastava, green_king = calculate_indices(hb, rbc, mcv, mch, mchc, rdw)
+    prediction = predict_thalassemia(mentzer, mcv, mch)
+
+    # Prepare data for SheetDB
+    data = {
+        "data": {
+            "Timestamp": timestamp,
+            "Name": name,
+            "Phone": phone,
+            "Email": email,
+            "Hb": hb,
+            "RBC": rbc,
+            "MCV": mcv,
+            "MCH": mch,
+            "MCHC": mchc,
+            "RDW": rdw,
+            "Mentzer": mentzer,
+            "Shine_Lal": shine_lal,
+            "Srivastava": srivastava,
+            "Green_King": green_king,
+            "Prediction": prediction
+        }
+    }
+
+    # POST to SheetDB
+    try:
+        response = requests.post(SHEETDB_URL, json=data)
+        if response.status_code == 201:
+            print("Data successfully posted to SheetDB")
+        else:
+            print(f"SheetDB error: {response.status_code} - {response.text}")
+    except Exception as e:
+        print(f"Error posting to SheetDB: {e}")
+
+    # Render result page from templates
+    return templates.TemplateResponse("result.html", {
+        "request": request,
+        "timestamp": timestamp,
+        "name": name,
+        "phone": phone,
+        "email": email,
+        "hb": hb,
+        "rbc": rbc,
+        "mcv": mcv,
+        "mch": mch,
+        "mchc": mchc,
+        "rdw": rdw,
+        "mentzer": mentzer,
+        "shine_lal": shine_lal,
+        "srivastava": srivastava,
+        "green_king": green_king,
+        "prediction": prediction
+    })
 
 # Your utility functions
 def calculate_indices(hb, rbc, mcv, mch, mchc, rdw):
@@ -130,3 +185,13 @@ def predict_thalassemia(mentzer, mcv, mch):
         return "Likely Thalassemia Minor"
     else:
         return "Not Thalassemia Minor"
+
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+# Catch-all route for undefined paths
+@app.get("/{full_path:path}")
+async def catch_all(request: Request, full_path: str):
+    return HTMLResponse(content="Page not found", status_code=404)
