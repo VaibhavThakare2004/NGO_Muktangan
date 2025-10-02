@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Form, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import Optional
 import requests
@@ -15,10 +16,7 @@ app = FastAPI(title="Thalassemia Predictor API", version="1.0.0")
 # ✅ Configure CORS for GitHub Pages
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://yourusername.github.io",  # Your GitHub Pages URL
-        "http://localhost:3000",           # For local testing
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -71,7 +69,7 @@ class PatientData(BaseModel):
     lymphocytes: float
     monocytes: float
 
-# ✅ Keep your existing utility functions
+# ✅ Utility functions
 def calculate_indices(hb, rbc, mcv, mch, mchc, rdw):
     mentzer = mcv / rbc if rbc != 0 else 0
     shine_lal = (mcv ** 2 * mch) / 100 if mch != 0 else 0
@@ -85,7 +83,7 @@ def predict_thalassemia(mentzer, mcv, mch):
     else:
         return "Not Thalassemia Minor"
 
-# ✅ Keep your existing email function
+# ✅ Email function
 def send_python_email(form_data):
     try:
         smtp_server = "smtpout.secureserver.net"
@@ -180,7 +178,7 @@ drabhijeet@muktanganfoundation.org"""
     except Exception as e:
         return {"success": False, "error": str(e)}
 
-# ✅ Optimized API Endpoint for Google Cloud
+# ✅ SUBMIT ENDPOINT - Returns HTML Thank You Page
 @app.post("/submit")
 async def submit_form(patient_data: PatientData):
     try:
@@ -201,7 +199,7 @@ async def submit_form(patient_data: PatientData):
             "prediction": prediction
         })
         
-        # ✅ Send email (non-blocking but synchronous for reliability)
+        # ✅ Send email
         email_result = send_python_email(form_data_dict)
         
         # ✅ Save to Google Sheets
@@ -261,15 +259,84 @@ async def submit_form(patient_data: PatientData):
         sheets_response = requests.post(SHEETDB_URL, json=sheets_data, timeout=10)
         sheets_success = sheets_response.status_code == 201
         
-        # ✅ Return minimal JSON response
-        return {
-            "success": True,
-            "prediction": prediction,
-            "probability": f"Based on Mentzer Index: {mentzer}",
-            "email_sent": email_result["success"],
-            "sheets_saved": sheets_success,
-            "message": "Analysis complete. Check your email for detailed results."
-        }
+        # ✅ Return HTML Thank You Page
+        html_content = """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Thank You - Muktangan Foundation</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    margin: 0;
+                    padding: 0;
+                    min-height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .thank-you-container {
+                    text-align: center;
+                    background: white;
+                    padding: 60px 40px;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                    max-width: 400px;
+                    margin: 20px;
+                }
+
+                .success-icon {
+                    font-size: 80px;
+                    color: #4CAF50;
+                    margin-bottom: 20px;
+                }
+
+                h1 {
+                    color: #333;
+                    margin-bottom: 20px;
+                    font-weight: 300;
+                }
+
+                p {
+                    color: #666;
+                    font-size: 1.1em;
+                    line-height: 1.6;
+                    margin-bottom: 30px;
+                }
+
+                .button {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 15px 30px;
+                    text-decoration: none;
+                    border-radius: 50px;
+                    font-size: 1.1em;
+                    transition: transform 0.3s ease;
+                    display: inline-block;
+                }
+
+                .button:hover {
+                    transform: translateY(-2px);
+                }
+            </style>
+        </head>
+        <body>
+            <div class="thank-you-container">
+                <div class="success-icon">✅</div>
+                <h1>Thank You!</h1>
+                <p>Your form has been successfully submitted.</p>
+                <p>We appreciate your participation.</p>
+                <a href="https://muktanganfoundation.org/" class="button">Back to Form</a>
+            </div>
+        </body>
+        </html>
+        """
+        
+        return HTMLResponse(content=html_content)
         
     except Exception as e:
         print(f"💥 API Error: {str(e)}")
