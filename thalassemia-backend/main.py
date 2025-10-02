@@ -349,17 +349,37 @@ drabhijeet@muktanganfoundation.org"""
         
         msg.attach(MIMEText(body, 'plain'))
         
-        # Send email with timeout
-        server = smtplib.SMTP(smtp_server, port, timeout=10)
-        server.starttls()
-        server.login(username, password)
-        server.send_message(msg)
-        server.quit()
-        
-        return {"success": True, "message": "Email sent successfully", "screening_result": result_text}
+        # 🔥 FIX: Better SMTP connection with retry
+        try:
+            server = smtplib.SMTP(smtp_server, port, timeout=15)
+            server.ehlo()  # Identify yourself to SMTP server
+            server.starttls()  # Secure the connection
+            server.ehlo()  # Re-identify yourself over TLS connection
+            server.login(username, password)
+            server.send_message(msg)
+            server.quit()
+            print(f"✅ Email successfully sent to {form_data['email']}")
+            return {"success": True, "message": "Email sent successfully", "screening_result": result_text}
+            
+        except smtplib.SMTPException as e:
+            print(f"❌ SMTP error: {e}")
+            # Try alternative port 465 with SSL
+            try:
+                print("🔄 Trying alternative SMTP settings...")
+                server = smtplib.SMTP_SSL('smtpout.secureserver.net', 465, timeout=15)
+                server.login(username, password)
+                server.send_message(msg)
+                server.quit()
+                print(f"✅ Email sent via SSL to {form_data['email']}")
+                return {"success": True, "message": "Email sent successfully", "screening_result": result_text}
+            except Exception as ssl_error:
+                print(f"❌ SSL SMTP also failed: {ssl_error}")
+                return {"success": False, "error": f"SMTP failed: {ssl_error}"}
         
     except Exception as e:
+        print(f"💥 Email sending exception: {e}")
         return {"success": False, "error": str(e)}
+
 
 # Health check endpoint
 @app.get("/health")
