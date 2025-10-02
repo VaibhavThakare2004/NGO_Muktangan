@@ -148,9 +148,18 @@ class CBCValidator {
     }
 
     init() {
+        this.ensureFormVisibility();
         this.addEventListeners();
         this.addRealTimeValidation();
         this.addAccessibilityFeatures();
+    }
+
+    ensureFormVisibility() {
+        const formContainer = document.querySelector('.form-container');
+        if (formContainer) {
+            formContainer.style.display = 'block';
+            formContainer.style.opacity = '1';
+        }
     }
 
     addEventListeners() {
@@ -303,7 +312,8 @@ class CBCValidator {
     }
 
     // ✅ UPDATED: API-based form submission
-    async handleSubmit(e) {
+    // ✅ UPDATED: Fixed loading state and submission flow
+async handleSubmit(e) {
     e.preventDefault();
 
     // Clear all previous errors
@@ -317,8 +327,11 @@ class CBCValidator {
         return;
     }
 
-    // Show loading state
+    // ✅ FIX: Show loading state FIRST
     this.setLoadingState(true);
+    
+    // ✅ FIX: Add a small delay to ensure loading animation is visible
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     try {
         console.log('🔄 Form validation passed, submitting to Google Cloud API...');
@@ -359,7 +372,6 @@ class CBCValidator {
         this.setLoadingState(false);
     }
 }
-
 // ✅ NEW: Method to show thank you page
 showThankYouPage(htmlContent) {
     // Hide the form
@@ -394,16 +406,23 @@ showThankYouPage(htmlContent) {
     }
 
     setLoadingState(isLoading) {
-        if (isLoading) {
-            this.submitBtn.classList.add('loading');
-            this.submitBtn.disabled = true;
-            this.submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
-        } else {
-            this.submitBtn.classList.remove('loading');
-            this.submitBtn.disabled = false;
-            this.submitBtn.innerHTML = 'Submit Form';
+    if (isLoading) {
+        this.submitBtn.classList.add('loading');
+        this.submitBtn.disabled = true;
+        // ✅ FIX: Use proper circular spinner HTML
+        this.submitBtn.innerHTML = '<div class="loading-spinner"></div> Sending...';
+        
+        // ✅ FIX: Ensure spinner is visible and rotating
+        const spinner = this.submitBtn.querySelector('.loading-spinner');
+        if (spinner) {
+            spinner.style.display = 'inline-block';
         }
+    } else {
+        this.submitBtn.classList.remove('loading');
+        this.submitBtn.disabled = false;
+        this.submitBtn.innerHTML = 'Submit Form';
     }
+}
 
     // ✅ UPDATED: Success handler with API response data
     showSuccess(apiResponse) {
@@ -630,6 +649,7 @@ class FormEnhancements {
     }
 }
 
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new CBCValidator();
@@ -645,21 +665,41 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Ready for Google Cloud API integration');
 });
 
-// ✅ Add some basic CSS for new elements (add this to your CSS file)
+// ✅ UPDATED: Better CSS for loading states
 const additionalStyles = `
+/* ✅ FIX: Improved loading spinner */
 .loading-spinner {
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #ffffff;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
     border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s ease-in-out infinite;
+    animation: spin 1s linear infinite;
     margin-right: 8px;
+    vertical-align: middle;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ✅ FIX: Button loading state */
+.btn-primary.loading {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ✅ FIX: Ensure form doesn't disappear during loading */
+.form-container {
+    transition: opacity 0.3s ease;
+}
+
+.form-container.sending {
+    opacity: 0.7;
 }
 
 .success-content {
@@ -728,6 +768,22 @@ const additionalStyles = `
 
 .next-steps li {
     margin-bottom: 8px;
+}
+
+/* ✅ FIX: Error message styling */
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+input.error, select.error, textarea.error {
+    border-color: #dc3545 !important;
 }
 `;
 
