@@ -372,51 +372,67 @@ async handleSubmit(e) {
         this.setLoadingState(false);
     }
 }
-// ✅ NEW: Method to show thank you page
+/// ✅ UPDATED: Method to show thank you page WITHOUT spinners
 showThankYouPage(htmlContent) {
+    // ✅ FIRST: Reset loading state to remove any spinners
+    this.setLoadingState(false);
+    
     // Hide the form
     this.form.style.display = 'none';
     
+    // ✅ REMOVE any existing spinners from the HTML content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    
+    // Remove any elements with spinner classes
+    const spinners = tempDiv.querySelectorAll('.loading-spinner, .spinner, [class*="spin"]');
+    spinners.forEach(spinner => spinner.remove());
+    
+    // Remove any elements with loading text
+    const loadingElements = tempDiv.querySelectorAll('*');
+    loadingElements.forEach(element => {
+        if (element.textContent.includes('Sending...') || 
+            element.textContent.includes('Loading...') ||
+            element.textContent.includes('Processing...')) {
+            element.remove();
+        }
+    });
+    
     // Create a container for the thank you page
     const thankYouContainer = document.createElement('div');
-    thankYouContainer.innerHTML = htmlContent;
+    thankYouContainer.innerHTML = tempDiv.innerHTML;
     
     // Replace the form with thank you page
     this.form.parentNode.insertBefore(thankYouContainer, this.form.nextSibling);
     
-    console.log('✅ Thank you page displayed');
+    console.log('✅ Thank you page displayed (spinners removed)');
     
     // Clear saved form data
     localStorage.removeItem('cbcFormData');
 }
 
-    // ✅ NEW: Better error handling for API calls
-    handleAPIError(error) {
-        console.error('API Error:', error);
-        
-        if (error.message.includes('Failed to fetch')) {
-            return 'Cannot connect to server. Please check your internet connection and try again.';
-        } else if (error.message.includes('500')) {
-            return 'Server error. Please try again in a few minutes.';
-        } else if (error.message.includes('429')) {
-            return 'Too many requests. Please wait a moment and try again.';
-        } else {
-            return error.message || 'Submission failed. Please try again.';
-        }
-    }
-
-    setLoadingState(isLoading) {
+showBasicSuccess() {
+    this.setLoadingState(false);
+    this.form.style.display = 'none';
+    
+    this.successMessage.innerHTML = `
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2>Submission Successful!</h2>
+            <p>Your CBC parameters have been analyzed successfully.</p>
+            <button onclick="location.reload()" class="btn-primary" style="margin-top: 20px;">
+                Submit Another Test
+            </button>
+        </div>
+    `;
+    this.successMessage.classList.add('show');
+}
+setLoadingState(isLoading) {
     if (isLoading) {
         this.submitBtn.classList.add('loading');
         this.submitBtn.disabled = true;
-        // ✅ FIX: Use proper circular spinner HTML
-        this.submitBtn.innerHTML = '<div class="loading-spinner"></div> Sending...';
-        
-        // ✅ FIX: Ensure spinner is visible and rotating
-        const spinner = this.submitBtn.querySelector('.loading-spinner');
-        if (spinner) {
-            spinner.style.display = 'inline-block';
-        }
+        // ✅ REMOVED: No spinner, just text
+        this.submitBtn.innerHTML = 'Sending...';
     } else {
         this.submitBtn.classList.remove('loading');
         this.submitBtn.disabled = false;
@@ -667,40 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ✅ UPDATED: Better CSS for loading states
 const additionalStyles = `
-/* ✅ FIX: Improved loading spinner */
-.loading-spinner {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* ✅ FIX: Button loading state */
-.btn-primary.loading {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-    position: relative;
-    overflow: hidden;
-}
-
-/* ✅ FIX: Ensure form doesn't disappear during loading */
-.form-container {
-    transition: opacity 0.3s ease;
-}
-
-.form-container.sending {
-    opacity: 0.7;
-}
+/* ✅ REMOVED: All spinner CSS */
 
 .success-content {
     text-align: center;
@@ -770,7 +753,7 @@ const additionalStyles = `
     margin-bottom: 8px;
 }
 
-/* ✅ FIX: Error message styling */
+/* Error message styling */
 .error-message {
     color: #dc3545;
     font-size: 0.875rem;
