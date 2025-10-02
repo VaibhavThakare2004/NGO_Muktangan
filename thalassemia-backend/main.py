@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -8,7 +8,6 @@ from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import os
 
 # Initialize FastAPI app
 app = FastAPI(title="Thalassemia Predictor API", version="1.0.0")
@@ -259,7 +258,7 @@ async def submit_form(patient_data: PatientData):
         sheets_response = requests.post(SHEETDB_URL, json=sheets_data, timeout=10)
         sheets_success = sheets_response.status_code == 201
         
-        # ✅ Return HTML Thank You Page
+        # ✅ Return HTML Thank You Page with updated style and removed button
         html_content = """
         <!DOCTYPE html>
         <html lang="en">
@@ -278,7 +277,6 @@ async def submit_form(patient_data: PatientData):
                     align-items: center;
                     justify-content: center;
                 }
-
                 .thank-you-container {
                     text-align: center;
                     background: white;
@@ -287,40 +285,28 @@ async def submit_form(patient_data: PatientData):
                     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
                     max-width: 400px;
                     margin: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
                 }
-
                 .success-icon {
                     font-size: 80px;
                     color: #4CAF50;
                     margin-bottom: 20px;
                 }
-
                 h1 {
                     color: #333;
                     margin-bottom: 20px;
                     font-weight: 300;
+                    text-align: center;
                 }
-
                 p {
                     color: #666;
                     font-size: 1.1em;
                     line-height: 1.6;
                     margin-bottom: 30px;
-                }
-
-                .button {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                    padding: 15px 30px;
-                    text-decoration: none;
-                    border-radius: 50px;
-                    font-size: 1.1em;
-                    transition: transform 0.3s ease;
-                    display: inline-block;
-                }
-
-                .button:hover {
-                    transform: translateY(-2px);
+                    text-align: center;
                 }
             </style>
         </head>
@@ -330,7 +316,6 @@ async def submit_form(patient_data: PatientData):
                 <h1>Thank You!</h1>
                 <p>Your form has been successfully submitted.</p>
                 <p>We appreciate your participation.</p>
-                <a href="https://muktanganfoundation.org/" class="button">Back to Form</a>
             </div>
         </body>
         </html>
