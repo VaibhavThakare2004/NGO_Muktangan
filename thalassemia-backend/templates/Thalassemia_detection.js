@@ -1,9 +1,12 @@
-// Enhanced Thalassemia CBC Predictor JavaScript
+// Enhanced Thalassemia CBC Predictor JavaScript - Google Cloud Optimized
 class CBCValidator {
     constructor() {
         this.form = document.getElementById('cbcForm');
         this.submitBtn = document.getElementById('submitBtn');
         this.successMessage = document.getElementById('successMessage');
+        
+        // ✅ UPDATE THIS LINE with your real deployed URL
+        this.API_URL = 'https://speech-test-471607.uc.r.appspot.com/submit';
         
         this.validationRules = {
             // Personal Information - Required fields
@@ -299,6 +302,7 @@ class CBCValidator {
         return label ? label.textContent.replace('*', '').trim() : fieldName;
     }
 
+    // ✅ UPDATED: API-based form submission
     async handleSubmit(e) {
         e.preventDefault();
 
@@ -317,25 +321,58 @@ class CBCValidator {
         this.setLoadingState(true);
 
         try {
-            console.log('🔄 Form validation passed, submitting to FastAPI...');
+            console.log('🔄 Form validation passed, submitting to Google Cloud API...');
             
-            // ✅ SIMPLE SOLUTION: Let FastAPI handle everything
-            // This will submit to /submit route which handles BOTH email + Google Sheets
-            this.form.submit(); // This triggers normal form submission to FastAPI
+            // Get form data
+            const formData = this.getFormData();
+            
+            // Send to Google Cloud API
+            const response = await fetch(this.API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || `Server error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            // Show success with API response
+            this.showSuccess(result);
             
         } catch (error) {
-            console.error('❌ Submission error:', error);
-            this.showError('submission', 'Failed to submit form. Please try again.');
+            console.error('❌ API Submission error:', error);
+            const errorMessage = this.handleAPIError(error);
+            this.showError('submission', errorMessage);
             this.setLoadingState(false);
         }
-        // Note: We don't need finally block here because page will reload after form submission
+    }
+
+    // ✅ NEW: Better error handling for API calls
+    handleAPIError(error) {
+        console.error('API Error:', error);
+        
+        if (error.message.includes('Failed to fetch')) {
+            return 'Cannot connect to server. Please check your internet connection and try again.';
+        } else if (error.message.includes('500')) {
+            return 'Server error. Please try again in a few minutes.';
+        } else if (error.message.includes('429')) {
+            return 'Too many requests. Please wait a moment and try again.';
+        } else {
+            return error.message || 'Submission failed. Please try again.';
+        }
     }
 
     setLoadingState(isLoading) {
         if (isLoading) {
             this.submitBtn.classList.add('loading');
             this.submitBtn.disabled = true;
-            this.submitBtn.innerHTML = 'Sending...';
+            this.submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
         } else {
             this.submitBtn.classList.remove('loading');
             this.submitBtn.disabled = false;
@@ -343,9 +380,71 @@ class CBCValidator {
         }
     }
 
-    showSuccess() {
+    // ✅ UPDATED: Success handler with API response data
+    showSuccess(apiResponse) {
         // Hide form and show success message
         this.form.style.display = 'none';
+        
+        // Update success message with API response data
+        let successHTML = `
+            <div class="success-content">
+                <div class="success-icon">✅</div>
+                <h2>Submission Successful!</h2>
+                <p class="success-message">Thank you for your submission. Here are your results:</p>
+        `;
+        
+        // Add prediction result if available
+        if (apiResponse.prediction) {
+            const predictionClass = apiResponse.prediction.includes('Likely') ? 'prediction-warning' : 'prediction-success';
+            successHTML += `
+                <div class="prediction-result ${predictionClass}">
+                    <h3>Prediction Result:</h3>
+                    <p class="prediction-value"><strong>${apiResponse.prediction}</strong></p>
+                </div>
+            `;
+        }
+        
+        // Add probability if available
+        if (apiResponse.probability) {
+            successHTML += `
+                <div class="probability">
+                    <h3>Analysis Details:</h3>
+                    <p>${apiResponse.probability}</p>
+                </div>
+            `;
+        }
+        
+        // Add status indicators
+        successHTML += `
+                <div class="status-indicators">
+                    <div class="status-item ${apiResponse.email_sent ? 'status-success' : 'status-warning'}">
+                        <span>📧 Email: ${apiResponse.email_sent ? 'Sent' : 'Failed'}</span>
+                    </div>
+                    <div class="status-item ${apiResponse.sheets_saved ? 'status-success' : 'status-warning'}">
+                        <span>📊 Data Saved: ${apiResponse.sheets_saved ? 'Success' : 'Failed'}</span>
+                    </div>
+                </div>
+        `;
+        
+        // Add next steps
+        successHTML += `
+                <div class="next-steps">
+                    <h3>Next Steps:</h3>
+                    <ul>
+                        <li>📧 Check your email for detailed results</li>
+                        <li>📊 Your data has been recorded in our system</li>
+                        <li>👨‍⚕️ Consult with a healthcare professional for detailed analysis</li>
+                        <li>📞 Contact us if you have any questions</li>
+                    </ul>
+                </div>
+                
+                <button onclick="location.reload()" class="btn-primary" style="margin-top: 20px;">
+                    Submit Another Test
+                </button>
+            </div>
+        `;
+        
+        this.successMessage.innerHTML = successHTML;
         this.successMessage.classList.add('show');
         
         // Scroll to success message
@@ -354,10 +453,10 @@ class CBCValidator {
             block: 'center' 
         });
 
-        // Reset form after delay
-        setTimeout(() => {
-            this.resetForm();
-        }, 5000);
+        // Clear saved form data
+        localStorage.removeItem('cbcFormData');
+        
+        console.log('✅ Form submitted successfully:', apiResponse);
     }
 
     resetForm() {
@@ -369,6 +468,12 @@ class CBCValidator {
         Object.keys(this.validationRules).forEach(fieldName => {
             this.clearError(fieldName);
         });
+
+        // Clear progress indicator
+        const progressFill = document.querySelector('.progress-fill');
+        if (progressFill) {
+            progressFill.style.width = '0%';
+        }
 
         // Scroll back to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -391,7 +496,12 @@ class CBCValidator {
         const data = {};
         
         for (let [key, value] of formData.entries()) {
-            data[key] = value;
+            // Convert numeric fields to numbers
+            if (['hb', 'hct', 'rbc', 'wbc', 'platelet', 'mcv', 'mch', 'mchc', 'rdwcv', 'rdwsd', 'mpv', 'pdw', 'plcr', 'pct', 'plcc', 'neutrophils', 'eosinophils', 'basophils', 'lymphocytes', 'monocytes', 'age'].includes(key)) {
+                data[key] = value ? parseFloat(value) : null;
+            } else {
+                data[key] = value;
+            }
         }
         
         return data;
@@ -488,6 +598,9 @@ class FormEnhancements {
                     input.value = value;
                 }
             });
+            
+            // Update progress after loading saved data
+            this.updateProgress();
         }
     }
 }
@@ -503,5 +616,97 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add loading animation
     document.body.classList.add('loaded');
     
-    console.log('Enhanced Thalassemia CBC Predictor initialized successfully');
+    console.log('✅ Enhanced Thalassemia CBC Predictor initialized successfully');
+    console.log('🚀 Ready for Google Cloud API integration');
 });
+
+// ✅ Add some basic CSS for new elements (add this to your CSS file)
+const additionalStyles = `
+.loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.success-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.success-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.prediction-result {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.prediction-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.prediction-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+.status-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.status-item {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.status-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-warning {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.next-steps {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.next-steps ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.next-steps li {
+    margin-bottom: 8px;
+}
+`;
+
+// Inject additional styles
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
