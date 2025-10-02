@@ -265,7 +265,7 @@ async def submit_form(patient_data: PatientData):
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Thank You - Muktangan Foundation</title>
+            <title>Thank You - Thalassemia CBC Predictor</title>
             <style>
                 * {
                     margin: 0;
@@ -273,178 +273,157 @@ async def submit_form(patient_data: PatientData):
                     box-sizing: border-box;
                 }
                 
+                html, body {
+                    height: 100%;
+                    overflow-x: hidden;
+                }
+                
                 body {
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 25%, #C084FC 50%, #DDD6FE 100%);
                     min-height: 100vh;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 20px;
-                    position: relative;
-                    overflow: hidden;
+                    padding: 30px 15px;
                 }
                 
-                body::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: 
-                        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
-                    pointer-events: none;
-                }
-                
-                .success-container {
+                .container {
                     background: rgba(255, 255, 255, 0.95);
-                    backdrop-filter: blur(20px);
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                    padding: 60px 50px;
-                    border-radius: 24px;
-                    box-shadow: 
-                        0 25px 50px rgba(0, 0, 0, 0.15),
-                        0 0 0 1px rgba(255, 255, 255, 0.1);
-                    max-width: 500px;
+                    backdrop-filter: blur(10px);
+                    border-radius: 20px;
+                    padding: 50px 35px 40px 35px;
+                    max-width: 450px;
                     width: 100%;
                     text-align: center;
+                    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
                     position: relative;
-                    z-index: 1;
-                    animation: slideUp 0.8s ease-out;
+                    margin: auto;
                 }
                 
-                @keyframes slideUp {
+                .success-icon {
+                    width: 70px;
+                    height: 70px;
+                    background: #10B981;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 30px;
+                    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+                    position: relative;
+                    z-index: 2;
+                }
+                
+                .checkmark {
+                    color: white;
+                    font-size: 35px;
+                    font-weight: bold;
+                    line-height: 1;
+                }
+                
+                h1 {
+                    color: #8B5CF6;
+                    font-size: 2.2em;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                    letter-spacing: -0.02em;
+                }
+                
+                .message {
+                    color: #4B5563;
+                    font-size: 1.1em;
+                    line-height: 1.5;
+                    margin-bottom: 15px;
+                }
+                
+                .info-box {
+                    background: rgba(139, 92, 246, 0.1);
+                    border: 1px solid rgba(139, 92, 246, 0.2);
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin: 25px 0;
+                }
+                
+                .info-title {
+                    color: #7C3AED;
+                    font-weight: 600;
+                    font-size: 1em;
+                    margin-bottom: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                }
+                
+                .info-text {
+                    color: #6B7280;
+                    font-size: 0.9em;
+                    line-height: 1.4;
+                }
+                
+                .footer {
+                    margin-top: 25px;
+                    padding-top: 15px;
+                    border-top: 1px solid rgba(139, 92, 246, 0.2);
+                    color: #9CA3AF;
+                    font-size: 0.85em;
+                }
+                
+                @media (max-width: 500px) {
+                    body {
+                        padding: 20px 10px;
+                    }
+                    
+                    .container {
+                        padding: 40px 25px 30px 25px;
+                        border-radius: 16px;
+                    }
+                    
+                    h1 {
+                        font-size: 1.8em;
+                    }
+                    
+                    .success-icon {
+                        width: 60px;
+                        height: 60px;
+                    }
+                    
+                    .checkmark {
+                        font-size: 30px;
+                    }
+                    
+                    .message {
+                        font-size: 1em;
+                    }
+                }
+                
+                .container {
+                    animation: slideIn 0.5s ease-out;
+                }
+                
+                @keyframes slideIn {
                     from {
                         opacity: 0;
-                        transform: translateY(30px);
+                        transform: translateY(20px);
                     }
                     to {
                         opacity: 1;
                         transform: translateY(0);
                     }
                 }
-                
-                .success-icon {
-                    width: 100px;
-                    height: 100px;
-                    background: linear-gradient(135deg, #4CAF50, #45a049);
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 0 auto 30px;
-                    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
-                    animation: pulse 2s infinite;
-                }
-                
-                @keyframes pulse {
-                    0% {
-                        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
-                    }
-                    50% {
-                        box-shadow: 0 10px 40px rgba(76, 175, 80, 0.5);
-                    }
-                    100% {
-                        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
-                    }
-                }
-                
-                .success-icon::before {
-                    content: '✓';
-                    color: white;
-                    font-size: 50px;
-                    font-weight: bold;
-                }
-                
-                h1 {
-                    color: #2d3748;
-                    font-size: 3rem;
-                    font-weight: 700;
-                    margin-bottom: 20px;
-                    background: linear-gradient(135deg, #667eea, #764ba2);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                }
-                
-                .subtitle {
-                    color: #4a5568;
-                    font-size: 1.3rem;
-                    font-weight: 500;
-                    margin-bottom: 15px;
-                    line-height: 1.5;
-                }
-                
-                .message {
-                    color: #718096;
-                    font-size: 1.1rem;
-                    line-height: 1.6;
-                    margin-bottom: 40px;
-                }
-                
-                .info-box {
-                    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-                    border: 1px solid rgba(102, 126, 234, 0.2);
-                    border-radius: 16px;
-                    padding: 25px;
-                    margin-top: 30px;
-                }
-                
-                .info-title {
-                    color: #667eea;
-                    font-weight: 600;
-                    font-size: 1.1rem;
-                    margin-bottom: 10px;
-                }
-                
-                .info-text {
-                    color: #4a5568;
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                }
-                
-                .footer {
-                    margin-top: 30px;
-                    padding-top: 20px;
-                    border-top: 1px solid rgba(0, 0, 0, 0.1);
-                    color: #718096;
-                    font-size: 0.9rem;
-                }
-                
-                @media (max-width: 600px) {
-                    .success-container {
-                        padding: 40px 30px;
-                        margin: 10px;
-                        border-radius: 20px;
-                    }
-                    
-                    h1 {
-                        font-size: 2.2rem;
-                    }
-                    
-                    .subtitle {
-                        font-size: 1.1rem;
-                    }
-                    
-                    .success-icon {
-                        width: 80px;
-                        height: 80px;
-                    }
-                    
-                    .success-icon::before {
-                        font-size: 40px;
-                    }
-                }
             </style>
         </head>
         <body>
-            <div class="success-container">
-                <div class="success-icon"></div>
+            <div class="container">
+                <div class="success-icon">
+                    <div class="checkmark">✓</div>
+                </div>
+                
                 <h1>Thank You!</h1>
-                <p class="subtitle">Your form has been successfully submitted.</p>
+                
+                <p class="message">Your form has been successfully submitted.</p>
                 <p class="message">We appreciate your participation in our Thalassemia screening program.</p>
                 
                 <div class="info-box">
