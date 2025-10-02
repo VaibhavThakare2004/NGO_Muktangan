@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -8,12 +8,11 @@ from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from pathlib import Path
 
 # Initialize FastAPI app
 app = FastAPI(title="Thalassemia Predictor API", version="1.0.0")
 
-# Configure CORS for GitHub Pages
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -27,7 +26,6 @@ SHEETDB_URL = "https://sheetdb.io/api/v1/szpu493oaui2j"
 
 # Pydantic Model for API Validation
 class PatientData(BaseModel):
-    # Personal Information
     name: str
     whatsapp: str
     email: str
@@ -37,7 +35,6 @@ class PatientData(BaseModel):
     caste: str
     religion: str
     
-    # Medical History (Optional)
     bloodWithin3Months: Optional[str] = None
     bloodMoreThan2Times: Optional[str] = None
     fatigue: Optional[str] = None
@@ -45,7 +42,6 @@ class PatientData(BaseModel):
     illFrequently: Optional[str] = None
     familyHistory: Optional[str] = None
     
-    # CBC Parameters
     hb: float
     hct: float
     rbc: float
@@ -62,7 +58,6 @@ class PatientData(BaseModel):
     pct: float
     plcc: float
     
-    # Differential Count
     neutrophils: float
     eosinophils: float
     basophils: float
@@ -173,12 +168,12 @@ drabhijeet@muktanganfoundation.org"""
     except Exception as e:
         return {"success": False, "error": str(e)}
 
-# SUBMIT ENDPOINT - NOW RETURNS DYNAMIC HTML
+# SUBMIT ENDPOINT
 @app.post("/submit", response_class=HTMLResponse)
 async def submit_form(patient_data: PatientData):
     try:
         print(f"🔄 Processing submission for: {patient_data.name}")
-        
+
         # Calculate indices and prediction
         mentzer, shine_lal, srivastava, green_king = calculate_indices(
             patient_data.hb, patient_data.rbc, patient_data.mcv, 
@@ -245,120 +240,28 @@ async def submit_form(patient_data: PatientData):
             }
         }
         
+        # Send to SheetDB
         sheets_response = requests.post(SHEETDB_URL, json=sheets_data, timeout=10)
         sheets_success = sheets_response.status_code == 201
         
         # Dynamically generate HTML response with the prediction included
-        html_content = f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You!</title>
-    <style>
-        body {{
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-        }}
-        .container {{
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 500px;
-        }}
-        .icon-circle {{
-            width: 80px;
-            height: 80px;
-            background-color: #e0ffe0;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px;
-        }}
-        .icon-circle svg {{
-            fill: #4caf50;
-            width: 40px;
-            height: 40px;
-        }}
-        h1 {{
-            color: #333;
-            margin-bottom: 10px;
-        }}
-        p {{
-            color: #666;
-            line-height: 1.6;
-        }}
-        .next-steps {{
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: left;
-        }}
-        .next-steps h3 {{
-            color: #444;
-            margin-top: 0;
-        }}
-        .next-steps p {{
-            font-size: 0.9em;
-        }}
-        .result {{
-            background-color: #e6f7ff;
-            color: #004085;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 1.1em;
-        }}
-        .footer {{
-            margin-top: 30px;
-            font-size: 0.8em;
-            color: #aaa;
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="icon-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L223 355c-9.4 9.4-24.6 9.4-33.9 0L143 283c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 110-110c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
-        </div>
-        <h1>Thank You!</h1>
-        <p>Your form has been successfully submitted.</p>
-        <p>We appreciate your participation in our Thalassemia screening program.</p>
+        with open("thankyou.html", "r") as f:
+            html_content = f.read()
+
+        html_content = html_content.replace(
+            "", 
+            f"<div class='info-box'>"
+            f"  <div class='info-title'>Screening Result</div>"
+            f"  <div class='info-text'><b>{prediction}</b></div>"
+            f"</div>"
+        )
         
-        <div class="result">
-            Screening Result: <b>{prediction}</b>
-        </div>
-        
-        <div class="next-steps">
-            <h3>Next Steps</h3>
-            <p>You will receive your detailed screening results and recommendations via email shortly. Please check your inbox and spam folder.</p>
-        </div>
-        
-        <div class="footer">
-            Muktangan Foundation<br>
-            Healthcare & Medical Screening Services
-        </div>
-    </div>
-</body>
-</html>
-        """
         return HTMLResponse(content=html_content, status_code=200)
 
     except Exception as e:
         print(f"💥 API Error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Processing error: {str(e)}")
-
+    
 # Health check endpoint
 @app.get("/")
 async def health_check():
