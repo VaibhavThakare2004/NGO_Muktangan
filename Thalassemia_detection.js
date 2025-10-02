@@ -304,54 +304,79 @@ class CBCValidator {
 
     // ✅ UPDATED: API-based form submission
     async handleSubmit(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        // Clear all previous errors
-        Object.keys(this.validationRules).forEach(fieldName => {
-            this.clearError(fieldName);
+    // Clear all previous errors
+    Object.keys(this.validationRules).forEach(fieldName => {
+        this.clearError(fieldName);
+    });
+
+    // Validate all fields
+    if (!this.validateAllFields()) {
+        this.focusFirstError();
+        return;
+    }
+
+    // Show loading state
+    this.setLoadingState(true);
+
+    try {
+        console.log('🔄 Form validation passed, submitting to Google Cloud API...');
+        
+        // Get form data
+        const formData = this.getFormData();
+        
+        // Send to Google Cloud API
+        const response = await fetch(this.API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
         });
 
-        // Validate all fields
-        if (!this.validateAllFields()) {
-            this.focusFirstError();
-            return;
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
         }
 
-        // Show loading state
-        this.setLoadingState(true);
-
-        try {
-            console.log('🔄 Form validation passed, submitting to Google Cloud API...');
-            
-            // Get form data
-            const formData = this.getFormData();
-            
-            // Send to Google Cloud API
-            const response = await fetch(this.API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.detail || `Server error: ${response.status}`);
-            }
-
+        // ✅ CHECK if response is HTML or JSON
+        const contentType = response.headers.get('content-type');
+        
+        if (contentType && contentType.includes('text/html')) {
+            // Handle HTML response (show thank you page)
+            const htmlContent = await response.text();
+            this.showThankYouPage(htmlContent);
+        } else {
+            // Handle JSON response (show success with data)
             const result = await response.json();
-            
-            // Show success with API response
             this.showSuccess(result);
-            
-        } catch (error) {
-            console.error('❌ API Submission error:', error);
-            const errorMessage = this.handleAPIError(error);
-            this.showError('submission', errorMessage);
-            this.setLoadingState(false);
         }
+        
+    } catch (error) {
+        console.error('❌ API Submission error:', error);
+        const errorMessage = this.handleAPIError(error);
+        this.showError('submission', errorMessage);
+        this.setLoadingState(false);
     }
+}
+
+// ✅ NEW: Method to show thank you page
+showThankYouPage(htmlContent) {
+    // Hide the form
+    this.form.style.display = 'none';
+    
+    // Create a container for the thank you page
+    const thankYouContainer = document.createElement('div');
+    thankYouContainer.innerHTML = htmlContent;
+    
+    // Replace the form with thank you page
+    this.form.parentNode.insertBefore(thankYouContainer, this.form.nextSibling);
+    
+    console.log('✅ Thank you page displayed');
+    
+    // Clear saved form data
+    localStorage.removeItem('cbcFormData');
+}
 
     // ✅ NEW: Better error handling for API calls
     handleAPIError(error) {
