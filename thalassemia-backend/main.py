@@ -261,64 +261,95 @@ async def submit_form(patient_data: PatientData):
         # ✅ Return HTML Thank You Page with updated style and removed button
         html_content = """
         <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Thank You - Muktangan Foundation</title>
-            <style>
-                body {
-                    font-family: 'Arial', sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    margin: 0;
-                    padding: 0;
-                    min-height: 100vh;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .thank-you-container {
-                    text-align: center;
-                    background: white;
-                    padding: 60px 40px;
-                    border-radius: 20px;
-                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-                    max-width: 400px;
-                    margin: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .success-icon {
-                    font-size: 80px;
-                    color: #4CAF50;
-                    margin-bottom: 20px;
-                }
-                h1 {
-                    color: #333;
-                    margin-bottom: 20px;
-                    font-weight: 300;
-                    text-align: center;
-                }
-                p {
-                    color: #666;
-                    font-size: 1.1em;
-                    line-height: 1.6;
-                    margin-bottom: 30px;
-                    text-align: center;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="thank-you-container">
-                <div class="success-icon">✅</div>
-                <h1>Thank You!</h1>
-                <p>Your form has been successfully submitted.</p>
-                <p>We appreciate your participation.</p>
-            </div>
-        </body>
-        </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Muktangan Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .thank-you-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            display: block;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 300;
+            font-size: 2.5em;
+            text-align: center;
+        }
+        
+        p {
+            color: #666;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        p:last-child {
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 600px) {
+            .thank-you-container {
+                padding: 40px 30px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .success-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="success-icon">✅</div>
+        <h1>Thank You!</h1>
+        <p>Your form has been successfully submitted.</p>
+        <p>We appreciate your participation.</p>
+    </div>
+</body>
+</html>
         """
         
         return HTMLResponse(content=html_content)
