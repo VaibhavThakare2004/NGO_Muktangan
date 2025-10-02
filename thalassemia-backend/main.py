@@ -258,7 +258,7 @@ async def submit_form(patient_data: PatientData):
         sheets_response = requests.post(SHEETDB_URL, json=sheets_data, timeout=10)
         sheets_success = sheets_response.status_code == 201
         
-        # ✅ Return HTML Thank You Page with updated style and removed button
+        # ✅ FIXED HTML Thank You Page - Green Tick Fully Visible
         html_content = """
         <!DOCTYPE html>
         <html lang="en">
