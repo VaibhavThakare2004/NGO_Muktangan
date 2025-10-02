@@ -261,8 +261,8 @@ async def submit_form(patient_data: PatientData):
         sheets_success = sheets_response.status_code == 201
         
         # ✅ FIXED HTML Thank You Page - Green Tick Fully Visible
-        
-        return FileResponse("thankyou.html", media_type="text/html")
+        filepath = os.path.join(os.path.dirname(__file__), "thankyou.html") # type: ignore
+        return FileResponse(filepath, media_type="text/html")
         
     except Exception as e:
         print(f"💥 API Error: {str(e)}")
