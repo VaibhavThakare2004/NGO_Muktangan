@@ -9,6 +9,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from fastapi.middleware.cors import CORSMiddleware
+import threading
+import time
 
 app = FastAPI()
 
@@ -25,65 +27,45 @@ app.add_middleware(
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(CURRENT_DIR)
 
-# Templates setup - PRODUCTION READY
-if os.getenv('FLY_APP_NAME'):
-    # Production on Fly.io
-    templates = Jinja2Templates(directory="/app/thalassemia-backend/templates")
-else:
-    # Development
-    templates = Jinja2Templates(directory="templates")
+# Templates setup
+templates = Jinja2Templates(directory="templates")
 
-# Mount static files for production
-if os.getenv('FLY_APP_NAME'):
-    # Production - serve from templates directory
-    app.mount("/static", StaticFiles(directory="/app/thalassemia-backend/templates"), name="static")
-    print("✅ Production: Static files mounted from /app/thalassemia-backend/templates")
-else:
-    # Development - original setup
-    static_dirs = {
-        "/css": "css",
-        "/img": "img", 
-        "/img_collarge": "img_collarge",
-        "/js": "js"
-    }
+# Mount static files
+static_dirs = {
+    "/css": "css",
+    "/img": "img", 
+    "/img_collarge": "img_collarge",
+    "/js": "js"
+}
 
-    for route, dir_name in static_dirs.items():
-        possible_paths = [
-            os.path.join(CURRENT_DIR, dir_name),
-            os.path.join(PARENT_DIR, dir_name),
-            dir_name
-        ]
-        
-        for path in possible_paths:
-            if os.path.exists(path):
-                app.mount(route, StaticFiles(directory=path), name=dir_name)
-                print(f"Mounted {route} from {path}")
-                break
-        else:
-            print(f"Warning: Directory {dir_name} not found")
+for route, dir_name in static_dirs.items():
+    possible_paths = [
+        os.path.join(CURRENT_DIR, dir_name),
+        os.path.join(PARENT_DIR, dir_name),
+        dir_name
+    ]
     
-    # Serve CSS/JS from templates directory for development
-    app.mount("/templates", StaticFiles(directory="templates"), name="templates")
+    for path in possible_paths:
+        if os.path.exists(path):
+            app.mount(route, StaticFiles(directory=path), name=dir_name)
+            print(f"Mounted {route} from {path}")
+            break
+    else:
+        print(f"Warning: Directory {dir_name} not found")
+
+# Serve CSS/JS from templates directory
+app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 
 # Your SheetDB URL
 SHEETDB_URL = "https://sheetdb.io/api/v1/szpu493oaui2j"
 
 # Helper function to find HTML files
 def get_html_file(filename):
-    if os.getenv('FLY_APP_NAME'):
-        # Production paths
-        possible_paths = [
-            os.path.join("/app", filename),
-            os.path.join("/app/thalassemia-backend/templates", filename),
-            filename
-        ]
-    else:
-        # Development paths
-        possible_paths = [
-            os.path.join(PARENT_DIR, filename),
-            os.path.join(CURRENT_DIR, filename),
-            filename
-        ]
+    possible_paths = [
+        os.path.join(PARENT_DIR, filename),
+        os.path.join(CURRENT_DIR, filename),
+        filename
+    ]
     
     for path in possible_paths:
         if os.path.exists(path):
@@ -180,114 +162,108 @@ async def submit(
 ):
     # Timestamp
     timestamp = f'"{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"'
-    print(f"🕐 DEBUG - Timestamp: {timestamp}")
+    print(f"🕐 Form submitted for: {name}")
 
     # Calculate CBC indices and prediction
     mentzer, shine_lal, srivastava, green_king = calculate_indices(hb, rbc, mcv, mch, mchc, rdwcv)
     prediction = predict_thalassemia(mentzer, mcv, mch)
 
-    # ✅ STEP 1: SEND EMAIL TO PATIENT (Python version)
-    print("📧 Attempting to send email to patient...")
-    try:
-        email_data = {
-            "name": name,
-            "email": email,
-            "age": age,
-            "sex": sex,
-            "whatsapp": whatsapp,
-            "hb": hb,
-            "rbc": rbc,
-            "mcv": mcv,
-            "mch": mch,
-            "mchc": mchc,
-            "rdwcv": rdwcv
-        }
-        
-        email_result = send_python_email(email_data)
-        
-        if email_result['success']:
-            print("✅ Email sent successfully to patient!")
-            print(f"📋 Screening Result: {email_result.get('screening_result', 'N/A')}")
-        else:
-            print(f"❌ Email sending failed: {email_result.get('error', 'Unknown error')}")
-            
-    except Exception as e:
-        print(f"💥 Email sending exception: {str(e)}")
-
-    # ✅ STEP 2: SAVE TO GOOGLE SHEETS
-    print("🔄 Attempting to save to SheetDB...")
+    # ✅ STEP 1: RETURN RESULT PAGE IMMEDIATELY (FAST RESPONSE)
+    response = templates.TemplateResponse("result.html", {"request": request})
     
-    # Prepare data for SheetDB
-    data = {
-        "data": {
-            # Personal Information
-            "Timestamp": timestamp,
-            "Name": name,
-            "WhatsApp": whatsapp,
-            "Email": email,
-            "Age": age,
-            "Sex": sex,
-            "Address": address,
-            "Caste": caste,
-            "Religion": religion,
-            # Medical History
-            "BloodWithin3Months": bloodWithin3Months,
-            "BloodMoreThan2Times": bloodMoreThan2Times,
-            "Fatigue": fatigue,
-            "Breathless": breathless,
-            "IllFrequently": illFrequently,
-            "FamilyHistory": familyHistory,
-            # CBC Parameters
-            "Hb": hb,
-            "HCT": hct,
-            "RBC": rbc,
-            "WBC": wbc,
-            "Platelet": platelet,
-            "MCV": mcv,
-            "MCH": mch,
-            "MCHC": mchc,
-            "RDWCV": rdwcv,
-            "RDWSD": rdwsd,
-            "MPV": mpv,
-            "PDW": pdw,
-            "PLCR": plcr,
-            "PCT": pct,
-            "PLCC": plcc,
-            # Differential Count
-            "Neutrophils": neutrophils,
-            "Eosinophils": eosinophils,
-            "Basophils": basophils,
-            "Lymphocytes": lymphocytes,
-            "Monocytes": monocytes,
-            # Calculated Indices
-            "Mentzer": mentzer,
-            "Shine_Lal": shine_lal,
-            "Srivastava": srivastava,
-            "Green_King": green_king,
-            "Prediction": prediction
-        }
-    }
-
-    # POST to SheetDB
-    try:
-        response = requests.post(SHEETDB_URL, json=data)
-        print(f"📡 SheetDB Response Status: {response.status_code}")
-        
-        if response.status_code == 201:
-            print("✅ SUCCESS: Data saved to Google Sheet!")
-        elif response.status_code == 422:
-            print("❌ ERROR 422: Column mismatch in Google Sheet")
-        else:
-            print(f"❌ ERROR {response.status_code}: SheetDB API issue")
+    # ✅ STEP 2: RUN EMAIL & SHEETS IN BACKGROUND (NON-BLOCKING)
+    def process_background_tasks():
+        try:
+            print(f"🔄 Starting background tasks for: {name}")
             
-    except Exception as e:
-        print(f"💥 SheetDB Exception: {str(e)}")
+            # Send email
+            email_data = {
+                "name": name,
+                "email": email,
+                "age": age,
+                "sex": sex,
+                "whatsapp": whatsapp,
+                "hb": hb,
+                "rbc": rbc,
+                "mcv": mcv,
+                "mch": mch,
+                "mchc": mchc,
+                "rdwcv": rdwcv
+            }
+            
+            email_result = send_python_email(email_data)
+            if email_result['success']:
+                print(f"✅ Email sent to: {email}")
+            else:
+                print(f"❌ Email failed: {email_result.get('error')}")
+            
+            # Save to Google Sheets
+            data = {
+                "data": {
+                    # Personal Information
+                    "Timestamp": timestamp,
+                    "Name": name,
+                    "WhatsApp": whatsapp,
+                    "Email": email,
+                    "Age": age,
+                    "Sex": sex,
+                    "Address": address,
+                    "Caste": caste,
+                    "Religion": religion,
+                    # Medical History
+                    "BloodWithin3Months": bloodWithin3Months,
+                    "BloodMoreThan2Times": bloodMoreThan2Times,
+                    "Fatigue": fatigue,
+                    "Breathless": breathless,
+                    "IllFrequently": illFrequently,
+                    "FamilyHistory": familyHistory,
+                    # CBC Parameters
+                    "Hb": hb,
+                    "HCT": hct,
+                    "RBC": rbc,
+                    "WBC": wbc,
+                    "Platelet": platelet,
+                    "MCV": mcv,
+                    "MCH": mch,
+                    "MCHC": mchc,
+                    "RDWCV": rdwcv,
+                    "RDWSD": rdwsd,
+                    "MPV": mpv,
+                    "PDW": pdw,
+                    "PLCR": plcr,
+                    "PCT": pct,
+                    "PLCC": plcc,
+                    # Differential Count
+                    "Neutrophils": neutrophils,
+                    "Eosinophils": eosinophils,
+                    "Basophils": basophils,
+                    "Lymphocytes": lymphocytes,
+                    "Monocytes": monocytes,
+                    # Calculated Indices
+                    "Mentzer": mentzer,
+                    "Shine_Lal": shine_lal,
+                    "Srivastava": srivastava,
+                    "Green_King": green_king,
+                    "Prediction": prediction
+                }
+            }
 
-    # ✅ STEP 3: RETURN RESULT PAGE (Simple thank you)
-    return templates.TemplateResponse("result.html", {
-        "request": request
-        # No data parameters needed for simple thank you page
-    })
+            # POST to SheetDB with timeout
+            sheets_response = requests.post(SHEETDB_URL, json=data, timeout=10)
+            if sheets_response.status_code == 201:
+                print(f"✅ Sheets saved for: {name}")
+            else:
+                print(f"❌ Sheets error: {sheets_response.status_code}")
+                
+        except Exception as e:
+            print(f"💥 Background task error: {str(e)}")
+
+    # Start background thread (non-blocking)
+    thread = threading.Thread(target=process_background_tasks)
+    thread.daemon = True  # Thread will be killed when main thread exits
+    thread.start()
+
+    return response
 
 # Your utility functions
 def calculate_indices(hb, rbc, mcv, mch, mchc, rdw):
@@ -306,11 +282,10 @@ def predict_thalassemia(mentzer, mcv, mch):
 # Python Email Function
 def send_python_email(form_data):
     try:
-        # 🔥 REPLACE THIS WITH YOUR ACTUAL GODADDY PASSWORD 🔥
         smtp_server = "smtpout.secureserver.net"
         port = 587
         username = "drabhijeet@muktanganfoundation.org"
-        password = "Abhijeet@2025"  # ← REPLACE THIS
+        password = "Abhijeet@2025"
         
         # Calculate Thalassemia result
         mcv = float(form_data.get('mcv', 0))
@@ -374,8 +349,8 @@ drabhijeet@muktanganfoundation.org"""
         
         msg.attach(MIMEText(body, 'plain'))
         
-        # Send email
-        server = smtplib.SMTP(smtp_server, port)
+        # Send email with timeout
+        server = smtplib.SMTP(smtp_server, port, timeout=10)
         server.starttls()
         server.login(username, password)
         server.send_message(msg)
