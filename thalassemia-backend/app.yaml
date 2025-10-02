@@ -4,10 +4,24 @@ entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
 env_variables:
   GCP_PROJECT: "speech-test-471607"
 
-# ✅ CORRECT: Use automatic scaling for F1 instances
 automatic_scaling:
   max_instances: 1
   min_instances: 0
 
-# Free tier settings
 instance_class: F1
+
+handlers:
+  # Serve HTML files from root
+  - url: /(.*\.html)
+    static_files: \1
+    upload: (.*\.html)
+
+  # Serve CSS files from root
+  - url: /(.*\.css)
+    static_files: \1
+    upload: (.*\.css)
+
+  # Serve JS files from root
+  - url: /(.*\.js)
+    static_files: \1
+    upload: (.*\.js)

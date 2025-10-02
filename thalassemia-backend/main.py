@@ -8,11 +8,13 @@ from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from fastapi.responses import FileResponse
+
 
 # Initialize FastAPI app
 app = FastAPI(title="Thalassemia Predictor API", version="1.0.0")
 
-# Configure CORS
+# ✅ Configure CORS for GitHub Pages
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -24,8 +26,9 @@ app.add_middleware(
 # Your SheetDB URL
 SHEETDB_URL = "https://sheetdb.io/api/v1/szpu493oaui2j"
 
-# Pydantic Model for API Validation
+# ✅ Pydantic Model for API Validation
 class PatientData(BaseModel):
+    # Personal Information
     name: str
     whatsapp: str
     email: str
@@ -35,6 +38,7 @@ class PatientData(BaseModel):
     caste: str
     religion: str
     
+    # Medical History (Optional)
     bloodWithin3Months: Optional[str] = None
     bloodMoreThan2Times: Optional[str] = None
     fatigue: Optional[str] = None
@@ -42,6 +46,7 @@ class PatientData(BaseModel):
     illFrequently: Optional[str] = None
     familyHistory: Optional[str] = None
     
+    # CBC Parameters
     hb: float
     hct: float
     rbc: float
@@ -58,13 +63,14 @@ class PatientData(BaseModel):
     pct: float
     plcc: float
     
+    # Differential Count
     neutrophils: float
     eosinophils: float
     basophils: float
     lymphocytes: float
     monocytes: float
 
-# Utility functions
+# ✅ Utility functions
 def calculate_indices(hb, rbc, mcv, mch, mchc, rdw):
     mentzer = mcv / rbc if rbc != 0 else 0
     shine_lal = (mcv ** 2 * mch) / 100 if mch != 0 else 0
@@ -78,7 +84,7 @@ def predict_thalassemia(mentzer, mcv, mch):
     else:
         return "Not Thalassemia Minor"
 
-# Email function
+# ✅ Email function
 def send_python_email(form_data):
     try:
         smtp_server = "smtpout.secureserver.net"
@@ -86,12 +92,14 @@ def send_python_email(form_data):
         username = "drabhijeet@muktanganfoundation.org"
         password = "Abhijeet@2025"
         
+        # Calculate Thalassemia result
         mcv = float(form_data.get('mcv', 0))
         mch = float(form_data.get('mch', 0))
         rbc = float(form_data.get('rbc', 1))
         
         mentzer = mcv / rbc if rbc > 0 else 0
         
+        # Thalassemia detection logic
         conditions = [
             mentzer < 13,
             mcv < 80,
@@ -109,6 +117,7 @@ def send_python_email(form_data):
             result_text = "✅ NOT SUGGESTIVE OF THALASSEMIA MINOR"
             recommendation = "Your screening does not suggest Thalassemia Minor. However, clinical correlation with symptoms is advised."
         
+        # Create email
         msg = MIMEMultipart()
         msg['From'] = 'Dr. Abhijeet - Muktangan Foundation <drabhijeet@muktanganfoundation.org>'
         msg['To'] = form_data['email']
@@ -145,6 +154,7 @@ drabhijeet@muktanganfoundation.org"""
         
         msg.attach(MIMEText(body, 'plain'))
         
+        # SMTP connection
         try:
             server = smtplib.SMTP(smtp_server, port, timeout=15)
             server.ehlo()
@@ -156,6 +166,7 @@ drabhijeet@muktanganfoundation.org"""
             return {"success": True, "message": "Email sent successfully", "screening_result": result_text}
             
         except smtplib.SMTPException:
+            # Try alternative port 465 with SSL
             try:
                 server = smtplib.SMTP_SSL('smtpout.secureserver.net', 465, timeout=15)
                 server.login(username, password)
@@ -168,12 +179,12 @@ drabhijeet@muktanganfoundation.org"""
     except Exception as e:
         return {"success": False, "error": str(e)}
 
-# SUBMIT ENDPOINT
-@app.post("/submit", response_class=HTMLResponse)
+# ✅ SUBMIT ENDPOINT - Returns HTML Thank You Page
+@app.post("/submit")
 async def submit_form(patient_data: PatientData):
     try:
         print(f"🔄 Processing submission for: {patient_data.name}")
-
+        
         # Calculate indices and prediction
         mentzer, shine_lal, srivastava, green_king = calculate_indices(
             patient_data.hb, patient_data.rbc, patient_data.mcv, 
@@ -189,14 +200,15 @@ async def submit_form(patient_data: PatientData):
             "prediction": prediction
         })
         
-        # Send email
+        # ✅ Send email
         email_result = send_python_email(form_data_dict)
         
-        # Save to Google Sheets
+        # ✅ Save to Google Sheets
         timestamp = f'"{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"'
         
         sheets_data = {
             "data": {
+                # Personal Information
                 "Timestamp": timestamp,
                 "Name": patient_data.name,
                 "WhatsApp": patient_data.whatsapp,
@@ -206,12 +218,14 @@ async def submit_form(patient_data: PatientData):
                 "Address": patient_data.address,
                 "Caste": patient_data.caste,
                 "Religion": patient_data.religion,
+                # Medical History
                 "BloodWithin3Months": patient_data.bloodWithin3Months,
                 "BloodMoreThan2Times": patient_data.bloodMoreThan2Times,
                 "Fatigue": patient_data.fatigue,
                 "Breathless": patient_data.breathless,
                 "IllFrequently": patient_data.illFrequently,
                 "FamilyHistory": patient_data.familyHistory,
+                # CBC Parameters
                 "Hb": patient_data.hb,
                 "HCT": patient_data.hct,
                 "RBC": patient_data.rbc,
@@ -227,11 +241,13 @@ async def submit_form(patient_data: PatientData):
                 "PLCR": patient_data.plcr,
                 "PCT": patient_data.pct,
                 "PLCC": patient_data.plcc,
+                # Differential Count
                 "Neutrophils": patient_data.neutrophils,
                 "Eosinophils": patient_data.eosinophils,
                 "Basophils": patient_data.basophils,
                 "Lymphocytes": patient_data.lymphocytes,
                 "Monocytes": patient_data.monocytes,
+                # Calculated Indices
                 "Mentzer": mentzer,
                 "Shine_Lal": shine_lal,
                 "Srivastava": srivastava,
@@ -244,25 +260,15 @@ async def submit_form(patient_data: PatientData):
         sheets_response = requests.post(SHEETDB_URL, json=sheets_data, timeout=10)
         sheets_success = sheets_response.status_code == 201
         
-        # Dynamically generate HTML response with the prediction included
-        with open("thankyou.html", "r") as f:
-            html_content = f.read()
-
-        html_content = html_content.replace(
-            "", 
-            f"<div class='info-box'>"
-            f"  <div class='info-title'>Screening Result</div>"
-            f"  <div class='info-text'><b>{prediction}</b></div>"
-            f"</div>"
-        )
+        # ✅ FIXED HTML Thank You Page - Green Tick Fully Visible
         
-        return HTMLResponse(content=html_content, status_code=200)
-
+        return FileResponse("thankyou.html", media_type="text/html")
+        
     except Exception as e:
         print(f"💥 API Error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Processing error: {str(e)}")
-    
-# Health check endpoint
+
+# ✅ Health check endpoint
 @app.get("/")
 async def health_check():
     return {
@@ -271,7 +277,7 @@ async def health_check():
         "timestamp": datetime.now().isoformat()
     }
 
-# For local testing
+# ✅ For local testing
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8080)
