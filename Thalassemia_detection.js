@@ -163,13 +163,21 @@ class CBCValidator {
     }
 
     addEventListeners() {
+        console.log('🔄 Adding event listeners...');
+        console.log('Submit button:', this.submitBtn);
+        
         // Button click handler (primary method)
-        this.submitBtn.addEventListener('click', (e) => {
-            console.log('🔄 Button click handler triggered');
-            e.preventDefault();
-            e.stopPropagation();
-            this.handleSubmit(e);
-        });
+        if (this.submitBtn) {
+            this.submitBtn.addEventListener('click', (e) => {
+                console.log('🔄 Button click handler triggered');
+                e.preventDefault();
+                e.stopPropagation();
+                this.handleSubmit(e);
+            });
+            console.log('✅ Button click listener added');
+        } else {
+            console.error('❌ Submit button not found!');
+        }
         
         // Form submit handler (backup prevention)
         this.form.addEventListener('submit', (e) => {
@@ -328,6 +336,7 @@ class CBCValidator {
     // ✅ UPDATED: API-based form submission
     // ✅ UPDATED: Fixed loading state and submission flow
 async handleSubmit(e) {
+    console.log('🚀 handleSubmit called');
     e.preventDefault();
 
     // Clear all previous errors
@@ -336,12 +345,16 @@ async handleSubmit(e) {
     });
 
     // Validate all fields
+    console.log('🔍 Validating all fields...');
     if (!this.validateAllFields()) {
+        console.log('❌ Validation failed');
         this.focusFirstError();
         return;
     }
+    console.log('✅ All fields validated successfully');
 
     // ✅ FIX: Show loading state FIRST
+    console.log('🔄 Setting loading state...');
     this.setLoadingState(true);
     
     // ✅ FIX: Add a small delay to ensure loading animation is visible
@@ -442,15 +455,22 @@ showBasicSuccess() {
     this.successMessage.classList.add('show');
 }
 setLoadingState(isLoading) {
+    console.log('🔄 Setting loading state:', isLoading);
     if (isLoading) {
         this.submitBtn.classList.add('loading');
         this.submitBtn.disabled = true;
-        // ✅ REMOVED: No spinner, just text
-        this.submitBtn.innerHTML = 'Sending...';
+        this.submitBtn.innerHTML = `
+            <i class="fas fa-spinner fa-spin"></i>
+            <span class="btn-text">Sending...</span>
+        `;
     } else {
         this.submitBtn.classList.remove('loading');
         this.submitBtn.disabled = false;
-        this.submitBtn.innerHTML = 'Submit Form';
+        this.submitBtn.innerHTML = `
+            <i class="fas fa-flask"></i>
+            <span class="btn-text">Analyze CBC Parameters</span>
+            <div class="loading-spinner"></div>
+        `;
     }
 }
 
