@@ -163,17 +163,17 @@ class CBCValidator {
     }
 
     addEventListeners() {
-        // Primary submit handler
-        this.form.addEventListener('submit', (e) => {
-            console.log('🔄 Primary submit handler triggered');
+        // Button click handler (primary method)
+        this.submitBtn.addEventListener('click', (e) => {
+            console.log('🔄 Button click handler triggered');
             e.preventDefault();
             e.stopPropagation();
             this.handleSubmit(e);
         });
         
-        // Backup submit handler with higher priority
+        // Form submit handler (backup prevention)
         this.form.addEventListener('submit', (e) => {
-            console.log('🛡️ Backup submit prevention triggered');
+            console.log('🛡️ Form submit prevention triggered');
             e.preventDefault();
             e.stopPropagation();
             return false;

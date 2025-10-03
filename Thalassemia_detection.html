@@ -529,7 +529,7 @@
 
                 <!-- Submit Section -->
                 <div class="submit-section">
-                    <button type="submit" class="submit-btn" id="submitBtn">
+                    <button type="button" class="submit-btn" id="submitBtn">
                         <i class="fas fa-flask"></i>
                         <span class="btn-text">Analyze CBC Parameters</span>
                         <div class="loading-spinner"></div>
@@ -555,6 +555,20 @@
         </div>
     </div>
 
+    <script>
+        // Immediate form submission prevention
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('cbcForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    console.log('🛑 Inline script preventing form submission');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }, true);
+            }
+        });
+    </script>
     <script src="Thalassemia_detection.js"></script>
 </body>
 
