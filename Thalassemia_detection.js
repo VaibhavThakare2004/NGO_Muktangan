@@ -66,7 +66,7 @@ class CBCValidator {
             },
             hct: {
                 message: "Hematocrit value is required",
-                required: true
+                required: false
             },
             rbc: {
                 message: "RBC count is required",
@@ -74,11 +74,11 @@ class CBCValidator {
             },
             wbc: {
                 message: "WBC count is required",
-                required: true
+                required: false
             },
             platelet: {
                 message: "Platelet count is required",
-                required: true
+                required: false
             },
             mcv: {
                 message: "MCV value is required",
@@ -102,45 +102,45 @@ class CBCValidator {
             },
             mpv: {
                 message: "MPV value is required",
-                required: true
+                required: false
             },
             pdw: {
                 message: "PDW value is required",
-                required: true
+                required: false
             },
             plcr: {
                 message: "P-LCR value is required",
-                required: true
+                required: false
             },
             pct: {
                 message: "PCT value is required",
-                required: true
+                required: false
             },
             plcc: {
                 message: "P-LCC value is required",
-                required: true
+                required: false
             },
             
             // Differential Count - Required fields
             neutrophils: {
                 message: "Neutrophils percentage is required",
-                required: true
+                required: flase
             },
             eosinophils: {
                 message: "Eosinophils percentage is required",
-                required: true
+                required: false
             },
             basophils: {
                 message: "Basophils percentage is required",
-                required: true
+                required: false
             },
             lymphocytes: {
                 message: "Lymphocytes percentage is required",
-                required: true
+                required: false
             },
             monocytes: {
                 message: "Monocytes percentage is required",
-                required: true
+                required: false
             }
         };
 
