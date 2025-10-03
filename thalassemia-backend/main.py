@@ -260,8 +260,38 @@ async def submit_form(patient_data: PatientData):
         sheets_response = requests.post(SHEETDB_URL, json=sheets_data, timeout=10)
         sheets_success = sheets_response.status_code == 201
         
-        # ✅ Return the thankyou.html file from backend directory
-        return FileResponse("backend/thankyou.html", media_type="text/html")
+        # ✅ Read and return the thankyou.html file content directly as HTML response
+        try:
+            with open("thankyou.html", "r", encoding="utf-8") as file:
+                html_content = file.read()
+            return HTMLResponse(content=html_content, status_code=200)
+        except FileNotFoundError:
+            # Fallback to inline HTML if file not found
+            fallback_html = """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Thank You - Thalassemia CBC Predictor</title>
+                <style>
+                    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: linear-gradient(135deg, #8B5CF6, #DDD6FE); }
+                    .container { background: white; padding: 40px; border-radius: 20px; max-width: 400px; margin: 0 auto; }
+                    .success-icon { font-size: 60px; color: #10B981; margin-bottom: 20px; }
+                    h1 { color: #8B5CF6; margin-bottom: 20px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="success-icon">✅</div>
+                    <h1>Thank You!</h1>
+                    <p>Your form has been successfully submitted.</p>
+                    <p>You will receive your screening results via email shortly.</p>
+                </div>
+            </body>
+            </html>
+            """
+            return HTMLResponse(content=fallback_html, status_code=200)
         
     except Exception as e:
         print(f"💥 API Error: {str(e)}")
