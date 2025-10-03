@@ -11,8 +11,9 @@
 
 /* Styles specific to the Contact Us page */
 .contact {
-    background: var(--pink-50); /* Light pink background for the contact section */
-    padding: 3rem 0; /* Added padding for section */
+    /* Match the site's pink gradient background */
+    background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+    padding: 3rem 0;
 }
 
 .container {

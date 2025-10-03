@@ -850,7 +850,9 @@ section {
 
 /* Contact Section */
 .contact {
-  background: white;
+  /* Match site-wide pink gradient theme */
+  background: linear-gradient(135deg, var(--pink-50), var(--purple-50));
+  padding: 3rem 0;
 }
 
 .contact-content {
