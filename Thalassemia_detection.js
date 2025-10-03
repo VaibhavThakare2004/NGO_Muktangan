@@ -440,11 +440,10 @@ setLoadingState(isLoading) {
     if (isLoading) {
         this.submitBtn.classList.add('loading');
         this.submitBtn.disabled = true;
-        // Keep same structure so CSS spinner shows, but also keep text visible
+        // Use inline spinner icon + text only (no absolute overlay)
         this.submitBtn.innerHTML = `
-            <i class="fas fa-spinner fa-spin"></i>
-            <span class="btn-text">Sending...</span>
-            <div class="loading-spinner"></div>
+            <i class=\"fas fa-spinner fa-spin\"></i>
+            <span class=\"btn-text\">Sending...</span>
         `;
     } else {
         this.submitBtn.classList.remove('loading');

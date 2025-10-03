@@ -347,16 +347,10 @@ textarea {
     margin-right: 8px;
 }
 
-.loading-spinner {
-    display: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    position: absolute;
-}
+/* Keep legacy spinner hidden by default; inline FA spinner is used while loading */
+.loading-spinner { display: none; }
+
+.submit-btn .btn-text { color: #fff; position: relative; z-index: 1; }
 
 .submit-btn.loading .loading-spinner {
     display: block;
