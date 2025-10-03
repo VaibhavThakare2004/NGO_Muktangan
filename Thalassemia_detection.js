@@ -124,7 +124,7 @@ class CBCValidator {
             // Differential Count - Required fields
             neutrophils: {
                 message: "Neutrophils percentage is required",
-                required: flase
+                required: false
             },
             eosinophils: {
                 message: "Eosinophils percentage is required",
