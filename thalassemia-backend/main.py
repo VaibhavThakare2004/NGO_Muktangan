@@ -48,27 +48,27 @@ class PatientData(BaseModel):
     
     # CBC Parameters
     hb: float
-    hct: float
+    hct: Optional[float] = None
     rbc: float
-    wbc: float
-    platelet: float
+    wbc: Optional[float] = None
+    platelet: Optional[float] = None
     mcv: float
     mch: float
     mchc: float
     rdwcv: float
     rdwsd: float
-    mpv: float
-    pdw: float
-    plcr: float
-    pct: float
-    plcc: float
+    mpv: Optional[float] = None
+    pdw: Optional[float] = None
+    plcr: Optional[float] = None
+    pct: Optional[float] = None
+    plcc: Optional[float] = None
     
     # Differential Count
-    neutrophils: float
-    eosinophils: float
-    basophils: float
-    lymphocytes: float
-    monocytes: float
+    neutrophils: Optional[float] = None
+    eosinophils: Optional[float] = None
+    basophils: Optional[float] = None
+    lymphocytes: Optional[float] = None
+    monocytes: Optional[float] = None
 
 # ✅ Utility functions
 def calculate_indices(hb, rbc, mcv, mch, mchc, rdw):
