@@ -339,7 +339,12 @@ textarea {
 }
 
 .submit-btn.loading .btn-text {
-    opacity: 0;
+    opacity: 1; /* keep text visible while loading */
+}
+
+/* Ensure spinner icon and text sit side by side nicely */
+.submit-btn .fa-spinner {
+    margin-right: 8px;
 }
 
 .loading-spinner {
