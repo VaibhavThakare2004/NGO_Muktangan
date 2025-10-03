@@ -401,40 +401,21 @@ async handleSubmit(e) {
 }
 /// ✅ UPDATED: Method to show thank you page WITHOUT spinners
 showThankYouPage(htmlContent) {
-    // ✅ FIRST: Reset loading state to remove any spinners
+    // Display the backend's thankyou.html as a standalone page
     this.setLoadingState(false);
-    
-    // Hide the form
-    this.form.style.display = 'none';
-    
-    // ✅ REMOVE any existing spinners from the HTML content
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = htmlContent;
-    
-    // Remove any elements with spinner classes
-    const spinners = tempDiv.querySelectorAll('.loading-spinner, .spinner, [class*="spin"]');
-    spinners.forEach(spinner => spinner.remove());
-    
-    // Remove any elements with loading text
-    const loadingElements = tempDiv.querySelectorAll('*');
-    loadingElements.forEach(element => {
-        if (element.textContent.includes('Sending...') || 
-            element.textContent.includes('Loading...') ||
-            element.textContent.includes('Processing...')) {
-            element.remove();
-        }
-    });
-    
-    // Create a container for the thank you page
-    const thankYouContainer = document.createElement('div');
-    thankYouContainer.innerHTML = tempDiv.innerHTML;
-    
-    // Replace the form with thank you page
-    this.form.parentNode.insertBefore(thankYouContainer, this.form.nextSibling);
-    
-    console.log('✅ Thank you page displayed (spinners removed)');
-    
-    // Clear saved form data
+    try {
+        document.open('text/html', 'replace');
+        document.write(htmlContent);
+        document.close();
+        console.log('✅ Replaced document with thankyou page');
+    } catch (e) {
+        console.error('❌ Failed to replace document, falling back to inline render', e);
+        // Fallback: inline render below header
+        this.form.style.display = 'none';
+        const container = document.createElement('div');
+        container.innerHTML = htmlContent;
+        this.form.parentNode.insertBefore(container, this.form.nextSibling);
+    }
     localStorage.removeItem('cbcFormData');
 }
 
