@@ -163,7 +163,21 @@ class CBCValidator {
     }
 
     addEventListeners() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        // Primary submit handler
+        this.form.addEventListener('submit', (e) => {
+            console.log('🔄 Primary submit handler triggered');
+            e.preventDefault();
+            e.stopPropagation();
+            this.handleSubmit(e);
+        });
+        
+        // Backup submit handler with higher priority
+        this.form.addEventListener('submit', (e) => {
+            console.log('🛡️ Backup submit prevention triggered');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
         
         // Add input event listeners for real-time validation
         Object.keys(this.validationRules).forEach(fieldName => {
@@ -668,16 +682,38 @@ class FormEnhancements {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new CBCValidator();
-    new FormEnhancements();
-    
-    // Add smooth scrolling for better UX
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Add loading animation
-    document.body.classList.add('loaded');
-    
-    console.log('✅ Enhanced Thalassemia CBC Predictor initialized successfully');
+    try {
+        console.log('🔄 Initializing CBC Validator...');
+        const validator = new CBCValidator();
+        
+        // Double-check that form exists and event listener is attached
+        const form = document.getElementById('cbcForm');
+        if (!form) {
+            console.error('❌ Form not found!');
+            return;
+        }
+        
+        console.log('✅ Form found, validator initialized');
+        
+        // Add additional form submit prevention as backup
+        form.addEventListener('submit', (e) => {
+            console.log('🛡️ Backup form submit handler triggered');
+            e.preventDefault();
+            e.stopPropagation();
+        }, true);
+        
+        new FormEnhancements();
+        
+        // Add smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Add loading animation
+        document.body.classList.add('loaded');
+        
+        console.log('✅ Enhanced Thalassemia CBC Predictor initialized successfully');
+    } catch (error) {
+        console.error('❌ Initialization error:', error);
+    }
     console.log('🚀 Ready for Google Cloud API integration');
 });
 
