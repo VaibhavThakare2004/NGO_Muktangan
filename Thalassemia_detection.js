@@ -98,7 +98,7 @@ class CBCValidator {
             },
             rdwsd: {
                 message: "RDW-SD value is required",
-                required: true
+                required: false
             },
             mpv: {
                 message: "MPV value is required",
