@@ -1,0 +1,25 @@
+# Security and sensitive files
+SECURITY-GUIDE.md
+*.env
+.env*
+passwords.txt
+credentials.json
+secrets/
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
