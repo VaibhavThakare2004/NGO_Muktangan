@@ -90,7 +90,7 @@ def send_python_email(form_data):
         smtp_server = "smtpout.secureserver.net"
         port = 587
         username = "drabhijeet@muktanganfoundation.org"
-        password = "Abhijeet@2025"
+        password = 
         
         # Calculate Thalassemia result
         mcv = float(form_data.get('mcv', 0))
