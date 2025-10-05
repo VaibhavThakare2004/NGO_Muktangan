@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from typing import Optional
 import requests
 from datetime import datetime
+import pytz
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -204,8 +205,10 @@ async def submit_form(patient_data: PatientData):
         # ✅ Send email
         email_result = send_python_email(form_data_dict)
         
-        # ✅ Save to Google Sheets
-        timestamp = f'"{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"'
+        # ✅ Save to Google Sheets - Using Indian Standard Time
+        ist_timezone = pytz.timezone('Asia/Kolkata')
+        ist_time = datetime.now(ist_timezone)
+        timestamp = f'"{ist_time.strftime("%Y-%m-%d %H:%M:%S IST")}"'
         
         sheets_data = {
             "data": {
@@ -301,10 +304,12 @@ async def submit_form(patient_data: PatientData):
 # ✅ Health check endpoint
 @app.get("/")
 async def health_check():
+    ist_timezone = pytz.timezone('Asia/Kolkata')
+    ist_time = datetime.now(ist_timezone)
     return {
         "status": "healthy", 
         "service": "Thalassemia Predictor API",
-        "timestamp": datetime.now().isoformat()
+        "timestamp": ist_time.isoformat()
     }
 
 # ✅ For local testing
