@@ -282,6 +282,22 @@ textarea {
     font-style: italic;
 }
 
+/* Genetic Information Notice */
+.genetic-info-notice {
+    background: #f0f9ff;
+    border: 1px solid #0ea5e9;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+    color: #0c4a6e;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.genetic-info-notice strong {
+    color: #0369a1;
+}
+
 /* Error Messages */
 .error-message {
     display: none;
