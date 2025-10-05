@@ -91,8 +91,12 @@ def send_python_email(form_data):
     try:
         smtp_server = "smtpout.secureserver.net"
         port = 587
+        # Get credentials from environment (set during deployment, not in code)
         username = os.environ.get('SMTP_USERNAME', 'drabhijeet@muktanganfoundation.org')
-        password = os.environ.get('SMTP_PASSWORD', 'Abhijeet@2025')
+        password = os.environ.get('SMTP_PASSWORD')
+        
+        if not password:
+            return {"success": False, "error": "SMTP password not configured. Please set environment variable."}
         
         # Calculate Thalassemia result
         mcv = float(form_data.get('mcv', 0))
