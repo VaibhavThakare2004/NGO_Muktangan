@@ -9,6 +9,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from fastapi.responses import FileResponse
+import os
 
 
 # Initialize FastAPI app
@@ -89,8 +90,8 @@ def send_python_email(form_data):
     try:
         smtp_server = "smtpout.secureserver.net"
         port = 587
-        username = "drabhijeet@muktanganfoundation.org"
-        password = 
+        username = os.environ.get('SMTP_USERNAME', 'drabhijeet@muktanganfoundation.org')
+        password = os.environ.get('SMTP_PASSWORD', 'Abhijeet@2025')
         
         # Calculate Thalassemia result
         mcv = float(form_data.get('mcv', 0))

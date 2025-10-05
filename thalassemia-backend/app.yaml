@@ -3,6 +3,8 @@ entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
 
 env_variables:
   GCP_PROJECT: "speech-test-471607"
+  SMTP_USERNAME: "drabhijeet@muktanganfoundation.org"
+  SMTP_PASSWORD: "Abhijeet@2025"
 
 automatic_scaling:
   max_instances: 1
