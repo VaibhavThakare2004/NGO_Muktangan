@@ -376,7 +376,17 @@ async handleSubmit(e) {
         });
 
         if (!response.ok) {
-            throw new Error(`Server error: ${response.status}`);
+            // Try to get detailed error message from response
+            let errorDetails = `Server error: ${response.status}`;
+            try {
+                const errorData = await response.json();
+                if (errorData.detail) {
+                    errorDetails += ` - ${JSON.stringify(errorData.detail)}`;
+                }
+            } catch (parseError) {
+                // If we can't parse the error, just use the status
+            }
+            throw new Error(errorDetails);
         }
 
         // ✅ CHECK if response is HTML or JSON
@@ -571,15 +581,28 @@ setLoadingState(isLoading) {
         const formData = new FormData(this.form);
         const data = {};
         
+        // Required numeric fields that cannot be null
+        const requiredNumbers = ['age', 'hb', 'rbc', 'mcv', 'mch', 'mchc', 'rdwcv', 'rdwsd'];
+        // Optional numeric fields that can be null
+        const optionalNumbers = ['hct', 'wbc', 'platelet', 'mpv', 'pdw', 'plcr', 'pct', 'plcc', 'neutrophils', 'eosinophils', 'basophils', 'lymphocytes', 'monocytes'];
+        
         for (let [key, value] of formData.entries()) {
-            // Convert numeric fields to numbers
-            if (['hb', 'hct', 'rbc', 'wbc', 'platelet', 'mcv', 'mch', 'mchc', 'rdwcv', 'rdwsd', 'mpv', 'pdw', 'plcr', 'pct', 'plcc', 'neutrophils', 'eosinophils', 'basophils', 'lymphocytes', 'monocytes', 'age'].includes(key)) {
+            if (key === 'age') {
+                // Age must be an integer
+                data[key] = value ? parseInt(value) : 0;
+            } else if (requiredNumbers.includes(key)) {
+                // Required float fields - use 0 if empty instead of null
+                data[key] = value ? parseFloat(value) : 0;
+            } else if (optionalNumbers.includes(key)) {
+                // Optional float fields - can be null if empty
                 data[key] = value ? parseFloat(value) : null;
             } else {
-                data[key] = value;
+                // String fields
+                data[key] = value || "";
             }
         }
         
+        console.log('📤 Form data being sent:', data);
         return data;
     }
 }
