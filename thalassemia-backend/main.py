@@ -134,18 +134,18 @@ def send_python_email(form_data):
 Please find your hematology screening results below:
 
 PATIENT INFORMATION:
-- Name: {form_data['name']}
-- Age: {form_data.get('age', 'N/A')} years
-- Sex: {form_data.get('sex', 'N/A')}
-- Contact: {form_data.get('whatsapp', 'N/A')}
+ Name: {form_data['name']}
+ Age: {form_data.get('age', 'N/A')} years
+ Sex: {form_data.get('sex', 'N/A')}
+ Contact: {form_data.get('whatsapp', 'N/A')}
 
 SCREENING RESULT:
 {result_text}
 
 INTERPRETATION NOTES:
-- Mentzer Index < 13 suggests Thalassemia
-- MCV < 80 fL indicates Microcytosis
-- MCH < 27 pg indicates Hypochromia
+- Mentzer Index < 13 ->suggests Thalassemia
+- MCV < 80 fL -> indicates Microcytosis
+- MCH < 27 pg ->  indicates Hypochromia
 - This is a screening tool - consult a hematologist for definitive diagnosis
 
 RECOMMENDATION:
