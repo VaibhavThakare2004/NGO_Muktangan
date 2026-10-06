@@ -6,7 +6,36 @@
     <title>Muktangan - Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --brand-brown:#2d1f1a; --brand-cream:#fdf6f0; --brand-saffron:#e8613c; --brand-rose:#c2547a; --brand-gold:#e8c252; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  h1,h2,h3,.section-title,.footer-logo-text h3 { font-family: 'Fraunces', Georgia, serif; }
+  .header { background: var(--brand-brown) !important; border-bottom: 3px solid var(--brand-saffron) !important; }
+  .logo h1 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; letter-spacing:-0.02em; }
+  .logo p { color: var(--brand-gold) !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; }
+  .nav a { color: rgba(253,246,240,0.88) !important; }
+  .nav a:hover { color: var(--brand-gold) !important; }
+  .nav a[href="donate.html"] { background:var(--brand-saffron) !important; color:#fff !important; border-radius:999px !important; padding:7px 18px !important; font-weight:600 !important; }
+  .dropdown-content { background: var(--brand-brown) !important; border:1px solid rgba(232,194,82,0.25) !important; }
+  .dropdown-item { color: rgba(253,246,240,0.85) !important; }
+  .dropdown-item:hover { background: rgba(255,255,255,0.07) !important; }
+  .dropdown-item-content i { color: var(--brand-saffron) !important; }
+  .btn-primary,.btn-gradient { background: var(--brand-saffron) !important; border-color: var(--brand-saffron) !important; }
+  .section-title { color: var(--brand-brown) !important; letter-spacing:-0.025em; }
+  .footer { background: #1a0f0a !important; }
+  .footer-logo-text h3 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; }
+  .footer-logo-text p { color: var(--brand-gold) !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; }
+  .footer h4 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; }
+  .footer-links a:hover { color: var(--brand-saffron) !important; }
+  .footer-bottom { border-top: 1px solid rgba(253,246,240,0.1) !important; }
+  .mobile-menu { background: var(--brand-brown) !important; }
+  .mobile-menu a { color: rgba(253,246,240,0.88) !important; border-bottom:1px solid rgba(232,97,60,0.15) !important; }
+  .mobile-menu a:hover { color: var(--brand-saffron) !important; }
+</style>
+<link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
@@ -59,6 +88,19 @@
                 </div>
               </div>
             </a>
+            
+<a href="project-jija.html" class="dropdown-item">
+<div class="dropdown-item-content">
+<i class="fas fa-globe"></i>
+<div><strong>Project Jija</strong><span>Newborn Wellbeing · Global</span></div>
+</div>
+</a>
+<a href="project-ahilya.html" class="dropdown-item">
+<div class="dropdown-item-content">
+<i class="fas fa-seedling"></i>
+<div><strong>Project Ahilya</strong><span>Adolescent Wellbeing · Maharashtra</span></div>
+</div>
+</a>
             <div class="dropdown-divider"></div>
             <a href="projects.html" class="dropdown-item view-all">
               <div class="dropdown-item-content">
@@ -94,7 +136,9 @@
     <a href="index.html" onclick="closeMobileMenu()">Home</a>
     <a href="about.html" onclick="closeMobileMenu()">About Us</a>
     <a href="projects.html" onclick="closeMobileMenu()">Our Projects</a>
-    <a href="Thalassemia_detection.html" onclick="closeMobileMenu()">Thalassemia Detector</a>
+    <a href="project-jija.html" onclick="closeMobileMenu()">Project Jija</a>
+<a href="project-ahilya.html" onclick="closeMobileMenu()">Project Ahilya</a>
+<a href="Thalassemia_detection.html" onclick="closeMobileMenu()">Thalassemia Detector</a>
     <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
     <a href="donate.html" onclick="closeMobileMenu()">Donate</a>
 </div>
@@ -221,8 +265,10 @@
                 <h4>Our Projects</h4>
                 <ul class="footer-links">
                     <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
-                    <li><a href="projects.html#project-1">Thalassemia Mukt Bharat</a></li>
-                    <li><a href="projects.html#project-1">Cancer awareness</a></li>
+                    <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
+                    <li><a href="projects.html#project-3">Cancer Awareness</a></li>
+                    <li><a href="project-jija.html">Project Jija</a></li>
+                    <li><a href="project-ahilya.html">Project Ahilya</a></li>
             </div>
             <div class="footer-section">
                 <h4>Contact Info</h4>
