@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Project Jija — Muktangan Foundation</title>
+  <meta name="description" content="Project Jija educates parents and grandparents about newborn wellbeing. A global initiative by Muktangan Foundation reaching 100 countries with paediatricians.">
+  <meta property="og:title" content="Project Jija — Muktangan Foundation">
+  <meta property="og:description" content="Educating families about newborn wellbeing across 100 countries.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,300&family=Inter:wght@300;400;500;600&display=swap">
+  <style>
+    /* ── Reset & tokens ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Jija brand palette */
+      --jija-bg:      #2d1f1a;
+      --jija-surface: #3a2820;
+      --jija-card:    #432e25;
+      --jija-cream:   #fdf6f0;
+      --jija-muted:   #c4a898;
+      --jija-gold:    #e8c252;
+      --jija-saffron: #e8613c;
+      --jija-rose:    #c2547a;
+      --jija-border:  rgba(232,194,82,0.18);
+
+      /* Site palette (matches existing Muktangan site purple/teal nav) */
+      --site-nav-bg:  #1a0533;
+      --site-nav-fg:  #ffffff;
+      --site-footer:  #111827;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--jija-bg);
+      color: var(--jija-cream);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── Shared site nav (matches existing Muktangan pages) ── */
+    header.site-header {
+      background: var(--site-nav-bg);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 16px;
+    }
+
+    .site-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      text-decoration: none;
+    }
+    .site-logo .name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .site-logo .tagline {
+      font-size: 10px;
+      color: #9b8ab5;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    nav.site-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    nav.site-nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    nav.site-nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    nav.site-nav a.active { color: var(--jija-gold); }
+    nav.site-nav a.donate-btn {
+      background: #7c3aed;
+      color: #fff;
+      font-weight: 600;
+    }
+    nav.site-nav a.donate-btn:hover { background: #6d28d9; }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    .hero {
+      background: var(--jija-bg);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(232,97,60,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Pagdi mark */
+    .hero-mark {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .tagline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,194,82,0.1);
+      border: 1px solid var(--jija-border);
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--jija-gold);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(48px, 8vw, 84px);
+      font-weight: 700;
+      color: var(--jija-cream);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      margin-bottom: 8px;
+    }
+
+    .hero-subname {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--jija-gold);
+      margin-bottom: 28px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--jija-muted);
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--jija-saffron);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--jija-gold);
+      border: 1.5px solid var(--jija-gold);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-outline:hover { background: rgba(232,194,82,0.08); }
+
+    /* ── Section wrapper ─────────────────────────────────── */
+    .section {
+      padding: 72px 24px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--jija-gold);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 700;
+      color: var(--jija-cream);
+      line-height: 1.15;
+      text-wrap: balance;
+      margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--jija-muted);
+      max-width: 640px;
+    }
+
+    /* ── Stats band ──────────────────────────────────────── */
+    .stats-band {
+      background: var(--jija-surface);
+      border-top: 1px solid var(--jija-border);
+      border-bottom: 1px solid var(--jija-border);
+      padding: 48px 24px;
+    }
+
+    .stats-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-item {}
+
+    .stat-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-num.gold { color: var(--jija-gold); }
+    .stat-num.saffron { color: var(--jija-saffron); }
+    .stat-num.rose { color: var(--jija-rose); }
+    .stat-num.cream { color: var(--jija-cream); }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--jija-muted);
+      line-height: 1.4;
+    }
+
+    /* ── About section ───────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-visual {
+      background: var(--jija-card);
+      border: 1px solid var(--jija-border);
+      border-radius: 16px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Pillars ─────────────────────────────────────────── */
+    .pillars-bg {
+      background: var(--jija-surface);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .pillar-card {
+      background: var(--jija-card);
+      border: 1px solid var(--jija-border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .pillar-icon.gold  { background: rgba(232,194,82,0.12); }
+    .pillar-icon.saffron { background: rgba(232,97,60,0.12); }
+    .pillar-icon.rose  { background: rgba(194,84,122,0.12); }
+
+    .pillar-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--jija-cream);
+      margin-bottom: 8px;
+    }
+
+    .pillar-card p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--jija-muted);
+    }
+
+    /* ── Global reach ────────────────────────────────────── */
+    .reach-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .reach-chip {
+      background: var(--jija-card);
+      border: 1px solid var(--jija-border);
+      border-radius: 999px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--jija-cream);
+    }
+
+    /* ── Founders ────────────────────────────────────────── */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .founder-card {
+      background: var(--jija-card);
+      border: 1px solid var(--jija-border);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .founder-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--jija-saffron), var(--jija-rose));
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+
+    .founder-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--jija-cream);
+      margin-bottom: 4px;
+    }
+
+    .founder-role {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--jija-gold);
+      margin-bottom: 12px;
+    }
+
+    .founder-card p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--jija-muted);
+    }
+
+    /* ── CTA banner ──────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, #3a1e14 0%, #2d1f1a 50%, #1e1628 100%);
+      border-top: 1px solid var(--jija-border);
+      border-bottom: 1px solid var(--jija-border);
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--jija-cream);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .cta-banner p {
+      font-size: 16px;
+      color: var(--jija-muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    /* ── Footer (matches site) ───────────────────────────── */
+    footer.site-footer {
+      background: var(--site-footer);
+      color: #9ca3af;
+      padding: 56px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .footer-brand .tagline {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--jija-gold);
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a {
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-col p { font-size: 13px; line-height: 1.7; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { padding: 32px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 600px) {
+      nav.site-nav { display: none; }
+      .hero { padding: 56px 16px 48px; }
+      .section { padding: 48px 16px; }
+      .stats-band { padding: 40px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Site header (matches existing Muktangan nav) ─────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <span class="name">Muktangan</span>
+      <span class="tagline">Health is Wealth</span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="projects.html" class="active">Our Projects</a>
+      <a href="Thalassemia_detection.html">Thalassemia Detector</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-mark">
+      <!-- Pagdi / stacked stripes mark -->
+      <svg width="64" height="110" viewBox="0 0 80 130" fill="none" aria-hidden="true">
+        <circle cx="40" cy="5" r="6" fill="#e8c252"/>
+        <path d="M40 18 C30 18 26 20 24 23 C22 26 22 26 24 28 C26 30 30 29 40 29 C50 29 54 30 56 28 C58 26 58 26 56 23 C54 20 50 18 40 18 Z" fill="#e8613c" opacity="0.85"/>
+        <path d="M40 37 C28 37 22 39 20 43 C18 47 18 47 20 50 C22 53 28 52 40 52 C52 52 58 53 60 50 C62 47 62 47 60 43 C58 39 52 37 40 37 Z" fill="#c2547a"/>
+        <path d="M40 60 C26 60 18 62 16 67 C14 72 14 72 16 75 C18 78 26 77 40 77 C54 77 62 78 64 75 C66 72 66 72 64 67 C62 62 54 60 40 60 Z" fill="#e8c252"/>
+        <path d="M40 86 C24 86 14 89 12 95 C10 101 10 101 12 105 C14 109 24 108 40 108 C56 108 66 109 68 105 C70 101 70 101 68 95 C66 89 56 86 40 86 Z" fill="#e8613c"/>
+      </svg>
+    </div>
+
+    <div class="tagline-pill">Project Jija · Muktangan Foundation</div>
+
+    <h1>Jija</h1>
+    <p class="hero-subname">Muktangan Foundation</p>
+    <p class="hero-desc">
+      Educating parents and grandparents about newborn wellbeing — a global movement that connects paediatricians in 100 countries to their communities.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#about" class="btn-primary">Learn more</a>
+      <a href="donate.html" class="btn-outline">Support Jija</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats band ────────────────────────────────────────── -->
+<div class="stats-band">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num gold">35,000+</div>
+      <div class="stat-label">Rural ultrasounds conducted</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num saffron">100,000+</div>
+      <div class="stat-label">Families educated on safe motherhood</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num rose">25,000+</div>
+      <div class="stat-label">Pregnant women surveyed & followed up</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num cream">200,000+</div>
+      <div class="stat-label">Families educated on thalassemia</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── About ─────────────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">About the project</div>
+        <h2 class="section-heading">When a child is born, every family deserves to know.</h2>
+        <div class="section-body">
+          <p style="margin-bottom:16px;">
+            Project Jija was born from the belief that the first days and weeks of a newborn's life are the most critical — and the most preventable for complications. By equipping parents, grandparents, and caregivers with evidence-based knowledge, we reduce neonatal risk at its root.
+          </p>
+          <p style="margin-bottom:16px;">
+            Inspired by Dr Abhijeet (paediatrician) and led by Dr Ashwini — who has decades of work in safe motherhood and childhood — Jija brings trusted paediatric guidance into the hands of every family, in every language, in every country.
+          </p>
+          <p>
+            Our model is peer-to-peer: local paediatricians in each country are trained as community educators. They speak the language, understand the culture, and already hold the trust of their communities.
+          </p>
+        </div>
+      </div>
+      <div class="about-visual">
+        <svg width="140" height="200" viewBox="0 0 80 130" fill="none" aria-label="Jija logo mark">
+          <circle cx="40" cy="5" r="6" fill="#e8c252"/>
+          <path d="M40 18 C30 18 26 20 24 23 C22 26 22 26 24 28 C26 30 30 29 40 29 C50 29 54 30 56 28 C58 26 58 26 56 23 C54 20 50 18 40 18 Z" fill="#e8613c" opacity="0.85"/>
+          <path d="M40 37 C28 37 22 39 20 43 C18 47 18 47 20 50 C22 53 28 52 40 52 C52 52 58 53 60 50 C62 47 62 47 60 43 C58 39 52 37 40 37 Z" fill="#c2547a"/>
+          <path d="M40 60 C26 60 18 62 16 67 C14 72 14 72 16 75 C18 78 26 77 40 77 C54 77 62 78 64 75 C66 72 66 72 64 67 C62 62 54 60 40 60 Z" fill="#e8c252"/>
+          <path d="M40 86 C24 86 14 89 12 95 C10 101 10 101 12 105 C14 109 24 108 40 108 C56 108 66 109 68 105 C70 101 70 101 68 95 C66 89 56 86 40 86 Z" fill="#e8613c"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pillars ────────────────────────────────────────────── -->
+<section class="section pillars-bg">
+  <div class="section-inner">
+    <div class="section-label">What we do</div>
+    <h2 class="section-heading">Three pillars of newborn wellbeing</h2>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon gold">🌟</div>
+        <h3>Educate Families</h3>
+        <p>Parents and grandparents receive clear, culturally appropriate guidance on feeding, warmth, hygiene, danger signs, and when to seek care — before the baby arrives and in the first year of life.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon saffron">🩺</div>
+        <h3>Empower Paediatricians</h3>
+        <p>Local paediatricians across 100 countries are trained as community educators. They carry Jija's structured curriculum and adapt it to their region's language, customs, and health system.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon rose">🌍</div>
+        <h3>Build a Global Network</h3>
+        <p>Every participating paediatrician joins a living network — sharing outcomes, translating materials, and growing the evidence base so Jija continuously improves with real-world data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Global reach ───────────────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">Global ambition</div>
+    <h2 class="section-heading">100 countries. One mission.</h2>
+    <p class="section-body">
+      Project Jija is designed from the ground up to cross borders. The curriculum is modular, translatable, and adaptable — so a paediatrician in Kenya, Brazil, or Vietnam can deliver the same evidence-based content in their own language and context.
+    </p>
+    <div class="reach-row">
+      <span class="reach-chip">🇮🇳 India — Founding nation</span>
+      <span class="reach-chip">🌍 Africa — Expansion 2025</span>
+      <span class="reach-chip">🌎 Latin America — Planning</span>
+      <span class="reach-chip">🌏 Southeast Asia — Planning</span>
+      <span class="reach-chip">+ 96 more countries targeted</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Founders ────────────────────────────────────────────── -->
+<section class="section pillars-bg">
+  <div class="section-inner">
+    <div class="section-label">The people behind Jija</div>
+    <h2 class="section-heading">Founded by doctors who believe prevention is everything.</h2>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-avatar">👨‍⚕️</div>
+        <h3>Dr Abhijeet</h3>
+        <p class="founder-role">Founder · Paediatrician</p>
+        <p>The inspiration behind Project Jija. A paediatrician with a vision to give every newborn the start they deserve, regardless of geography or family background.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-avatar">👩‍⚕️</div>
+        <h3>Dr Ashwini</h3>
+        <p class="founder-role">Co-founder · Safe Motherhood</p>
+        <p>Decades of field work in safe motherhood and childhood wellness across rural India. Led the Aanandi Aai Aanandi Bal project and shaped the Jija curriculum from lived experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="cta-banner">
+  <div>
+    <h2>Join the Jija movement</h2>
+    <p>Whether you are a paediatrician, a health organisation, or a family — there is a place for you in Project Jija.</p>
+    <div class="hero-cta-row">
+      <a href="contact.html" class="btn-primary">Get in touch</a>
+      <a href="donate.html" class="btn-outline">Support us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="name">Muktangan</div>
+      <div class="tagline">Health is Wealth</div>
+      <p>Transforming lives with better health, awareness, and care — one community at a time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Our Projects</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="donate.html">Donate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <p>Flat no 6 Ujwal Nagar<br>Yavatmal 445001<br><br>
+        Phone: +91 8380876308<br>
+        Email: muktanganhealthcare@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Muktangan. All rights reserved.</span>
+    <span>Designed by Vaibhav Thakare</span>
+  </div>
+</footer>
+
+</body>
+</html>

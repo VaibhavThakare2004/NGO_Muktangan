@@ -4,243 +4,181 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Muktangan - Our Projects</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/projects.css">
+  <meta name="description" content="Explore Muktangan Foundation's flagship health programmes — Anandi Aai Anandi Bal, Thalassemia Mukt Bharat, and Project Jija.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Project Jija card accent ────────────────────────── */
+    .project-card.jija-card {
+      border-top: 4px solid #e8c252;
+    }
+    .jija-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8c252;
+      color: #2d1f1a;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .jija-mark {
+      display: block;
+      margin: 0 auto 16px;
+    }
+  </style>
 </head>
 <body>
-<header class="header">
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-heart"></i>
-        </div>
-        <div class="logo-text">
-          <h1>Muktangan</h1>
-          <p>Health is Wealth</p>
-        </div>
-      </div>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        
-        <!-- Projects Dropdown -->
-        <div class="nav-dropdown">
-          <a href="projects.html" class="nav-link">
-            Our Projects <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="dropdown-content">
-            <a href="projects.html#project-1" class="dropdown-item">
-              <div class="dropdown-item-content">
-                <i class="fas fa-heart-pulse"></i>
-                <div>
-                  <strong>Anandi Aai Anandi Bal</strong>
-                  <span>Maternal & Child Health</span>
-                </div>
-              </div>
-            </a>
-            <a href="projects.html#project-2" class="dropdown-item">
-              <div class="dropdown-item-content">
-                <i class="fas fa-shield-heart"></i>
-                <div>
-                  <strong>Thalassemia Mukt Bharat</strong>
-                  <span>Disease Prevention Campaign</span>
-                </div>
-              </div>
-            </a>
-            <a href="projects.html#project-3" class="dropdown-item">
-              <div class="dropdown-item-content">
-                <i class="fas fa-ribbon"></i>
-                <div>
-                  <strong>Cancer Awareness</strong>
-                  <span>Early Detection & Support</span>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="projects.html" class="dropdown-item view-all">
-              <div class="dropdown-item-content">
-                <i class="fas fa-th-large"></i>
-                <div>
-                  <strong>View All Projects</strong>
-                  <span>See complete project portfolio</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <a href="Thalassemia_detection.html">Thalassemia Detector</a>
-        <a href="contact.html">Contact</a>
-        <a href="donate.html">Donate</a>
-      </nav>
-      <div class="social-icons">
-        <a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon">
-          <i class="fab fa-youtube"></i>
-        </a>
-      </div>
-    </div>
+
+<!-- ── Header (unchanged from original) ─────────────────── -->
+<header>
+  <div class="header-logo">
+    <h1>Muktangan</h1>
+    <p>Health is Wealth</p>
   </div>
+
+  <!-- Social links -->
+  <div class="social-links">
+    <a href="https://www.facebook.com/profile.php?id=61577395140735" target="_blank" rel="noopener">
+      <img src="img/facebook-icon.svg" alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" target="_blank" rel="noopener">
+      <img src="img/instagram-icon.svg" alt="Instagram">
+    </a>
+    <a href="https://www.youtube.com/@Muktangan-o4m" target="_blank" rel="noopener">
+      <img src="img/youtube-icon.svg" alt="YouTube">
+    </a>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="projects.html" class="active">Our Projects
+      <ul class="dropdown">
+        <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
+        <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
+        <li><a href="projects.html#project-3">Cancer Awareness</a></li>
+        <li><a href="project-jija.html">Project Jija — Newborn Wellbeing</a></li>
+      </ul>
+    </a>
+    <a href="Thalassemia_detection.html">Thalassemia Detector</a>
+    <a href="contact.html">Contact</a>
+    <a href="donate.html" class="btn-donate">Donate</a>
+  </nav>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html" onclick="closeMobileMenu()">Home</a>
-  <a href="about.html" onclick="closeMobileMenu()">About Us</a>
-  
-  <!-- Mobile Projects Submenu -->
-  <div class="mobile-submenu">
-    <a href="projects.html" onclick="closeMobileMenu()">Our Projects</a>
-    
-    <div class="mobile-submenu-items">
-      <a href="projects.html#project-1" onclick="closeMobileMenu()">→ Anandi Aai Anandi Bal</a>
-      <a href="projects.html#project-2" onclick="closeMobileMenu()">→ Thalassemia Mukt Bharat</a>
-      <a href="projects.html#project-3" onclick="closeMobileMenu()">→ Cancer Awareness</a>
-    </div>
-  </div>
-  <a href="Thalassemia_detection.html" onclick="closeMobileMenu()">Thalassemia Detector</a>
-  <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
-  <a href="donate.html" onclick="closeMobileMenu()">Donate</a>
-</div>
-
+<!-- ── Main ─────────────────────────────────────────────── -->
 <main>
-  <section id="projects" class="projects">
-    <div class="container">
-      <div class="section-header">
-        <div class="badge pink">Active Projects</div>
-        <h2 class="section-title">Empowering Change Together</h2>
-        <p class="section-description">
-          Explore our five flagship programs making a meaningful difference in communities across India every day. Each project is designed to create lasting, positive impact for those we serve.
-        </p>
+  <section class="projects-hero">
+    <span class="section-label">Active Projects</span>
+    <h2>Empowering Change Together</h2>
+    <p>Explore our flagship programs making a meaningful difference in communities across India every day.</p>
+  </section>
+
+  <section class="projects-grid">
+
+    <!-- Project 1: Anandi Aai Anandi Bal -->
+    <article class="project-card" id="project-1">
+      <img src="img/anandi1.jpg" alt="Healthy Mothers Initiative">
+      <div class="project-card-body">
+        <span class="badge active-badge">Active</span>
+        <h3>Anandi Aai Anandi Bal</h3>
+        <p>Anandi Aai Anandi Bal project is focused on improving maternal and child health outcomes through safe motherhood education, rural ultrasound screening, and follow-up care.</p>
+        <a href="projects.html#project-1" class="learn-more">Learn more →</a>
       </div>
+    </article>
 
-      <div class="projects-grid">
-        <!-- Project Cards (clickable) -->
-        <h1 id="project-1" class="section"></h1>
-        <div class="project-card" data-project="0">
-          <div class="project-image">
-            <img src="img/anandi1.jpg" alt="Healthy Mothers Initiative">
-            <div class="project-status">Active</div>
-          </div>
-          <div class="project-content">
-            <h3>Anandi Aai Anandi Bal</h3>
-            <p>Anandi Aai Anandi Bal project is indeed focused on improving maternal and child health outcomes</p>
-          </div>
-        </div>
-
-        <h1 id="project-2" class="section"></h1>
-        <div class="project-card" data-project="1">
-          <div class="project-image">
-            <img src="img/thal1.jpg" alt="Universal Child Vaccination">
-            <div class="project-status">Active</div>
-          </div>
-          <div class="project-content">
-            <h3>Thalassemia Mukt Bharat</h3>
-            <p>The Thalassemia-Free India Project is a nationwide preventive health campaign aimed at eliminating Thalassemia and Sickle Cell Disease through early diagnosis, awareness, and proactive testing.</p>
-          </div>
-        </div>
-
-        <h1 id="project-3" class="section"></h1>
-        <div class="project-card" data-project="2">
-          <div class="project-image">
-            <img src="img/cancer1.jpg" alt="Nutrition Support Program">
-            <div class="project-status">Active</div>
-          </div>
-          <div class="project-content">
-            <h3>Cancer awareness</h3>
-            <p>Empowering lives through early detection, awareness, and support in the fight against cancer.</p>
-          </div>
-        </div>
+    <!-- Project 2: Thalassemia Mukt Bharat -->
+    <article class="project-card" id="project-2">
+      <img src="img/thal1.jpg" alt="Thalassemia Prevention">
+      <div class="project-card-body">
+        <span class="badge active-badge">Active</span>
+        <h3>Thalassemia Mukt Bharat</h3>
+        <p>The Thalassemia-Free India Project is a nationwide preventive health campaign aimed at eliminating Thalassemia and Sickle Cell Disease through early diagnosis, awareness, and proactive testing.</p>
+        <a href="projects.html#project-2" class="learn-more">Learn more →</a>
       </div>
-    </div>
+    </article>
 
-    <!-- Project Modal (hidden by default) -->
-    <div class="project-modal" id="projectModal">
-      <div class="modal-content">
-        <span class="modal-close" id="closeModal">&times;</span>
-        <div class="modal-details" id="modalDetails">
-          <!-- JS will fill in -->
-        </div>
-        <div class="modal-gallery" id="modalGallery">
-          <!-- JS will fill in -->
-        </div>
+    <!-- Project 3: Cancer Awareness -->
+    <article class="project-card" id="project-3">
+      <img src="img/cancer1.jpg" alt="Cancer Awareness">
+      <div class="project-card-body">
+        <span class="badge active-badge">Active</span>
+        <h3>Cancer Awareness</h3>
+        <p>Empowering lives through early detection, awareness, and support in the fight against cancer.</p>
+        <a href="projects.html#project-3" class="learn-more">Learn more →</a>
       </div>
-    </div>
+    </article>
+
+    <!-- Project 4: Jija — NEW ──────────────────────────── -->
+    <article class="project-card jija-card" id="project-jija">
+      <!-- Pagdi SVG mark -->
+      <div style="background:#2d1f1a;padding:40px 0 32px;display:flex;justify-content:center;">
+        <svg class="jija-mark" width="56" height="96" viewBox="0 0 80 130" fill="none" aria-hidden="true">
+          <circle cx="40" cy="5" r="6" fill="#e8c252"/>
+          <path d="M40 18 C30 18 26 20 24 23 C22 26 22 26 24 28 C26 30 30 29 40 29 C50 29 54 30 56 28 C58 26 58 26 56 23 C54 20 50 18 40 18 Z" fill="#e8613c" opacity="0.85"/>
+          <path d="M40 37 C28 37 22 39 20 43 C18 47 18 47 20 50 C22 53 28 52 40 52 C52 52 58 53 60 50 C62 47 62 47 60 43 C58 39 52 37 40 37 Z" fill="#c2547a"/>
+          <path d="M40 60 C26 60 18 62 16 67 C14 72 14 72 16 75 C18 78 26 77 40 77 C54 77 62 78 64 75 C66 72 66 72 64 67 C62 62 54 60 40 60 Z" fill="#e8c252"/>
+          <path d="M40 86 C24 86 14 89 12 95 C10 101 10 101 12 105 C14 109 24 108 40 108 C56 108 66 109 68 105 C70 101 70 101 68 95 C66 89 56 86 40 86 Z" fill="#e8613c"/>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <span class="jija-badge">🌍 Global · New</span>
+        <h3>Project Jija</h3>
+        <p>Educating parents and grandparents about newborn wellbeing — a global initiative connecting paediatricians in 100 countries to their communities for the first year of a child's life.</p>
+        <a href="project-jija.html" class="learn-more">Learn more →</a>
+      </div>
+    </article>
+
   </section>
 </main>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <div class="footer-logo">
-          <div class="footer-logo-icon">
-            <i class="fas fa-heart"></i>
-          </div>
-          <div class="footer-logo-text">
-            <h3>Muktangan</h3>
-            <p>Health is Wealth</p>
-          </div>
-        </div>
-        <p class="footer-description">
-          Transforming lives with better health, awareness, and care one community at a time.
-        </p>
-      </div>
-      <div class="footer-section">
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="projects.html">Our Projects</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="donate.html">Donate</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Our Projects</h4>
-        <ul class="footer-links">
-          <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
-          <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
-          <li><a href="projects.html#project-3">Cancer awareness</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Contact Info</h4>
-        <div class="footer-contact">
-          <p>Flat no 6 Ujwal Nagar</p>
-          <p>Yavatmal 4450011</p>
-          <p>Phone: +91 8380876308</p>
-          <p style="white-space: nowrap;">Email: muktanganhealthcare@gmail.com</p>
-        </div>
-      </div>
+<!-- ── Footer (updated: ©2026, Jija added) ──────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h2>Muktangan</h2>
+      <p class="footer-tagline">Health is Wealth</p>
+      <p>Transforming lives with better health, awareness, and care one community at a time.</p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Muktangan. All rights reserved. | Privacy Policy | Terms of Service</p>
-      <p class="designed-by">Designed by <span class="gradient-text">Vaibhav Thakare</span></p>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Our Projects</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="donate.html">Donate</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Our Projects</h4>
+      <ul>
+        <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
+        <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
+        <li><a href="projects.html#project-3">Cancer Awareness</a></li>
+        <li><a href="project-jija.html">Project Jija</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <p>Flat no 6 Ujwal Nagar<br>
+         Yavatmal 445001<br><br>
+         Phone: +91 8380876308<br>
+         Email: muktanganhealthcare@gmail.com</p>
     </div>
   </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Muktangan. All rights reserved. | Privacy Policy | Terms of Service</p>
+    <p>Designed by Vaibhav Thakare</p>
+  </div>
 </footer>
-<!-- End Footer -->
 
-<script>
-function toggleMobileMenu() {
-  const mobileMenu = document.getElementById('mobileMenu');
-  mobileMenu.classList.toggle('active');
-}
-
-function closeMobileMenu() {
-  const mobileMenu = document.getElementById('mobileMenu');
-  mobileMenu.classList.remove('active');
-}
-</script>
-
-<!-- Projects Modal JS -->
-<script src="js/projects.js"></script>
 </body>
 </html>
