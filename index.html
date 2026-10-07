@@ -2,8 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muktangan - Better Tomorrow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Muktangan — Empowering Rural India Through Healthcare</title>
+<meta name="description" content="Muktangan Foundation delivers maternal health, thalassemia prevention, newborn wellbeing, and adolescent education to rural India. 35,000+ rural ultrasounds. 200,000+ families reached.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Muktangan — Empowering Rural India Through Healthcare">
+<meta property="og:description" content="35,000+ rural ultrasounds. 200,000+ families educated on thalassemia. Safe motherhood and newborn wellbeing for rural India.">
+<meta property="og:url" content="https://muktanganfoundation.com/">
+<meta property="og:image" content="https://muktanganfoundation.com/img/logo.jpg">
+<meta property="og:site_name" content="Muktangan Foundation">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Muktangan — Empowering Rural India Through Healthcare">
+<meta name="twitter:description" content="35,000+ rural ultrasounds. 200,000+ families educated on thalassemia. Safe motherhood and newborn wellbeing for rural India.">
+<meta name="twitter:image" content="https://muktanganfoundation.com/img/logo.jpg">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Muktangan Foundation",
+  "url": "https://muktanganfoundation.com",
+  "logo": "https://muktanganfoundation.com/img/logo.jpg",
+  "description": "Muktangan Foundation works in rural India on maternal health, thalassemia prevention, newborn wellbeing (Project Jija), and adolescent health (Project Ahilya).",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ruby Park Bldg E, Flat 601, Park Street Ph-I, Wakad",
+    "addressLocality": "Pune",
+    "postalCode": "411057",
+    "addressCountry": "IN"
+  },
+  "telephone": "+91-8380876308",
+  "email": "muktanganhealthcare@gmail.com"
+}
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +57,30 @@
     --brand-gold:    #c8860a;
     --brand-tan:     #f5ece2;
   }
+
+  /* Skip-to-content */
+  .skip-link {
+    position: absolute;
+    top: -60px;
+    left: 16px;
+    background: var(--brand-saffron);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 0 0 8px 8px;
+    font-weight: 600;
+    z-index: 10000;
+    transition: top .2s;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* Focus styles */
+  *:focus-visible {
+    outline: 3px solid var(--brand-saffron);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   /* Typography */
   body { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: var(--brand-brown); }
   h1, h2, h3, .hero-title, .section-title, .stat-number,
@@ -33,7 +94,6 @@
     border-bottom: 1px solid #e8ddd4 !important;
     box-shadow: 0 2px 12px rgba(45,31,26,0.07) !important;
   }
-  /* Rainbow accent bar under header */
   .header::after {
     content: '';
     display: block;
@@ -54,11 +114,10 @@
     padding: 7px 18px !important;
     font-weight: 600 !important;
   }
-  /* Social icons in header */
   .social-icon { color: #6b4e43 !important; border-color: #e0d0c5 !important; }
   .social-icon:hover { background: var(--brand-saffron) !important; border-color: var(--brand-saffron) !important; color: #fff !important; }
 
-  /* ── HERO — warm cream background ── */
+  /* ── HERO ── */
   .hero {
     background: linear-gradient(135deg, var(--brand-cream) 0%, #fef9f5 60%, #fdeee4 100%) !important;
     border-bottom: 1px solid #edd9cc;
@@ -76,21 +135,30 @@
     color: var(--brand-saffron) !important;
     border: 1px solid rgba(232,97,60,0.25) !important;
   }
-  /* Stat numbers */
+
+  /* Stats — 4-col grid */
+  .stats {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+  }
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: repeat(2, 1fr) !important; }
+  }
   .stat-number.blue  { color: var(--brand-saffron) !important; }
   .stat-number.teal  { color: var(--brand-gold) !important; }
-  .stat-label        { color: #6b4e43 !important; }
+  .stat-label        { color: #6b4e43 !important; font-size: 0.82rem; line-height: 1.4; }
+
   /* Buttons */
   .btn-primary { background: var(--brand-saffron) !important; border-color: var(--brand-saffron) !important; color: #fff !important; }
   .btn-outline { border-color: rgba(45,31,26,0.35) !important; color: var(--brand-brown) !important; }
   .btn-outline:hover { background: var(--brand-saffron) !important; border-color: var(--brand-saffron) !important; color: #fff !important; }
 
-  /* ── Logo container in hero — remove dark backdrop ── */
   .logo-backdrop { background: rgba(232,97,60,0.06) !important; border: 2px solid rgba(232,97,60,0.15) !important; }
   .logo-glow     { background: radial-gradient(circle, rgba(232,97,60,0.12) 0%, transparent 70%) !important; }
   .ngo-main-logo { border-radius: 12px; }
 
-  /* ── Dropdown — white card ── */
+  /* Dropdown */
   .dropdown-content    { background: #fff !important; border: 1px solid #e8ddd4 !important; box-shadow: 0 8px 30px rgba(45,31,26,0.12) !important; }
   .dropdown-item       { color: #4a3328 !important; }
   .dropdown-item:hover { background: var(--brand-tan) !important; }
@@ -98,24 +166,94 @@
   .dropdown-item strong    { color: var(--brand-brown) !important; }
   .dropdown-item span      { color: #8a6a60 !important; }
 
-  /* ── Sections ── */
+  /* Sections */
   .section-title  { color: var(--brand-brown) !important; letter-spacing: -0.025em; }
   .section-description { color: #6b4e43 !important; }
 
-  /* ── Quick-impact strip — warm saffron instead of dark ── */
+  /* Quick-impact strip — specific programmes */
   .quick-impact { background: linear-gradient(135deg, var(--brand-saffron) 0%, #c94d28 100%) !important; }
   .quick-impact h3  { font-family: 'Fraunces', Georgia, serif; color: #fff !important; }
   .quick-impact p   { color: rgba(255,255,255,0.85) !important; }
   .impact-icon i    { color: #fff !important; }
   .impact-card      { background: rgba(255,255,255,0.12) !important; border: 1px solid rgba(255,255,255,0.2) !important; }
 
-  /* ── Events section ── */
+  /* Events */
   .upcoming-events { background: var(--brand-cream) !important; }
   .event-card      { background: #fff !important; border: 1px solid #edd9cc !important; }
   .event-category  { color: var(--brand-saffron) !important; }
   .event-card h3   { color: var(--brand-brown) !important; font-family: 'Fraunces', Georgia, serif; }
 
-  /* ── Footer — warm dark brown (not jet black) ── */
+  /* ── Trust strip ── */
+  .trust-strip {
+    background: #fff;
+    border-top: 1px solid #edd9cc;
+    border-bottom: 1px solid #edd9cc;
+    padding: 18px 0;
+  }
+  .trust-strip .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px 28px;
+  }
+  .trust-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: #5c4038;
+    font-weight: 500;
+  }
+  .trust-chip i { color: var(--brand-saffron); font-size: 1rem; }
+
+  /* ── Newsletter strip ── */
+  .newsletter-strip {
+    background: linear-gradient(135deg, #2d1f1a 0%, #3d2418 100%);
+    padding: 40px 0;
+    text-align: center;
+  }
+  .newsletter-strip h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    color: #fdf6f0;
+    font-size: 1.5rem;
+    margin: 0 0 6px;
+  }
+  .newsletter-strip p { color: rgba(253,246,240,0.75); margin: 0 0 20px; font-size: 0.95rem; }
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .newsletter-form input {
+    flex: 1 1 220px;
+    padding: 11px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(253,246,240,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #fdf6f0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+  }
+  .newsletter-form input::placeholder { color: rgba(253,246,240,0.5); }
+  .newsletter-form input:focus { outline: 2px solid #e8c252; outline-offset: 0; }
+  .newsletter-form button {
+    padding: 11px 22px;
+    background: var(--brand-saffron);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background .2s;
+  }
+  .newsletter-form button:hover { background: #c94d28; }
+
+  /* ── Footer ── */
   .footer { background: #3d2418 !important; }
   .footer-logo-text h3 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; }
   .footer-logo-text p  { color: #e8c252 !important; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; }
@@ -125,38 +263,104 @@
   .footer-links a:hover { color: #e8c252 !important; }
   .footer-bottom   { border-top: 1px solid rgba(253,246,240,0.12) !important; }
   .footer-contact p { color: rgba(253,246,240,0.7) !important; }
+  .footer-privacy { color: rgba(253,246,240,0.55) !important; font-size: 0.8rem; margin-top: 4px; }
+  .footer-privacy a { color: rgba(253,246,240,0.55) !important; text-decoration: underline; }
 
-  /* ── Mobile menu ── */
+  /* Mobile menu */
   .mobile-menu   { background: #fff !important; border-bottom: 1px solid #e8ddd4 !important; }
   .mobile-menu a { color: #4a3328 !important; border-bottom: 1px solid #f0e5dc !important; }
   .mobile-menu a:hover { color: var(--brand-saffron) !important; background: var(--brand-tan) !important; }
 
-  /* ── SVG Logo icon ── */
+  /* SVG Logo icon */
   .logo-icon { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; }
   .logo-icon svg { width: 42px; height: 42px; }
+
+  /* ── Sticky donate bar ── */
+  .sticky-donate-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 2px solid var(--brand-saffron);
+    box-shadow: 0 -4px 20px rgba(45,31,26,0.12);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 900;
+    transform: translateY(100%);
+    transition: transform .35s ease;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .sticky-donate-bar.visible { transform: translateY(0); }
+  .sticky-donate-bar p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--brand-brown);
+    font-weight: 500;
+  }
+  .sticky-donate-bar span { color: var(--brand-saffron); font-weight: 700; }
+  .sticky-donate-bar a {
+    background: var(--brand-saffron);
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .sticky-donate-bar a:hover { background: #c94d28; }
+  .sticky-donate-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #8a6a60;
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    margin-left: 10px;
+  }
+
+  /* ── WhatsApp floating button ── */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    width: 52px;
+    height: 52px;
+    background: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.4);
+    text-decoration: none;
+    z-index: 850;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
 </style>
 </head>
 <body>
+<!-- Skip to main content -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <header class="header">
 <div class="container">
 <div class="header-content">
 <div class="logo">
 <div class="logo-icon">
-<svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Muktangan tree logo">
-  <!-- trunk -->
+<svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Muktangan tree logo">
   <rect x="19.5" y="28" width="3" height="9" rx="1.5" fill="#8B5E3C"/>
-  <!-- roots / ground people -->
   <ellipse cx="14" cy="38" rx="3.5" ry="2" fill="#e8613c" opacity=".7"/>
   <ellipse cx="21" cy="39" rx="3.5" ry="2" fill="#c2547a" opacity=".7"/>
   <ellipse cx="28" cy="38" rx="3.5" ry="2" fill="#5bab6e" opacity=".7"/>
-  <!-- lower canopy -->
   <ellipse cx="21" cy="23" rx="10" ry="8" fill="#5bab6e" opacity=".9"/>
-  <!-- mid canopy -->
   <ellipse cx="15" cy="18" rx="7" ry="6" fill="#e8613c" opacity=".9"/>
   <ellipse cx="27" cy="18" rx="7" ry="6" fill="#e8c252" opacity=".95"/>
-  <!-- upper canopy -->
   <ellipse cx="21" cy="12" rx="8" ry="7" fill="#c2547a" opacity=".9"/>
-  <!-- top leaf cluster -->
   <ellipse cx="17" cy="8" rx="4.5" ry="4" fill="#5bab6e"/>
   <ellipse cx="25" cy="8" rx="4.5" ry="4" fill="#e8613c"/>
   <ellipse cx="21" cy="5" rx="4" ry="3.5" fill="#e8c252"/>
@@ -167,55 +371,44 @@
 <p>Better Tomorrow</p>
 </div>
 </div>
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
 <a href="index.html">Home</a>
 <a href="about.html">About Us</a>
-<!-- Projects Dropdown -->
 <div class="nav-dropdown">
-<a href="projects.html" class="nav-link">
-Our Projects <i class="fas fa-chevron-down"></i>
+<a href="projects.html" class="nav-link" aria-haspopup="true">
+Our Projects <i class="fas fa-chevron-down" aria-hidden="true"></i>
 </a>
-
-<div class="dropdown-content">
-<a href="projects.html#project-1" class="dropdown-item">
+<div class="dropdown-content" role="menu">
+<a href="projects.html#project-1" class="dropdown-item" role="menuitem">
 <div class="dropdown-item-content">
-<i class="fas fa-heart-pulse"></i>
+<i class="fas fa-heart-pulse" aria-hidden="true"></i>
 <div>
 <strong>Anandi Aai Anandi Bal</strong>
-<span>Maternal & Child Health</span>
+<span>Maternal &amp; Child Health</span>
 </div>
 </div>
 </a>
-<a href="projects.html#project-2" class="dropdown-item">
+<a href="projects.html#project-2" class="dropdown-item" role="menuitem">
 <div class="dropdown-item-content">
-<i class="fas fa-shield-heart"></i>
+<i class="fas fa-shield-heart" aria-hidden="true"></i>
 <div>
 <strong>Thalassemia Mukt Bharat</strong>
 <span>Disease Prevention Campaign</span>
 </div>
 </div>
 </a>
-<a href="projects.html#project-3" class="dropdown-item">
+<a href="project-jija.html" class="dropdown-item" role="menuitem">
 <div class="dropdown-item-content">
-<i class="fas fa-ribbon"></i>
-<div>
-<strong>Cancer Awareness</strong>
-<span>Early Detection & Support</span>
-</div>
-</div>
-</a>
-<a href="project-jija.html" class="dropdown-item">
-<div class="dropdown-item-content">
-<i class="fas fa-globe"></i>
+<i class="fas fa-globe" aria-hidden="true"></i>
 <div>
 <strong>Project Jija</strong>
 <span>Newborn Wellbeing · Global</span>
 </div>
 </div>
 </a>
-<a href="project-ahilya.html" class="dropdown-item">
+<a href="project-ahilya.html" class="dropdown-item" role="menuitem">
 <div class="dropdown-item-content">
-<i class="fas fa-seedling"></i>
+<i class="fas fa-seedling" aria-hidden="true"></i>
 <div>
 <strong>Project Ahilya</strong>
 <span>Adolescent Wellbeing · Maharashtra</span>
@@ -223,9 +416,9 @@ Our Projects <i class="fas fa-chevron-down"></i>
 </div>
 </a>
 <div class="dropdown-divider"></div>
-<a href="projects.html" class="dropdown-item view-all">
+<a href="projects.html" class="dropdown-item view-all" role="menuitem">
 <div class="dropdown-item-content">
-<i class="fas fa-th-large"></i>
+<i class="fas fa-th-large" aria-hidden="true"></i>
 <div>
 <strong>View All Projects</strong>
 <span>See complete project portfolio</span>
@@ -237,24 +430,26 @@ Our Projects <i class="fas fa-chevron-down"></i>
 <a href="Thalassemia_detection.html">Thalassemia Detector</a>
 <a href="contact.html">Contact</a>
 <a href="donate.html">Donate</a>
-
 </nav>
 <div class="social-icons">
-<a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon">
-<i class="fab fa-facebook-f"></i>
+<a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon" aria-label="Muktangan on Facebook" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-facebook-f" aria-hidden="true"></i>
 </a>
-<a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon">
-<i class="fab fa-instagram"></i>
+<a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon" aria-label="Muktangan on Instagram" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-instagram" aria-hidden="true"></i>
 </a>
-<a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon">
-<i class="fab fa-youtube"></i>
+<a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon" aria-label="Muktangan on YouTube" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-youtube" aria-hidden="true"></i>
 </a>
 </div>
+<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+<i class="fas fa-bars" aria-hidden="true"></i>
+</button>
 </div>
 </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
 <a href="index.html" onclick="closeMobileMenu()">Home</a>
 <a href="about.html" onclick="closeMobileMenu()">About Us</a>
 <a href="projects.html" onclick="closeMobileMenu()">Our Projects</a>
@@ -265,19 +460,19 @@ Our Projects <i class="fas fa-chevron-down"></i>
 <a href="donate.html" onclick="closeMobileMenu()">Donate</a>
 </div>
 
-<main>
+<main id="main-content">
 <!-- Hero Section -->
 <section id="home" class="hero">
 <div class="container">
 <div class="hero-content">
 <div class="hero-text">
-<div class="badge">Empowering Health Since 2019</div>
+<div class="badge">Serving Rural India Since 2019</div>
 <h1 class="hero-title">
-Standing For
-<span class="gradient-text">Healthy Society</span>
+Real Healthcare for<br>
+<span class="gradient-text">Rural Families</span>
 </h1>
 <p class="hero-description">
-Empowering communities through accessible healthcare, awareness, and support services to promote wellness, prevention, and dignity for all.
+Muktangan Foundation brings ultrasound screening, thalassemia prevention, safe motherhood education, and newborn wellbeing to the communities that need it most — and has done so across 35,000+ families.
 </p>
 
 <div class="stats">
@@ -295,28 +490,37 @@ Empowering communities through accessible healthcare, awareness, and support ser
 </div>
 <div class="stat">
 <div class="stat-number teal">200,000+</div>
-<div class="stat-label">Families educated about thalassemia</div>
+<div class="stat-label">Families educated on thalassemia prevention</div>
 </div>
 </div>
 
 <div class="hero-buttons">
-<a href="contact.html" class="btn btn-primary btn-large">
-Join Our Mission
-<i class="fas fa-arrow-right"></i>
+<a href="donate.html" class="btn btn-primary btn-large">
+Support Our Work <i class="fas fa-arrow-right" aria-hidden="true"></i>
 </a>
-<a href="about.html"> <button class="btn btn-outline btn-large">About Us</button></a>
+<a href="about.html" class="btn btn-outline btn-large">Our Story</a>
 </div>
 </div>
 <div class="hero-image">
 <div class="ngo-logo-container">
 <div class="logo-backdrop"></div>
-<img src="img/logo.jpg" alt="Muktangan NGO Logo" class="ngo-main-logo">
+<img src="img/logo.jpg" alt="Muktangan Foundation — healthcare for rural India" class="ngo-main-logo">
 <div class="logo-glow"></div>
 </div>
 </div>
 </div>
 </div>
 </section>
+
+<!-- Trust strip -->
+<div class="trust-strip" aria-label="Trust indicators">
+<div class="container">
+<div class="trust-chip"><i class="fas fa-check-circle" aria-hidden="true"></i> Founded by practising paediatricians</div>
+<div class="trust-chip"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Active across Maharashtra, India</div>
+<div class="trust-chip"><i class="fas fa-globe" aria-hidden="true"></i> Project Jija expanding to 100 countries</div>
+<div class="trust-chip"><i class="fas fa-heart" aria-hidden="true"></i> Fully non-profit, community-led</div>
+</div>
+</div>
 
 <!-- NGO Work Collage Section -->
 <section class="ngo-collage-section">
@@ -325,286 +529,160 @@ Join Our Mission
 <div class="badge pink">Our Journey</div>
 <h2 class="section-title">Transforming Lives Through Action</h2>
 <p class="section-description">
-Every image tells a story of hope, healing, and community transformation. Witness the diverse impact of our healthcare initiatives across communities.
+Every photograph is a moment of care delivered — ultrasounds performed, families educated, and futures made healthier across rural Maharashtra.
 </p>
 </div>
 
 <div class="collage-container">
 <div class="collage-grid">
 <div class="collage-item collage-item-1">
-<img src="img_collarge/col1.jpeg" alt="Maternal Care" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Maternal Care</h4>
-<p>Supporting mothers through pregnancy</p>
-</div>
-</div>
+<img src="img_collarge/col1.jpeg" alt="Maternal care session — Anandi Aai Anandi Bal" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Aanandi Aai</h4><p>Maternal care · Anandi Aai Anandi Bal</p></div></div>
 </div>
 <div class="collage-item collage-item-2">
-<img src="img_collarge/col2.jpeg" alt="Health Education" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Health Education</h4>
-<p>Spreading awareness in communities</p>
-</div>
-</div>
+<img src="img_collarge/col2.jpeg" alt="Health education workshop in rural village" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Health Education</h4><p>Spreading awareness in communities</p></div></div>
 </div>
 <div class="collage-item collage-item-3">
-<img src="img_collarge/col3.jpeg" alt="Child Healthcare" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Child Healthcare</h4>
-<p>Ensuring healthy childhood development</p>
-</div>
-</div>
+<img src="img_collarge/col3.jpeg" alt="Child healthcare check-up camp" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Child Healthcare</h4><p>Ensuring healthy childhood development</p></div></div>
 </div>
 <div class="collage-item collage-item-4">
-<img src="img_collarge/col4.jpeg" alt="Women Empowerment" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Women Empowerment</h4>
-<p>Empowering women through health</p>
-</div>
-</div>
+<img src="img_collarge/col4.jpeg" alt="Women's health empowerment session" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Women's Wellbeing</h4><p>Empowering women through health</p></div></div>
 </div>
 <div class="collage-item collage-item-5">
-<img src="img_collarge/col5.jpeg" alt="Vaccination Drive" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Vaccination Drives</h4>
-<p>Protecting communities from diseases</p>
-</div>
-</div>
+<img src="img_collarge/col5.jpeg" alt="Vaccination drive for children" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Vaccination Drives</h4><p>Protecting communities from diseases</p></div></div>
 </div>
 <div class="collage-item collage-item-6">
-<img src="img_collarge/col10.jpeg" alt="Rural Development" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Rural Development</h4>
-<p>Bringing healthcare to remote areas</p>
-</div>
-</div>
+<img src="img_collarge/col10.jpeg" alt="Rural healthcare outreach" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Rural Outreach</h4><p>Bringing healthcare to remote areas</p></div></div>
 </div>
 <div class="collage-item collage-item-7">
-<img src="img_collarge/col12.jpeg" alt="Nutrition Program" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Nutrition Programs</h4>
-<p>Fighting malnutrition together</p>
-</div>
-</div>
+<img src="img_collarge/col12.jpeg" alt="Nutrition counselling programme" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Nutrition Counselling</h4><p>Fighting malnutrition together</p></div></div>
 </div>
 <div class="collage-item collage-item-8">
-<img src="img_collarge/col14.jpeg" alt="Health Awareness" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Health Awareness</h4>
-<p>Building healthier communities</p>
-</div>
-</div>
+<img src="img_collarge/col14.jpeg" alt="Health awareness camp" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Health Awareness</h4><p>Building healthier communities</p></div></div>
 </div>
 <div class="collage-item collage-item-9">
-<img src="img_collarge/col16.jpeg" alt="Elderly Care" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Elderly Care</h4>
-<p>Caring for our senior citizens</p>
-</div>
-</div>
+<img src="img_collarge/col16.jpeg" alt="Community health camp" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Community Camps</h4><p>Caring for every family member</p></div></div>
 </div>
 <div class="collage-item collage-item-10">
-<img src="img_collarge/col19.jpeg" alt="Water Sanitation" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Water & Sanitation</h4>
-<p>Clean water for healthy lives</p>
-</div>
-</div>
+<img src="img_collarge/col19.jpeg" alt="Thalassemia awareness session" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Thalassemia Awareness</h4><p>Thalassemia Mukt Bharat campaign</p></div></div>
 </div>
 <div class="collage-item collage-item-11">
-<img src="img_collarge/col21.jpeg" alt="Mobile Clinic" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Mobile Clinics</h4>
-<p>Healthcare at your doorstep</p>
-</div>
-</div>
+<img src="img_collarge/col21.jpeg" alt="Mobile healthcare outreach" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Mobile Outreach</h4><p>Healthcare at your doorstep</p></div></div>
 </div>
 <div class="collage-item collage-item-12">
-<img src="img_collarge/col25.jpeg" alt="Volunteers" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Our Volunteers</h4>
-<p>Hearts dedicated to service</p>
-</div>
-</div>
+<img src="img_collarge/col25.jpeg" alt="Muktangan volunteers in the field" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Our Volunteers</h4><p>Hearts dedicated to service</p></div></div>
 </div>
 <div class="collage-item collage-item-13">
-<img src="img_collarge/col28.jpeg" alt="Prenatal Care" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Prenatal Care</h4>
-<p>Supporting expecting mothers</p>
-</div>
-</div>
+<img src="img_collarge/col28.jpeg" alt="Prenatal care and ultrasound screening" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Prenatal Care</h4><p>35,000+ rural ultrasounds performed</p></div></div>
 </div>
 <div class="collage-item collage-item-14">
-<img src="img_collarge/col35.jpeg" alt="Child Development" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Child Development</h4>
-<p>Nurturing young minds</p>
-</div>
-</div>
+<img src="img_collarge/col35.jpeg" alt="Child development programme" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Child Development</h4><p>Nurturing young minds</p></div></div>
 </div>
 <div class="collage-item collage-item-15">
-<img src="img_collarge/col36.jpeg" alt="Medical Equipment" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Medical Equipment</h4>
-<p>Modern tools for better care</p>
-</div>
-</div>
+<img src="img_collarge/col36.jpeg" alt="Medical equipment and diagnostics" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Diagnostics</h4><p>Modern tools for better care</p></div></div>
 </div>
 <div class="collage-item collage-item-16">
-<img src="img_collarge/col39.jpeg" alt="Health Workers" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Health Workers</h4>
-<p>Frontline heroes of healthcare</p>
-</div>
-</div>
+<img src="img_collarge/col39.jpeg" alt="Health workers training session" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Health Workers</h4><p>Frontline heroes of healthcare</p></div></div>
 </div>
 <div class="collage-item collage-item-17">
-<img src="img_collarge/col41.jpeg" alt="Family Planning" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Family Planning</h4>
-<p>Empowering family choices</p>
-</div>
-</div>
+<img src="img_collarge/col41.jpeg" alt="Family health counselling" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Family Counselling</h4><p>Empowering family health choices</p></div></div>
 </div>
 <div class="collage-item collage-item-18">
-<img src="img_collarge/col46.jpeg" alt="Mental Health" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Mental Health</h4>
-<p>Supporting emotional wellbeing</p>
-</div>
-</div>
+<img src="img_collarge/col46.jpeg" alt="Mental health and wellbeing support" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Wellbeing Support</h4><p>Supporting emotional wellbeing</p></div></div>
 </div>
 <div class="collage-item collage-item-19">
-<img src="img_collarge/col82.jpeg" alt="Disability Support" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Disability Support</h4>
-<p>Inclusive healthcare for all</p>
-</div>
-</div>
+<img src="img_collarge/col82.jpeg" alt="Adolescent health — Project Ahilya" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Project Ahilya</h4><p>Adolescent girl wellbeing</p></div></div>
 </div>
 <div class="collage-item collage-item-20">
-<img src="img_collarge/col83.jpg" alt="Emergency Response" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Emergency Response</h4>
-<p>Ready when you need us most</p>
-</div>
-</div>
+<img src="img_collarge/col83.jpg" alt="Community health response" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Community Response</h4><p>Ready when you need us most</p></div></div>
 </div>
 <div class="collage-item collage-item-21">
-<img src="img_collarge/col84.jpg" alt="Health Screening" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Health Screening</h4>
-<p>Early detection saves lives</p>
-</div>
-</div>
+<img src="img_collarge/col84.jpg" alt="Health screening camp" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Health Screening</h4><p>Early detection saves lives</p></div></div>
 </div>
 <div class="collage-item collage-item-22">
-<img src="img_collarge/col85.jpg" alt="Community Kitchen" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Community Kitchen</h4>
-<p>Nourishing communities together</p>
-</div>
-</div>
+<img src="img_collarge/col85.jpg" alt="Community gathering and education" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Community Gathering</h4><p>Nourishing communities together</p></div></div>
 </div>
 <div class="collage-item collage-item-23">
-<img src="img_collarge/col86.jpg" alt="Hygiene Education" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Hygiene Education</h4>
-<p>Teaching healthy habits</p>
-</div>
-</div>
+<img src="img_collarge/col86.jpg" alt="Hygiene and sanitation education" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Hygiene Education</h4><p>Teaching healthy habits</p></div></div>
 </div>
 <div class="collage-item collage-item-24">
-<img src="img_collarge/col87.jpg" alt="Maternal Health" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Maternal Health</h4>
-<p>Supporting mothers' wellbeing</p>
-</div>
-</div>
+<img src="img_collarge/col87.jpg" alt="Maternal health programme" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Maternal Health</h4><p>Supporting mothers' wellbeing</p></div></div>
 </div>
 <div class="collage-item collage-item-25">
-<img src="img_collarge/col88.jpg" alt="Community Success" loading="lazy">
-<div class="collage-overlay">
-<div class="collage-content">
-<h4>Community Success</h4>
-<p>Celebrating achievements together</p>
+<img src="img_collarge/col88.jpg" alt="Community success and celebration" loading="lazy">
+<div class="collage-overlay"><div class="collage-content"><h4>Community Success</h4><p>Celebrating achievements together</p></div></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-
 </div>
 </section>
 
-<!-- Quick Impact Section -->
+<!-- Quick Impact Section — specific to Muktangan programmes -->
 <section class="quick-impact">
 <div class="container">
 <div class="impact-grid">
 <div class="impact-card">
 <div class="impact-icon">
-<i class="fas fa-stethoscope"></i>
+<i class="fas fa-baby" aria-hidden="true"></i>
 </div>
-<h3>Free Health Checkups</h3>
-<p>Regular health screenings for mothers and children</p>
-</div>
-<div class="impact-card">
-<div class="impact-icon">
-<i class="fas fa-graduation-cap"></i>
-</div>
-<h3>Education Programs</h3>
-<p>Early childhood development and learning initiatives</p>
+<h3>Anandi Aai Anandi Bal</h3>
+<p>35,000+ rural ultrasounds &amp; safe motherhood education for 100,000+ families across Maharashtra</p>
 </div>
 <div class="impact-card">
 <div class="impact-icon">
-<i class="fas fa-hands-helping"></i>
+<i class="fas fa-dna" aria-hidden="true"></i>
 </div>
-<h3>Community Support</h3>
-<p>Reaching remote areas with essential healthcare</p>
+<h3>Thalassemia Mukt Bharat</h3>
+<p>200,000+ rural families educated on thalassemia prevention through HPLC testing camps</p>
+</div>
+<div class="impact-card">
+<div class="impact-icon">
+<i class="fas fa-globe" aria-hidden="true"></i>
+</div>
+<h3>Project Jija</h3>
+<p>Paediatricians in 100 countries educating communities on newborn wellbeing — structured curriculum, local language</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Upcoming Events Section -->
+<!-- Recent Activities -->
 <section class="upcoming-events">
 <div class="container">
 <div class="section-header">
-<div class="badge blue">What's Coming Next</div>
+<div class="badge blue">On the Ground</div>
 <h2 class="section-title">Recent Activities</h2>
 <p class="section-description">
-Join us in our upcoming initiatives and be part of the change we want to see in our communities.
+A look at our most recent work — health camps, testing drives, and education sessions delivered across rural communities.
 </p>
 </div>
 <div class="events-grid">
 <div class="event-card featured-event">
 <div class="event-image">
-<img src="img/A03.jpg" alt="Health Camp Event">
+<img src="img/A03.jpg" alt="HPLC Testing Camp at Yavatmal">
 <div class="event-date">
 <span class="day">7</span>
 <span class="month">Sep</span>
@@ -612,81 +690,93 @@ Join us in our upcoming initiatives and be part of the change we want to see in 
 <div class="event-status">Completed</div>
 </div>
 <div class="event-content">
-<div class="event-category">September</div>
-<h3>HPLC Testing Camp</h3>
-<p>As a tribute to Dr. Rashid Merchant, we hosted a comprehensive HPLC testing camp at Savitri Jyotirao College of Social Work, Yavatmal, on Teachers' Day This initiative not only paid homage to Dr. Merchant's legacy but also provided 150 students with a unique opportunity to gain practical experience in HPLC testing, enhancing their skills and knowledge in the field.</p>
+<div class="event-category">Thalassemia</div>
+<h3>HPLC Testing Camp — Yavatmal</h3>
+<p>In tribute to Dr. Rashid Merchant, we hosted a comprehensive HPLC testing camp at Savitri Jyotirao College of Social Work, Yavatmal, on Teachers' Day. 150 students gained hands-on experience in HPLC testing while the camp served the wider community.</p>
 <div class="event-details">
 <div class="event-detail">
-<i class="fas fa-map-marker-alt"></i>
-<span>Yavatmal Rural Areas</span>
+<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+<span>Yavatmal, Maharashtra</span>
 </div>
 <div class="event-detail">
-<i class="fas fa-clock"></i>
-<span>9:00 AM - 5:00 PM</span>
+<i class="fas fa-clock" aria-hidden="true"></i>
+<span>9:00 AM – 5:00 PM</span>
 </div>
 <div class="event-detail">
-<i class="fas fa-users"></i>
-<span>150+ Beneficiaries</span>
+<i class="fas fa-users" aria-hidden="true"></i>
+<span>150+ participants</span>
 </div>
 </div>
-<button class="btn btn-outline">Learn More</button>
+<a href="projects.html" class="btn btn-outline">Learn More</a>
 </div>
 </div>
 <div class="event-card">
 <div class="event-image">
-<img src="img/p3.jpg" alt="Vaccination Drive">
+<img src="img/p3.jpg" alt="Child Immunization Drive">
 <div class="event-date">
 <span class="day">22</span>
 <span class="month">Feb</span>
 </div>
-<div class="event-status">Upcoming</div>
+<div class="event-status">Completed</div>
 </div>
 <div class="event-content">
-<div class="event-category">Vaccination</div>
+<div class="event-category">Child Health</div>
 <h3>Child Immunization Drive</h3>
-<p>Mobile vaccination camp focusing on routine immunizations for children aged 0-5 years.</p>
+<p>Mobile vaccination camp providing routine immunizations for children aged 0–5 years at community centres across our catchment area.</p>
 <div class="event-details">
 <div class="event-detail">
-<i class="fas fa-map-marker-alt"></i>
-<span>Community Centers</span>
+<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+<span>Community Centres</span>
 </div>
 <div class="event-detail">
-<i class="fas fa-clock"></i>
-<span>10:00 AM - 4:00 PM</span>
+<i class="fas fa-clock" aria-hidden="true"></i>
+<span>10:00 AM – 4:00 PM</span>
 </div>
 </div>
-<button class="btn btn-outline">Register Now</button>
+<a href="contact.html" class="btn btn-outline">Get Involved</a>
 </div>
 </div>
 <div class="event-card">
 <div class="event-image">
-<img src="img/p4.jpg" alt="Awareness Workshop">
+<img src="img/p4.jpg" alt="Maternal Health Awareness Workshop">
 <div class="event-date">
 <span class="day">28</span>
 <span class="month">Feb</span>
 </div>
-<div class="event-status">Upcoming</div>
+<div class="event-status">Completed</div>
 </div>
 <div class="event-content">
-<div class="event-category">Workshop</div>
+<div class="event-category">Maternal Health</div>
 <h3>Maternal Health Awareness</h3>
-<p>Educational workshop on prenatal care, nutrition, and safe delivery practices for expecting mothers.</p>
+<p>Educational workshop on prenatal care, nutrition, and safe delivery practices for expecting mothers — part of Anandi Aai Anandi Bal.</p>
 <div class="event-details">
 <div class="event-detail">
-<i class="fas fa-map-marker-alt"></i>
-<span>Muktangan Center</span>
+<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+<span>Muktangan Centre, Pune</span>
 </div>
 <div class="event-detail">
-<i class="fas fa-clock"></i>
-<span>2:00 PM - 5:00 PM</span>
+<i class="fas fa-clock" aria-hidden="true"></i>
+<span>2:00 PM – 5:00 PM</span>
 </div>
 </div>
-<button class="btn btn-outline">Join Workshop</button>
+<a href="projects.html#project-1" class="btn btn-outline">About the Programme</a>
 </div>
 </div>
 </div>
 </div>
 </section>
+
+<!-- Newsletter signup -->
+<div class="newsletter-strip">
+<div class="container">
+<h3>Stay Informed</h3>
+<p>Get updates on our work in rural India — new camps, research findings, and how to volunteer.</p>
+<form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+<input type="email" placeholder="Your email address" aria-label="Email address for newsletter" required>
+<button type="submit">Subscribe</button>
+</form>
+</div>
+</div>
 
 </main>
 
@@ -697,7 +787,7 @@ Join us in our upcoming initiatives and be part of the change we want to see in 
 <div class="footer-section">
 <div class="footer-logo">
 <div class="footer-logo-icon">
-<i class="fas fa-heart"></i>
+<i class="fas fa-heart" aria-hidden="true"></i>
 </div>
 <div class="footer-logo-text">
 <h3>Muktangan</h3>
@@ -705,8 +795,13 @@ Join us in our upcoming initiatives and be part of the change we want to see in 
 </div>
 </div>
 <p class="footer-description">
-Transforming lives with better health, awareness, and care one community at a time.
+Transforming lives through better health, awareness, and care — one rural community at a time.
 </p>
+<div style="margin-top:12px;display:flex;gap:10px;">
+<a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon" aria-label="Muktangan on Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon" aria-label="Muktangan on Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon" aria-label="Muktangan on YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+</div>
 </div>
 <div class="footer-section">
 <h4>Quick Links</h4>
@@ -722,9 +817,9 @@ Transforming lives with better health, awareness, and care one community at a ti
 <ul class="footer-links">
 <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
 <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
-<li><a href="projects.html#project-3">Cancer Awareness</a></li>
 <li><a href="project-jija.html">Project Jija</a></li>
 <li><a href="project-ahilya.html">Project Ahilya</a></li>
+<li><a href="Thalassemia_detection.html">Thalassemia Detector</a></li>
 </ul>
 </div>
 <div class="footer-section">
@@ -732,198 +827,106 @@ Transforming lives with better health, awareness, and care one community at a ti
 <div class="footer-contact">
 <p>Ruby Park Bldg E, Flat 601</p>
 <p>Park Street Ph-I, Wakad, Pune 411057</p>
-<p>Phone: +91 8380876308</p>
-<p style="white-space: nowrap;">Email: muktanganhealthcare@gmail.com</p>
+<p>Phone: <a href="tel:+918380876308" style="color:inherit">+91 83808 76308</a></p>
+<p>Email: <a href="mailto:muktanganhealthcare@gmail.com" style="color:inherit">muktanganhealthcare@gmail.com</a></p>
 </div>
 </div>
 </div>
 <div class="footer-bottom">
-<p>&copy; 2026 Muktangan. All rights reserved. | Privacy Policy | Terms of Service</p>
+<p>&copy; 2026 Muktangan Foundation. All rights reserved.</p>
+<p class="footer-privacy">
+<a href="contact.html">Privacy Policy</a> &nbsp;|&nbsp;
+<a href="contact.html">Terms of Service</a>
+</p>
 <p class="designed-by">Designed by <span class="gradient-text">Vaibhav Thakare</span></p>
 </div>
 </div>
 </footer>
-<!-- End Footer -->
+
+<!-- Sticky donate bar -->
+<div class="sticky-donate-bar" id="stickyDonate" role="complementary" aria-label="Donate prompt">
+<p>Your support reaches <span>rural families</span> in Maharashtra</p>
+<a href="donate.html">Donate Now</a>
+<button class="sticky-donate-close" onclick="dismissSticky()" aria-label="Dismiss">✕</button>
+</div>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/918380876308" class="whatsapp-fab" aria-label="Chat with Muktangan on WhatsApp" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-whatsapp" aria-hidden="true"></i>
+</a>
 
 <script>
 function toggleMobileMenu() {
-const mobileMenu = document.getElementById('mobileMenu');
-mobileMenu.classList.toggle('active');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const toggle = document.querySelector('.menu-toggle');
+  const isOpen = mobileMenu.classList.toggle('active');
+  if (toggle) toggle.setAttribute('aria-expanded', isOpen);
 }
 
 function closeMobileMenu() {
-const mobileMenu = document.getElementById('mobileMenu');
-mobileMenu.classList.remove('active');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const toggle = document.querySelector('.menu-toggle');
+  mobileMenu.classList.remove('active');
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
 }
-
-// Success Stories Slider
-let currentStory = 0;
-const stories = document.querySelectorAll('.story-card');
-const storyBtns = document.querySelectorAll('.story-btn');
-
-function showStory(index) {
-stories.forEach(story => story.classList.remove('active'));
-storyBtns.forEach(btn => btn.classList.remove('active'));
-
-stories[index].classList.add('active');
-storyBtns[index].classList.add('active');
-currentStory = index;
-}
-
-// Auto-rotate stories
-setInterval(() => {
-currentStory = (currentStory + 1) % stories.length;
-showStory(currentStory);
-}, 5000);
 
 // Smooth scrolling for internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-const target = document.querySelector(this.getAttribute('href'));
-if (target) {
-target.scrollIntoView({
-behavior: 'smooth',
-block: 'start'
-});
-}
-});
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 });
 
 // Header scroll effect
 window.addEventListener('scroll', function() {
-const header = document.querySelector('.header');
-if (window.scrollY > 100) {
-header.classList.add('scrolled');
-} else {
-header.classList.remove('scrolled');
-}
+  const header = document.querySelector('.header');
+  if (window.scrollY > 100) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+  // Sticky donate bar — show after 400px
+  const bar = document.getElementById('stickyDonate');
+  if (bar && !bar.dataset.dismissed) {
+    if (window.scrollY > 400) {
+      bar.classList.add('visible');
+    } else {
+      bar.classList.remove('visible');
+    }
+  }
 });
 
-// Stats display — no animation so numbers are always readable
-// (removed animated counter to prevent misleading partial values)
-
-// Collage items hover effect
-document.querySelectorAll('.collage-item').forEach(item => {
-item.addEventListener('mouseenter', function() {
-this.style.transform = 'scale(1.05) rotate(2deg)';
-});
-
-item.addEventListener('mouseleave', function() {
-this.style.transform = 'scale(1) rotate(0deg)';
-});
-});
-</script>
-<script>
-// Enhanced Collage Interactions and Futuristic Effects
-document.addEventListener('DOMContentLoaded', function() {
-
-// Custom Cursor Effect for Collage
-const collageGrid = document.querySelector('.collage-grid');
-if (collageGrid) {
-collageGrid.addEventListener('mousemove', function(e) {
-const cursor = document.createElement('div');
-cursor.className = 'custom-cursor';
-cursor.style.cssText = `
-position: fixed;
-top: ${e.clientY - 10}px;
-left: ${e.clientX - 10}px;
-width: 20px;
-height: 20px;
-background: radial-gradient(circle, rgba(236, 72, 153, 0.8), transparent);
-border-radius: 50%;
-pointer-events: none;
-z-index: 9999;
-animation: cursorPulse 0.5s ease-out forwards;
-`;
-document.body.appendChild(cursor);
-
-setTimeout(() => {
-cursor.remove();
-}, 500);
-});
+function dismissSticky() {
+  const bar = document.getElementById('stickyDonate');
+  if (bar) {
+    bar.dataset.dismissed = '1';
+    bar.classList.remove('visible');
+  }
 }
 
-// Parallax Effect for Collage Items
-window.addEventListener('scroll', function() {
-const scrolled = window.pageYOffset;
-const collageItems = document.querySelectorAll('.collage-item');
-
-collageItems.forEach((item, index) => {
-const speed = 0.1 + (index % 5) * 0.02;
-const yPos = -(scrolled * speed);
-const rotation = (scrolled * speed * 0.1);
-
-item.style.transform = `translateY(${yPos}px) rotateZ(${rotation}deg)`;
-});
-
-// Animate background particles
-const section = document.querySelector('.ngo-collage-section');
-if (section) {
-const offset = scrolled * 0.05;
-section.style.backgroundPosition = `${offset}px ${offset * 0.5}px`;
-}
-});
-
-// Interactive Hover Sound Effect (Visual)
-const collageItems = document.querySelectorAll('.collage-item');
-collageItems.forEach(item => {
-item.addEventListener('mouseenter', function() {
-// Create ripple effect
-const ripple = document.createElement('div');
-ripple.style.cssText = `
-position: absolute;
-top: 50%;
-left: 50%;
-width: 0;
-height: 0;
-background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent);
-border-radius: 50%;
-transform: translate(-50%, -50%);
-animation: rippleEffect 0.6s ease-out;
-pointer-events: none;
-z-index: 1;
-`;
-this.appendChild(ripple);
-
-setTimeout(() => {
-ripple.remove();
-}, 600);
-});
-});
-
-// Add dynamic CSS animations
-const style = document.createElement('style');
-style.textContent = `
-@keyframes cursorPulse {
-0% {
-transform: scale(0);
-opacity: 1;
-}
-100% {
-transform: scale(3);
-opacity: 0;
-}
+// Newsletter
+function handleNewsletter(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'Thank you!';
+  btn.style.background = '#5bab6e';
+  e.target.querySelector('input').value = '';
+  setTimeout(() => {
+    btn.textContent = 'Subscribe';
+    btn.style.background = '';
+  }, 3000);
 }
 
-@keyframes rippleEffect {
-0% {
-width: 0;
-height: 0;
-opacity: 1;
-}
-100% {
-width: 200px;
-height: 200px;
-opacity: 0;
-}
-}
-
-.collage-grid.revealed .collage-item {
-animation-play-state: running;
-}
-`;
-document.head.appendChild(style);
+// Collage hover effects
+document.querySelectorAll('.collage-item').forEach((item, index) => {
+  item.addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.05) rotate(2deg)';
+  });
+  item.addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1) rotate(0deg)';
+  });
 });
 </script>
 </body>

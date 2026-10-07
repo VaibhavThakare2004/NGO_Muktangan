@@ -541,9 +541,13 @@
       .section { padding: 48px 16px; }
       .stats-band { padding: 40px 16px; }
     }
+    .skip-link{position:absolute;top:-60px;left:16px;background:var(--brand-saffron);color:#fff;padding:10px 18px;border-radius:0 0 8px 8px;font-weight:600;z-index:10000;transition:top .2s;text-decoration:none;}
+    .skip-link:focus{top:0;}
+    *:focus-visible{outline:3px solid var(--brand-saffron);outline-offset:3px;border-radius:4px;}
   </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ── Site header (matches existing Muktangan nav) ─────── -->
 <header class="site-header">
@@ -579,6 +583,9 @@
     </nav>
   </div>
 </header>
+
+<!-- ── Main content ──────────────────────────────────────── -->
+<main id="main-content">
 
 <!-- ── Hero ─────────────────────────────────────────────── -->
 <section class="hero">
@@ -739,6 +746,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ── Footer ─────────────────────────────────────────────── -->
 <footer class="site-footer">
