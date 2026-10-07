@@ -1,79 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muktangan - Donate</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Donate — Muktangan Foundation</title>
+  <meta name="description" content="Support Muktangan Foundation's work in maternal health, thalassemia prevention, newborn care, and adolescent wellbeing across rural India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
 <style>
-  :root { --brand-brown:#2d1f1a; --brand-cream:#fdf6f0; --brand-saffron:#e8613c; --brand-rose:#c2547a; --brand-gold:#c8860a; --brand-tan:#f5ece2; }
-  body { font-family: 'Inter', system-ui, sans-serif; background:#fff; color:var(--brand-brown); }
-  h1,h2,h3,.hero-title,.section-title,.stat-number,.footer-logo-text h3,.footer-logo h3 { font-family:'Fraunces',Georgia,serif; }
-  .header,header { background:#fff !important; border-bottom:1px solid #e8ddd4 !important; box-shadow:0 2px 12px rgba(45,31,26,0.07) !important; }
-  .logo h1 { font-family:'Fraunces',Georgia,serif; color:var(--brand-brown) !important; letter-spacing:-0.02em; }
-  .logo p { color:var(--brand-saffron) !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; font-weight:600; }
-  .nav a { color:#4a3328 !important; font-weight:500; }
-  .nav a:hover { color:var(--brand-saffron) !important; }
-  .nav a[href="donate.html"] { background:var(--brand-saffron) !important; color:#fff !important; border-radius:999px !important; padding:7px 18px !important; font-weight:600 !important; }
-  .social-icon { color:#6b4e43 !important; border-color:#e0d0c5 !important; }
-  .social-icon:hover { background:var(--brand-saffron) !important; border-color:var(--brand-saffron) !important; color:#fff !important; }
-  .hero { background:linear-gradient(135deg,var(--brand-cream) 0%,#fef9f5 60%,#fdeee4 100%) !important; border-bottom:1px solid #edd9cc; }
-  .hero-title { color:var(--brand-brown) !important; }
-  .gradient-text { color:var(--brand-saffron) !important; background:none !important; -webkit-background-clip:unset !important; -webkit-text-fill-color:var(--brand-saffron) !important; }
-  .hero-description { color:#5c4038 !important; }
-  .badge { background:rgba(232,97,60,0.10) !important; color:var(--brand-saffron) !important; border:1px solid rgba(232,97,60,0.25) !important; }
-  .btn-primary,.btn-gradient { background:var(--brand-saffron) !important; border-color:var(--brand-saffron) !important; color:#fff !important; }
-  .btn-outline { border-color:rgba(45,31,26,0.35) !important; color:var(--brand-brown) !important; }
-  .btn-outline:hover { background:var(--brand-saffron) !important; border-color:var(--brand-saffron) !important; color:#fff !important; }
-  .dropdown-content { background:#fff !important; border:1px solid #e8ddd4 !important; box-shadow:0 8px 30px rgba(45,31,26,0.12) !important; }
-  .dropdown-item { color:#4a3328 !important; }
-  .dropdown-item:hover { background:var(--brand-tan) !important; }
-  .dropdown-item-content i { color:var(--brand-saffron) !important; }
-  .dropdown-item strong { color:var(--brand-brown) !important; }
-  .dropdown-item span { color:#8a6a60 !important; }
-  .section-title { color:var(--brand-brown) !important; letter-spacing:-0.025em; }
-  .section-description { color:#6b4e43 !important; }
-  .footer { background:#3d2418 !important; }
-  .footer-logo-text h3,.footer-logo h3 { font-family:'Fraunces',Georgia,serif; color:var(--brand-cream) !important; }
-  .footer-logo-text p { color:#e8c252 !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; }
-  .footer h4 { font-family:'Fraunces',Georgia,serif; color:var(--brand-cream) !important; }
-  .footer p,.footer-description { color:rgba(253,246,240,0.7) !important; }
-  .footer-links a { color:rgba(253,246,240,0.7) !important; }
-  .footer-links a:hover { color:#e8c252 !important; }
-  .footer-bottom { border-top:1px solid rgba(253,246,240,0.12) !important; }
-  .footer-contact p { color:rgba(253,246,240,0.7) !important; }
-  .mobile-menu { background:#fff !important; border-bottom:1px solid #e8ddd4 !important; }
-  .mobile-menu a { color:#4a3328 !important; border-bottom:1px solid #f0e5dc !important; }
-  .mobile-menu a:hover { color:var(--brand-saffron) !important; background:var(--brand-tan) !important; }
-  .logo-icon { display:flex; align-items:center; justify-content:center; width:42px; height:42px; }
-  .logo-icon svg { width:42px; height:42px; }
+/* ── Brand tokens ─────────────────────────────────────────────── */
+:root {
+  --brown:   #2d1f1a;
+  --cream:   #fdf6f0;
+  --saffron: #e8613c;
+  --rose:    #c2547a;
+  --gold:    #b8860b;
+  --gold-lt: #e8c252;
+  --tan:     #f5ece2;
+  --tan2:    #ede0d4;
+  --muted:   #6b4e43;
+  --border:  #e8ddd4;
+}
+
+/* ── Reset / Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #fff;
+  color: var(--brown);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header (shared) ──────────────────────────────────────────── */
+.header, header {
+  background: #fff !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 2px 12px rgba(45,31,26,0.07) !important;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo-icon { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; }
+.logo-icon svg { width: 42px; height: 42px; }
+.logo h1 { font-family: 'Fraunces', Georgia, serif; color: var(--brown) !important; letter-spacing: -0.02em; }
+.logo p  { color: var(--saffron) !important; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+.nav a   { color: #4a3328 !important; font-weight: 500; }
+.nav a:hover { color: var(--saffron) !important; }
+.nav a[href="donate.html"] {
+  background: var(--saffron) !important; color: #fff !important;
+  border-radius: 999px !important; padding: 7px 18px !important; font-weight: 600 !important;
+}
+.social-icon { color: #6b4e43 !important; border-color: #e0d0c5 !important; }
+.social-icon:hover { background: var(--saffron) !important; border-color: var(--saffron) !important; color: #fff !important; }
+.dropdown-content { background: #fff !important; border: 1px solid var(--border) !important; box-shadow: 0 8px 30px rgba(45,31,26,0.12) !important; }
+.dropdown-item { color: #4a3328 !important; }
+.dropdown-item:hover { background: var(--tan) !important; }
+.dropdown-item-content i { color: var(--saffron) !important; }
+.dropdown-item strong { color: var(--brown) !important; }
+.dropdown-item span   { color: #8a6a60 !important; }
+.mobile-menu { background: #fff !important; border-bottom: 1px solid var(--border) !important; }
+.mobile-menu a { color: #4a3328 !important; border-bottom: 1px solid #f0e5dc !important; }
+.mobile-menu a:hover { color: var(--saffron) !important; background: var(--tan) !important; }
+.footer { background: #3d2418 !important; }
+.footer-logo-text h3, .footer-logo h3 { font-family: 'Fraunces', Georgia, serif; color: var(--cream) !important; }
+.footer-logo-text p { color: var(--gold-lt) !important; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; }
+.footer h4 { font-family: 'Fraunces', Georgia, serif; color: var(--cream) !important; }
+.footer p, .footer-description { color: rgba(253,246,240,0.7) !important; }
+.footer-links a { color: rgba(253,246,240,0.7) !important; }
+.footer-links a:hover { color: var(--gold-lt) !important; }
+.footer-bottom { border-top: 1px solid rgba(253,246,240,0.12) !important; }
+.footer-contact p { color: rgba(253,246,240,0.7) !important; }
+
+/* ── Four-stripe bar ──────────────────────────────────────────── */
+.stripe-bar {
+  height: 4px;
+  background: linear-gradient(to right,
+    #e8613c 0% 18%, #c2547a 18% 40%, #e8c252 40% 62%, #e8613c 62% 100%);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.donate-hero {
+  background: linear-gradient(160deg, var(--cream) 0%, #fef5ee 50%, #fde8db 100%);
+  padding: 80px 24px 64px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.donate-hero .eyebrow {
+  display: inline-block;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--saffron);
+  background: rgba(232,97,60,0.10);
+  border: 1px solid rgba(232,97,60,0.25);
+  border-radius: 999px;
+  padding: 5px 16px;
+  margin-bottom: 20px;
+}
+.donate-hero h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--brown);
+  max-width: 700px;
+  margin: 0 auto 20px;
+  text-wrap: balance;
+}
+.donate-hero h1 em {
+  font-style: italic; font-weight: 300; color: var(--saffron);
+}
+.donate-hero p {
+  font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+  max-width: 520px; margin: 0 auto 36px;
+}
+.hero-stats {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 28px 48px;
+  max-width: 720px; margin: 0 auto;
+}
+.hero-stat .num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2rem; font-weight: 700; color: var(--brown);
+  display: block;
+}
+.hero-stat .lbl {
+  font-size: 0.78rem; color: var(--muted); letter-spacing: 0.02em;
+}
+
+/* ── MAIN LAYOUT ──────────────────────────────────────────────── */
+.donate-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .donate-body { grid-template-columns: 1fr; }
+  .sticky-col { position: static !important; }
+}
+
+/* ── LEFT COLUMN ──────────────────────────────────────────────── */
+.section-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--saffron); margin-bottom: 8px;
+}
+.section-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.6rem; font-weight: 700; letter-spacing: -0.025em;
+  color: var(--brown); margin-bottom: 6px;
+}
+.section-sub {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 28px;
+}
+
+/* Impact tiers */
+.impact-tiers { display: grid; gap: 14px; margin-bottom: 44px; }
+.tier {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: center;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: box-shadow 0.18s, border-color 0.18s;
+}
+.tier:hover { border-color: var(--saffron); box-shadow: 0 4px 18px rgba(232,97,60,0.10); }
+.tier-amount {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem; font-weight: 700; color: var(--saffron);
+  text-align: center; line-height: 1.1;
+}
+.tier-amount span { display: block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.06em; color: var(--muted); margin-top: 2px; }
+.tier-desc { font-size: 0.88rem; color: var(--brown); line-height: 1.5; }
+.tier-desc strong { color: var(--brown); font-weight: 600; }
+
+/* Programme allocation */
+.allocation { margin-bottom: 44px; }
+.alloc-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.alloc-bar {
+  height: 10px; border-radius: 999px;
+  background: linear-gradient(to right,
+    #e8613c 0% 22%, #c2547a 22% 44%, #b8860b 44% 67%, #e8613c 67% 100%);
+  margin-bottom: 12px;
+}
+.alloc-legend {
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+}
+.alloc-item { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--muted); }
+.alloc-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+/* Trust signals */
+.trust-row {
+  display: flex; flex-wrap: wrap; gap: 14px;
+}
+.trust-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--cream); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 14px; font-size: 0.8rem; color: var(--brown);
+}
+.trust-chip i { color: var(--saffron); font-size: 0.85rem; }
+
+/* ── RIGHT COLUMN — sticky bank card ─────────────────────────── */
+.sticky-col { position: sticky; top: 88px; }
+
+.bank-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(45,31,26,0.10);
+}
+.bank-card-head {
+  background: linear-gradient(135deg, #3d2418 0%, #5a3020 100%);
+  padding: 28px 28px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.bank-card-head::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, #e8613c 0% 22%, #c2547a 22% 44%, #e8c252 44% 67%, #e8613c 67%);
+}
+.bank-card-head h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--cream); letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.bank-card-head p { font-size: 0.8rem; color: rgba(253,246,240,0.65); }
+
+.bank-rows { padding: 20px 28px 8px; }
+.bank-row {
+  display: flex; align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.bank-row:last-child { border-bottom: none; }
+.bank-row-label {
+  font-size: 0.73rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap; width: 108px; flex-shrink: 0;
+}
+.bank-row-value {
+  font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 500;
+  color: var(--brown); flex: 1; line-height: 1.4;
+}
+.copy-btn {
+  background: none; border: 1px solid var(--border); border-radius: 7px;
+  padding: 5px 9px; cursor: pointer; color: var(--muted); font-size: 0.75rem;
+  transition: all 0.15s; flex-shrink: 0;
+}
+.copy-btn:hover { background: var(--saffron); border-color: var(--saffron); color: #fff; }
+.copy-btn.copied { background: #3d7a3a; border-color: #3d7a3a; color: #fff; }
+
+.upi-block {
+  margin: 16px 28px 0;
+  background: #fff;
+  border: 1px dashed var(--tan2);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.upi-icon { font-size: 1.4rem; color: var(--saffron); flex-shrink: 0; }
+.upi-block p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.upi-block strong { color: var(--brown); font-size: 0.85rem; display: block; margin-bottom: 2px; }
+
+.receipt-note {
+  margin: 16px 28px 24px;
+  background: rgba(232,97,60,0.07);
+  border-left: 3px solid var(--saffron);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  font-size: 0.8rem; color: var(--muted); line-height: 1.55;
+}
+.receipt-note strong { color: var(--brown); }
+
+.donate-cta {
+  margin: 0 28px 28px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  background: var(--saffron);
+  color: #fff;
+  border: none; border-radius: 12px;
+  padding: 15px 24px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: -0.01em;
+  cursor: pointer; width: calc(100% - 56px);
+  text-decoration: none;
+  transition: background 0.18s, transform 0.12s;
+}
+.donate-cta:hover { background: #c94d28; transform: translateY(-1px); }
+.donate-cta i { font-size: 0.9rem; }
+
+/* ── QUOTE BAND ───────────────────────────────────────────────── */
+.quote-band {
+  background: linear-gradient(135deg, var(--saffron) 0%, #c94d28 100%);
+  padding: 56px 24px;
+  text-align: center;
+}
+.quote-band blockquote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.2rem, 3vw, 1.9rem);
+  font-weight: 300; font-style: italic;
+  color: #fff;
+  max-width: 740px; margin: 0 auto 16px;
+  line-height: 1.45; text-wrap: balance;
+}
+.quote-band cite {
+  font-size: 0.82rem; font-style: normal; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+.footer { background: #3d2418; }
+.footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 36px; padding: 56px 24px 32px; max-width: 1100px; margin: 0 auto; }
+.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-logo-icon { width: 36px; height: 36px; background: rgba(232,97,60,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--saffron); }
+.footer-bottom { max-width: 1100px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.78rem; }
+.footer h4 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-links a { font-size: 0.85rem; text-decoration: none; }
+.footer-contact p { font-size: 0.85rem; margin-bottom: 6px; }
+
+/* ── Copy toast ───────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(12px);
+  background: #3d2418; color: var(--cream);
+  font-size: 0.85rem; padding: 10px 20px; border-radius: 999px;
+  opacity: 0; transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none; z-index: 999;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
-<link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/donate.css">
 </head>
 <body>
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
 <header class="header">
   <div class="container">
     <div class="header-content">
       <div class="logo">
         <div class="logo-icon">
-<svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Muktangan tree logo">
-  <rect x="19.5" y="28" width="3" height="9" rx="1.5" fill="#8B5E3C"/>
-  <ellipse cx="14" cy="38" rx="3.5" ry="2" fill="#e8613c" opacity=".7"/>
-  <ellipse cx="21" cy="39" rx="3.5" ry="2" fill="#c2547a" opacity=".7"/>
-  <ellipse cx="28" cy="38" rx="3.5" ry="2" fill="#5bab6e" opacity=".7"/>
-  <ellipse cx="21" cy="23" rx="10" ry="8" fill="#5bab6e" opacity=".9"/>
-  <ellipse cx="15" cy="18" rx="7" ry="6" fill="#e8613c" opacity=".9"/>
-  <ellipse cx="27" cy="18" rx="7" ry="6" fill="#e8c252" opacity=".95"/>
-  <ellipse cx="21" cy="12" rx="8" ry="7" fill="#c2547a" opacity=".9"/>
-  <ellipse cx="17" cy="8" rx="4.5" ry="4" fill="#5bab6e"/>
-  <ellipse cx="25" cy="8" rx="4.5" ry="4" fill="#e8613c"/>
-  <ellipse cx="21" cy="5" rx="4" ry="3.5" fill="#e8c252"/>
-</svg>
+          <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Muktangan tree logo">
+            <rect x="19.5" y="28" width="3" height="9" rx="1.5" fill="#8B5E3C"/>
+            <ellipse cx="14" cy="38" rx="3.5" ry="2" fill="#e8613c" opacity=".7"/>
+            <ellipse cx="21" cy="39" rx="3.5" ry="2" fill="#c2547a" opacity=".7"/>
+            <ellipse cx="28" cy="38" rx="3.5" ry="2" fill="#5bab6e" opacity=".7"/>
+            <ellipse cx="21" cy="23" rx="10" ry="8" fill="#5bab6e" opacity=".9"/>
+            <ellipse cx="15" cy="18" rx="7" ry="6" fill="#e8613c" opacity=".9"/>
+            <ellipse cx="27" cy="18" rx="7" ry="6" fill="#e8c252" opacity=".95"/>
+            <ellipse cx="21" cy="12" rx="8" ry="7" fill="#c2547a" opacity=".9"/>
+            <ellipse cx="17" cy="8" rx="4.5" ry="4" fill="#5bab6e"/>
+            <ellipse cx="25" cy="8" rx="4.5" ry="4" fill="#e8613c"/>
+            <ellipse cx="21" cy="5" rx="4" ry="3.5" fill="#e8c252"/>
+          </svg>
         </div>
         <div class="logo-text">
           <h1>Muktangan</h1>
@@ -83,362 +369,283 @@
       <nav class="nav">
         <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
-        
-        <!-- Projects Dropdown -->
         <div class="nav-dropdown">
-          <a href="projects.html" class="nav-link">
-            Our Projects <i class="fas fa-chevron-down"></i>
-          </a>
+          <a href="projects.html" class="nav-link">Our Projects <i class="fas fa-chevron-down"></i></a>
           <div class="dropdown-content">
             <a href="projects.html#project-1" class="dropdown-item">
-              <div class="dropdown-item-content">
-                <i class="fas fa-heart-pulse"></i>
-                <div>
-                  <strong>Anandi Aai Anandi Bal</strong>
-                  <span>Maternal & Child Health</span>
-                </div>
-              </div>
+              <div class="dropdown-item-content"><i class="fas fa-heart-pulse"></i><div><strong>Anandi Aai Anandi Bal</strong><span>Maternal &amp; Child Health</span></div></div>
             </a>
             <a href="projects.html#project-2" class="dropdown-item">
-              <div class="dropdown-item-content">
-                <i class="fas fa-shield-heart"></i>
-                <div>
-                  <strong>Thalassemia Mukt Bharat</strong>
-                  <span>Disease Prevention Campaign</span>
-                </div>
-              </div>
+              <div class="dropdown-item-content"><i class="fas fa-shield-heart"></i><div><strong>Thalassemia Mukt Bharat</strong><span>Disease Prevention</span></div></div>
             </a>
-            <a href="projects.html#project-3" class="dropdown-item">
-              <div class="dropdown-item-content">
-                <i class="fas fa-ribbon"></i>
-                <div>
-                  <strong>Cancer Awareness</strong>
-                  <span>Early Detection & Support</span>
-                </div>
-              </div>
+            <a href="project-jija.html" class="dropdown-item">
+              <div class="dropdown-item-content"><i class="fas fa-globe"></i><div><strong>Project Jija</strong><span>Newborn Wellbeing · Global</span></div></div>
             </a>
-            
-<a href="project-jija.html" class="dropdown-item">
-<div class="dropdown-item-content">
-<i class="fas fa-globe"></i>
-<div><strong>Project Jija</strong><span>Newborn Wellbeing · Global</span></div>
-</div>
-</a>
-<a href="project-ahilya.html" class="dropdown-item">
-<div class="dropdown-item-content">
-<i class="fas fa-seedling"></i>
-<div><strong>Project Ahilya</strong><span>Adolescent Wellbeing · Maharashtra</span></div>
-</div>
-</a>
+            <a href="project-ahilya.html" class="dropdown-item">
+              <div class="dropdown-item-content"><i class="fas fa-seedling"></i><div><strong>Project Ahilya</strong><span>Adolescent Wellbeing</span></div></div>
+            </a>
             <div class="dropdown-divider"></div>
             <a href="projects.html" class="dropdown-item view-all">
-              <div class="dropdown-item-content">
-                <i class="fas fa-th-large"></i>
-                <div>
-                  <strong>View All Projects</strong>
-                  <span>See complete project portfolio</span>
-                </div>
-              </div>
+              <div class="dropdown-item-content"><i class="fas fa-th-large"></i><div><strong>View All Projects</strong><span>Complete portfolio</span></div></div>
             </a>
           </div>
         </div>
-        <a href="Thalassemia_detection.html">Thalassemia Detector</a>
         <a href="contact.html">Contact</a>
         <a href="donate.html">Donate</a>
       </nav>
       <div class="social-icons">
-        <a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/muktangan_sanstha/?igsh=aXI3YnpoODVwenJl#" class="social-icon">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon">
-          <i class="fab fa-youtube"></i>
-        </a>
+        <a href="https://www.facebook.com/profile.php?id=61577395140735" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/muktangan_sanstha/" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Muktangan-o4m" class="social-icon"><i class="fab fa-youtube"></i></a>
       </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" onclick="closeMobileMenu()">Home</a>
-    <a href="about.html" onclick="closeMobileMenu()">About Us</a>
-    <a href="projects.html" onclick="closeMobileMenu()">Our Projects</a>
-    <a href="project-jija.html" onclick="closeMobileMenu()">Project Jija</a>
-<a href="project-ahilya.html" onclick="closeMobileMenu()">Project Ahilya</a>
-<a href="Thalassemia_detection.html" onclick="closeMobileMenu()">Thalassemia Detector</a>
-    <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
-    <a href="donate.html" onclick="closeMobileMenu()">Donate</a>
+  <a href="index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="about.html" onclick="closeMobileMenu()">About Us</a>
+  <a href="projects.html" onclick="closeMobileMenu()">Our Projects</a>
+  <a href="project-jija.html" onclick="closeMobileMenu()">Project Jija</a>
+  <a href="project-ahilya.html" onclick="closeMobileMenu()">Project Ahilya</a>
+  <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+  <a href="donate.html" onclick="closeMobileMenu()">Donate</a>
 </div>
 
-<section id="donate" class="donate">
-    <div class="container">
-        <div class="section-header">
-            <div class="badge purple">Join Our Mission</div>
-            <h2 class="section-title">Make a Difference Today</h2>
-            <p class="section-description">
-                Your financial support helps us provide essential care and resources to mothers and children in need. 
-                Every contribution makes a meaningful difference in building healthier communities.
-            </p>
-        </div>
-
-        <div class="donate-content">
-            <!-- Donation Impact Section with Image -->
-            <div class="donation-impact">
-                <h3>Your Impact</h3>
-                
-                <!-- Animated Image Section -->
-                <div class="impact-image-container">
-                    <div class="floating-elements">
-                        <div class="floating-heart heart-1">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="floating-heart heart-2">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="floating-heart heart-3">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="main-image">
-                        <img src="img/logo1.jpg" alt="Healthcare Support" />
-                        <div class="image-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-hands-helping"></i>
-                                <h4>Together We Care</h4>
-                                <p>Supporting mothers & children</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="pulse-rings">
-                        <div class="pulse-ring ring-1"></div>
-                        <div class="pulse-ring ring-2"></div>
-                        <div class="pulse-ring ring-3"></div>
-                    </div>
-                </div>
-                
-                <div class="impact-cards">
-                    <div class="impact-card">
-                        <div class="impact-icon pink">
-                            <i class="fas fa-rupee-sign"></i>
-                        </div>
-                        <div class="impact-content">
-                            <div class="impact-amount">₹500</div>
-                            <p>Provides basic healthcare supplies for one family</p>
-                        </div>
-                    </div>
-                    <div class="impact-card">
-                        <div class="impact-icon purple">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="impact-content">
-                            <div class="impact-amount">₹1000</div>
-                            <p>Supports prenatal care for expecting mothers</p>
-                        </div>
-                    </div>
-                    <div class="impact-card">
-                        <div class="impact-icon pink">
-                            <i class="fas fa-baby"></i>
-                        </div>
-                        <div class="impact-content">
-                            <div class="impact-amount">₹2000</div>
-                            <p>Covers complete maternal health checkup</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bank Details Section -->
-            <div class="bank-details-container">
-                <div class="bank-details-header">
-                    <div class="bank-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3>Bank Details for Donation</h3>
-                    <p>You can directly transfer your donation to our bank account</p>
-                </div>
-                
-             <div class="bank-details-card">
-    <div class="bank-detail-item">
-        <div class="detail-label">
-            <i class="fas fa-building"></i>
-            Bank Name:
-        </div>
-        <div class="detail-value">HDFC Bank</div>
-        <button class="copy-btn" onclick="copyToClipboard('HDFC Bank')">
-            <i class="fas fa-copy"></i>
-        </button>
+<!-- ── Hero ────────────────────────────────────────────────────── -->
+<div class="stripe-bar"></div>
+<section class="donate-hero">
+  <div class="eyebrow">Support Our Work</div>
+  <h1>Every rupee reaches<br><em>a real family</em></h1>
+  <p>Muktangan has spent three decades in the field — not in boardrooms. Your donation funds direct community work: ultrasounds, education, surveys, and newborn care.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num">35,000+</span>
+      <span class="lbl">Rural ultrasounds</span>
     </div>
-    
-    <div class="bank-detail-item">
-        <div class="detail-label">
-            <i class="fas fa-user"></i>
-            Account Name:
-        </div>
-        <div class="detail-value">MUKTANGAN BAHUUDDESHIYA  <br>SANSTHA YAVATMAL</div>
-        <button class="copy-btn" onclick="copyToClipboard('MUKTANGAN BAHUUDDESHIYA SANSTHA YAVATMAL')">
-            <i class="fas fa-copy"></i>
-        </button>
+    <div class="hero-stat">
+      <span class="num">1,00,000+</span>
+      <span class="lbl">Families educated — safe motherhood</span>
     </div>
-    
-    <div class="bank-detail-item">
-        <div class="detail-label">
-            <i class="fas fa-hashtag"></i>
-            Account Number:
-        </div>
-        <div class="detail-value">50100826986982</div>
-        <button class="copy-btn" onclick="copyToClipboard('50100826986982')">
-            <i class="fas fa-copy"></i>
-        </button>
+    <div class="hero-stat">
+      <span class="num">25,000+</span>
+      <span class="lbl">Pregnant women surveyed</span>
     </div>
-    
-    <div class="bank-detail-item">
-        <div class="detail-label">
-            <i class="fas fa-code"></i>
-            IFSC Code:
-        </div>
-        <div class="detail-value">HDFC0001017</div>
-        <button class="copy-btn" onclick="copyToClipboard('HDFC0001017')">
-            <i class="fas fa-copy"></i>
-        </button>
+    <div class="hero-stat">
+      <span class="num">2,00,000+</span>
+      <span class="lbl">Families educated about thalassemia</span>
     </div>
-    
-    <div class="bank-detail-item">
-        <div class="detail-label">
-            <i class="fas fa-map-marker-alt"></i>
-            Branch Name:
-        </div>
-        <div class="detail-value">YAVATMAL</div>
-        <button class="copy-btn" onclick="copyToClipboard('YAVATMAL')">
-            <i class="fas fa-copy"></i>
-        </button>
-    </div>
-</div>
-
-                <div class="donation-note">
-                    <div class="note-icon">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
-                    <div class="note-content">
-                        <h4>Important Note</h4>
-                        <p>After making your donation, please send us a screenshot or receipt at <strong>muktanganhealthcare@gmail.com</strong> so we can acknowledge your contribution and provide you with a donation receipt.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="cta-section">
-            <div class="cta-content">
-                <h3>Ready to Make a Difference?</h3>
-                <p>Join thousands of supporters who are helping us create healthier communities</p>
-                <div class="cta-buttons">
-                    <button class="btn btn-primary" onclick="scrollToBankDetails()">
-                        <i class="fas fa-heart"></i>
-                        Donate Now
-                    </button>
-                    <a href="contact.html" class="btn btn-secondary">
-                        <i class="fas fa-phone"></i>
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-  <!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <div class="footer-logo-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="footer-logo-text">
-                        <h3>Muktangan</h3>
-                        <p>Better Tomorrow</p>
-                    </div>
-                </div>
-                <p class="footer-description">
-                   Transforming lives with better health, awareness, and care one community at a time.
-                </p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="projects.html">Our Projects</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="donate.html">Donate</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Our Projects</h4>
-                <ul class="footer-links">
-                    <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
-                    <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
-                    <li><a href="projects.html#project-3">Cancer Awareness</a></li>
-                    <li><a href="project-jija.html">Project Jija</a></li>
-                    <li><a href="project-ahilya.html">Project Ahilya</a></li>
-            </div>
-            <div class="footer-section">
-                <h4>Contact Info</h4>
-                <div class="footer-contact">
-                    <p>Ruby Park Bldg E, Flat 601</p>
-                    <p>Park Street Ph-I, Wakad, Pune 411057</p>
-                    <p>Phone: +91 8380876308</p>
-                    <p style="white-space: nowrap;">Email: muktanganhealthcare@gmail.com</p>
-                </div>
-            </div>
+<!-- ── Body ────────────────────────────────────────────────────── -->
+<div class="donate-body">
+
+  <!-- Left: what your gift does -->
+  <div class="left-col">
+    <p class="section-label">Your Impact</p>
+    <h2 class="section-heading">What your gift does</h2>
+    <p class="section-sub">These are indicative amounts drawn from our field costs. Even the smallest contribution adds to a body of work that has changed thousands of lives.</p>
+
+    <div class="impact-tiers">
+      <div class="tier">
+        <div>
+          <div class="tier-amount">₹500<span>one gift</span></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Muktangan. All rights reserved. | Privacy Policy | Terms of Service</p>
-            <p class="designed-by">Designed by <span class="gradient-text">Vaibhav Thakare</span></p>
+        <p class="tier-desc"><strong>Covers one family's health education session</strong> — trained health workers visit a household, cover safe pregnancy, nutrition, and early child care.</p>
+      </div>
+      <div class="tier">
+        <div>
+          <div class="tier-amount">₹1,000<span>one gift</span></div>
         </div>
+        <p class="tier-desc"><strong>Sponsors a rural ultrasound</strong> — early anomaly detection for a pregnant woman in a village without a diagnostic centre.</p>
+      </div>
+      <div class="tier">
+        <div>
+          <div class="tier-amount">₹2,500<span>one gift</span></div>
+        </div>
+        <p class="tier-desc"><strong>Funds a complete follow-up cycle</strong> — Hb, height, weight, and complication tracking for one woman from pregnancy to baby's first birthday.</p>
+      </div>
+      <div class="tier">
+        <div>
+          <div class="tier-amount">₹5,000<span>one gift</span></div>
+        </div>
+        <p class="tier-desc"><strong>Enables a thalassemia awareness camp</strong> — reaching an entire school or panchayat, educating families on carrier screening and prevention.</p>
+      </div>
     </div>
+
+    <!-- How funds are used -->
+    <div class="allocation">
+      <p class="alloc-title">How we use your donation</p>
+      <div class="alloc-bar"></div>
+      <div class="alloc-legend">
+        <div class="alloc-item"><span class="alloc-dot" style="background:#e8613c"></span>Maternal health &amp; ultrasounds</div>
+        <div class="alloc-item"><span class="alloc-dot" style="background:#c2547a"></span>Newborn care (Project Jija)</div>
+        <div class="alloc-item"><span class="alloc-dot" style="background:#b8860b"></span>Thalassemia prevention</div>
+        <div class="alloc-item"><span class="alloc-dot" style="background:#e8613c; opacity:0.6"></span>Adolescent wellbeing</div>
+      </div>
+    </div>
+
+    <!-- Trust -->
+    <p class="section-label">Why trust us</p>
+    <div class="trust-row">
+      <div class="trust-chip"><i class="fas fa-calendar-check"></i> 30+ years in the field</div>
+      <div class="trust-chip"><i class="fas fa-stethoscope"></i> Led by practising doctors</div>
+      <div class="trust-chip"><i class="fas fa-map-marker-alt"></i> Based in Yavatmal &amp; Pune</div>
+      <div class="trust-chip"><i class="fas fa-hand-holding-heart"></i> 100% to programmes</div>
+      <div class="trust-chip"><i class="fas fa-receipt"></i> Donation receipt provided</div>
+    </div>
+  </div>
+
+  <!-- Right: bank details card -->
+  <div class="sticky-col">
+    <div class="bank-card">
+      <div class="bank-card-head">
+        <h3>Bank Transfer Details</h3>
+        <p>Direct transfer — secure and instant</p>
+      </div>
+
+      <div class="bank-rows">
+        <div class="bank-row">
+          <span class="bank-row-label">Bank</span>
+          <span class="bank-row-value">HDFC Bank</span>
+          <button class="copy-btn" data-copy="HDFC Bank" title="Copy"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-row-label">Account name</span>
+          <span class="bank-row-value">Muktangan Bahuuddeshiya Sanstha Yavatmal</span>
+          <button class="copy-btn" data-copy="Muktangan Bahuuddeshiya Sanstha Yavatmal" title="Copy"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-row-label">Account no.</span>
+          <span class="bank-row-value" style="font-family:'Inter',monospace;letter-spacing:0.05em">50100826986982</span>
+          <button class="copy-btn" data-copy="50100826986982" title="Copy"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-row-label">IFSC</span>
+          <span class="bank-row-value" style="font-family:'Inter',monospace;letter-spacing:0.05em">HDFC0001017</span>
+          <button class="copy-btn" data-copy="HDFC0001017" title="Copy"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="bank-row">
+          <span class="bank-row-label">Branch</span>
+          <span class="bank-row-value">Yavatmal</span>
+          <button class="copy-btn" data-copy="Yavatmal" title="Copy"><i class="fas fa-copy"></i></button>
+        </div>
+      </div>
+
+      <div class="upi-block">
+        <div class="upi-icon"><i class="fas fa-mobile-screen"></i></div>
+        <div>
+          <strong>Scan &amp; Pay via UPI</strong>
+          <p>Use any UPI app (PhonePe, GPay, Paytm) and search the account number above or ask us for a QR code.</p>
+        </div>
+      </div>
+
+      <div class="receipt-note">
+        After transferring, send your screenshot or UTR number to <strong>muktanganhealthcare@gmail.com</strong> — we will send a donation acknowledgement within 2 working days.
+      </div>
+
+      <a href="mailto:muktanganhealthcare@gmail.com?subject=Donation%20receipt%20request" class="donate-cta">
+        <i class="fas fa-envelope"></i> Email us after donating
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Quote band ───────────────────────────────────────────────── -->
+<div class="quote-band">
+  <blockquote>"A healthier mother, a safer birth, a better start — that is the chain we are building, one family at a time."</blockquote>
+  <cite>— Dr Abhijeet Gawande &amp; Dr Ashwini Gawande, Muktangan Foundation</cite>
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <div class="footer-logo">
+        <div class="footer-logo-icon"><i class="fas fa-seedling"></i></div>
+        <div class="footer-logo-text"><h3>Muktangan</h3><p>Better Tomorrow</p></div>
+      </div>
+      <p class="footer-description">Transforming lives with better health, awareness, and care — one community at a time.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Our Projects</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="donate.html">Donate</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Our Projects</h4>
+      <ul class="footer-links">
+        <li><a href="projects.html#project-1">Anandi Aai Anandi Bal</a></li>
+        <li><a href="projects.html#project-2">Thalassemia Mukt Bharat</a></li>
+        <li><a href="project-jija.html">Project Jija</a></li>
+        <li><a href="project-ahilya.html">Project Ahilya</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-contact">
+        <p>Ruby Park Bldg E, Flat 601</p>
+        <p>Wakad, Pune 411057</p>
+        <p>+91 8380876308</p>
+        <p>muktanganhealthcare@gmail.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p style="color:rgba(253,246,240,0.5)">&copy; 2026 Muktangan Foundation. All rights reserved.</p>
+    <p style="color:rgba(253,246,240,0.4); font-size:0.73rem">Designed by Vaibhav Thakare</p>
+  </div>
 </footer>
-  <!-- End Footer -->
+
+<!-- ── Toast ───────────────────────────────────────────────────── -->
+<div class="toast" id="toast">Copied!</div>
 
 <script>
-    function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenu.classList.toggle('active');
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('active');
+}
+
+// Copy buttons
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.dataset.copy;
+    try {
+      navigator.clipboard.writeText(text).then(() => showToast('Copied: ' + text));
+    } catch(e) {
+      // fallback
+      const el = document.createElement('textarea');
+      el.value = text; document.body.appendChild(el);
+      el.select(); document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast('Copied: ' + text);
     }
-    
-    function closeMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenu.classList.remove('active');
-    }
-    
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(function() {
-            showCopySuccess();
-        }).catch(function(err) {
-            console.error('Could not copy text: ', err);
-        });
-    }
-    
-    function showCopySuccess() {
-        const successMsg = document.createElement('div');
-        successMsg.className = 'copy-success';
-        successMsg.textContent = 'Copied to clipboard!';
-        document.body.appendChild(successMsg);
-        
-        setTimeout(() => {
-            successMsg.remove();
-        }, 2000);
-    }
-    
-    function scrollToBankDetails() {
-        document.querySelector('.bank-details-container').scrollIntoView({
-            behavior: 'smooth'
-        });
-    }
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i>';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<i class="fas fa-copy"></i>';
+    }, 1800);
+  });
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
 </script>
 </body>
 </html>
