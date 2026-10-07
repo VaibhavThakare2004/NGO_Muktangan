@@ -10,30 +10,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --brand-brown:#2d1f1a; --brand-cream:#fdf6f0; --brand-saffron:#e8613c; --brand-rose:#c2547a; --brand-gold:#e8c252; }
-  body { font-family: 'Inter', system-ui, sans-serif; }
-  h1,h2,h3,.section-title,.footer-logo-text h3 { font-family: 'Fraunces', Georgia, serif; }
-  .header { background: var(--brand-brown) !important; border-bottom: 3px solid var(--brand-saffron) !important; }
-  .logo h1 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; letter-spacing:-0.02em; }
-  .logo p { color: var(--brand-gold) !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; }
-  .nav a { color: rgba(253,246,240,0.88) !important; }
-  .nav a:hover { color: var(--brand-gold) !important; }
+  :root { --brand-brown:#2d1f1a; --brand-cream:#fdf6f0; --brand-saffron:#e8613c; --brand-rose:#c2547a; --brand-gold:#c8860a; --brand-tan:#f5ece2; }
+  body { font-family: 'Inter', system-ui, sans-serif; background:#fff; color:var(--brand-brown); }
+  h1,h2,h3,.hero-title,.section-title,.stat-number,.footer-logo-text h3,.footer-logo h3 { font-family:'Fraunces',Georgia,serif; }
+  .header,header { background:#fff !important; border-bottom:1px solid #e8ddd4 !important; box-shadow:0 2px 12px rgba(45,31,26,0.07) !important; }
+  .logo h1 { font-family:'Fraunces',Georgia,serif; color:var(--brand-brown) !important; letter-spacing:-0.02em; }
+  .logo p { color:var(--brand-saffron) !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; font-weight:600; }
+  .nav a { color:#4a3328 !important; font-weight:500; }
+  .nav a:hover { color:var(--brand-saffron) !important; }
   .nav a[href="donate.html"] { background:var(--brand-saffron) !important; color:#fff !important; border-radius:999px !important; padding:7px 18px !important; font-weight:600 !important; }
-  .dropdown-content { background: var(--brand-brown) !important; border:1px solid rgba(232,194,82,0.25) !important; }
-  .dropdown-item { color: rgba(253,246,240,0.85) !important; }
-  .dropdown-item:hover { background: rgba(255,255,255,0.07) !important; }
-  .dropdown-item-content i { color: var(--brand-saffron) !important; }
-  .btn-primary,.btn-gradient { background: var(--brand-saffron) !important; border-color: var(--brand-saffron) !important; }
-  .section-title { color: var(--brand-brown) !important; letter-spacing:-0.025em; }
-  .footer { background: #1a0f0a !important; }
-  .footer-logo-text h3 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; }
-  .footer-logo-text p { color: var(--brand-gold) !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; }
-  .footer h4 { font-family: 'Fraunces', Georgia, serif; color: var(--brand-cream) !important; }
-  .footer-links a:hover { color: var(--brand-saffron) !important; }
-  .footer-bottom { border-top: 1px solid rgba(253,246,240,0.1) !important; }
-  .mobile-menu { background: var(--brand-brown) !important; }
-  .mobile-menu a { color: rgba(253,246,240,0.88) !important; border-bottom:1px solid rgba(232,97,60,0.15) !important; }
-  .mobile-menu a:hover { color: var(--brand-saffron) !important; }
+  .social-icon { color:#6b4e43 !important; border-color:#e0d0c5 !important; }
+  .social-icon:hover { background:var(--brand-saffron) !important; border-color:var(--brand-saffron) !important; color:#fff !important; }
+  .hero { background:linear-gradient(135deg,var(--brand-cream) 0%,#fef9f5 60%,#fdeee4 100%) !important; border-bottom:1px solid #edd9cc; }
+  .hero-title { color:var(--brand-brown) !important; }
+  .gradient-text { color:var(--brand-saffron) !important; background:none !important; -webkit-background-clip:unset !important; -webkit-text-fill-color:var(--brand-saffron) !important; }
+  .hero-description { color:#5c4038 !important; }
+  .badge { background:rgba(232,97,60,0.10) !important; color:var(--brand-saffron) !important; border:1px solid rgba(232,97,60,0.25) !important; }
+  .btn-primary,.btn-gradient { background:var(--brand-saffron) !important; border-color:var(--brand-saffron) !important; color:#fff !important; }
+  .btn-outline { border-color:rgba(45,31,26,0.35) !important; color:var(--brand-brown) !important; }
+  .btn-outline:hover { background:var(--brand-saffron) !important; border-color:var(--brand-saffron) !important; color:#fff !important; }
+  .dropdown-content { background:#fff !important; border:1px solid #e8ddd4 !important; box-shadow:0 8px 30px rgba(45,31,26,0.12) !important; }
+  .dropdown-item { color:#4a3328 !important; }
+  .dropdown-item:hover { background:var(--brand-tan) !important; }
+  .dropdown-item-content i { color:var(--brand-saffron) !important; }
+  .dropdown-item strong { color:var(--brand-brown) !important; }
+  .dropdown-item span { color:#8a6a60 !important; }
+  .section-title { color:var(--brand-brown) !important; letter-spacing:-0.025em; }
+  .section-description { color:#6b4e43 !important; }
+  .footer { background:#3d2418 !important; }
+  .footer-logo-text h3,.footer-logo h3 { font-family:'Fraunces',Georgia,serif; color:var(--brand-cream) !important; }
+  .footer-logo-text p { color:#e8c252 !important; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; }
+  .footer h4 { font-family:'Fraunces',Georgia,serif; color:var(--brand-cream) !important; }
+  .footer p,.footer-description { color:rgba(253,246,240,0.7) !important; }
+  .footer-links a { color:rgba(253,246,240,0.7) !important; }
+  .footer-links a:hover { color:#e8c252 !important; }
+  .footer-bottom { border-top:1px solid rgba(253,246,240,0.12) !important; }
+  .footer-contact p { color:rgba(253,246,240,0.7) !important; }
+  .mobile-menu { background:#fff !important; border-bottom:1px solid #e8ddd4 !important; }
+  .mobile-menu a { color:#4a3328 !important; border-bottom:1px solid #f0e5dc !important; }
+  .mobile-menu a:hover { color:var(--brand-saffron) !important; background:var(--brand-tan) !important; }
+  .logo-icon { display:flex; align-items:center; justify-content:center; width:42px; height:42px; }
+  .logo-icon svg { width:42px; height:42px; }
 </style>
 <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/donate.css">
@@ -44,7 +61,19 @@
     <div class="header-content">
       <div class="logo">
         <div class="logo-icon">
-          <i class="fas fa-heart"></i>
+<svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Muktangan tree logo">
+  <rect x="19.5" y="28" width="3" height="9" rx="1.5" fill="#8B5E3C"/>
+  <ellipse cx="14" cy="38" rx="3.5" ry="2" fill="#e8613c" opacity=".7"/>
+  <ellipse cx="21" cy="39" rx="3.5" ry="2" fill="#c2547a" opacity=".7"/>
+  <ellipse cx="28" cy="38" rx="3.5" ry="2" fill="#5bab6e" opacity=".7"/>
+  <ellipse cx="21" cy="23" rx="10" ry="8" fill="#5bab6e" opacity=".9"/>
+  <ellipse cx="15" cy="18" rx="7" ry="6" fill="#e8613c" opacity=".9"/>
+  <ellipse cx="27" cy="18" rx="7" ry="6" fill="#e8c252" opacity=".95"/>
+  <ellipse cx="21" cy="12" rx="8" ry="7" fill="#c2547a" opacity=".9"/>
+  <ellipse cx="17" cy="8" rx="4.5" ry="4" fill="#5bab6e"/>
+  <ellipse cx="25" cy="8" rx="4.5" ry="4" fill="#e8613c"/>
+  <ellipse cx="21" cy="5" rx="4" ry="3.5" fill="#e8c252"/>
+</svg>
         </div>
         <div class="logo-text">
           <h1>Muktangan</h1>

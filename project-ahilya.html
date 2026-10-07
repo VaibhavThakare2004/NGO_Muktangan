@@ -38,7 +38,9 @@
 
     /* ── Header ────────────────────────────────────────────── */
     header {
-      background: var(--brown);
+      background: #fff;
+      border-bottom: 1px solid #e8ddd4;
+      box-shadow: 0 2px 12px rgba(45,31,26,0.07);
       padding: 0 clamp(16px,5vw,64px);
       display: flex;
       align-items: center;
@@ -47,52 +49,52 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 3px solid var(--saffron);
     }
     .header-logo { display: flex; align-items: center; gap: 14px; padding: 14px 0; }
-    .pagdi-mark { flex-shrink: 0; }
+    .pagdi-mark { flex-shrink: 0; width:42px; height:42px; }
     .logo-text h1 {
       font-family: 'Fraunces', Georgia, serif;
       font-weight: 700;
       font-size: 1.35rem;
-      color: var(--cream);
+      color: var(--brown);
       letter-spacing: -0.02em;
       line-height: 1.1;
     }
     .logo-text p {
       font-size: 9px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--saffron);
       margin-top: 2px;
     }
     nav { display: flex; align-items: center; gap: 6px; }
     nav a {
-      color: var(--cream);
+      color: #4a3328;
       font-size: 0.82rem;
       font-weight: 500;
       padding: 8px 12px;
       border-radius: 6px;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
       white-space: nowrap;
       position: relative;
     }
-    nav a:hover { background: rgba(255,255,255,0.1); }
-    nav a.active { color: var(--gold); }
+    nav a:hover { background: #f5ece2; color: var(--saffron); }
+    nav a.active { color: var(--saffron); }
     nav .has-dropdown { cursor: pointer; }
     nav .has-dropdown .dropdown {
       display: none;
       position: absolute;
       top: calc(100% + 4px);
       left: 0;
-      background: var(--brown);
-      border: 1px solid rgba(232,194,82,0.3);
+      background: #fff;
+      border: 1px solid #e8ddd4;
       border-radius: 8px;
       min-width: 230px;
       padding: 6px;
       z-index: 200;
       list-style: none;
+      box-shadow: 0 8px 30px rgba(45,31,26,0.12);
     }
     nav .has-dropdown:hover .dropdown { display: block; }
     nav .has-dropdown .dropdown li a {
@@ -100,8 +102,9 @@
       padding: 8px 12px;
       font-size: 0.8rem;
       border-radius: 5px;
+      color: #4a3328;
     }
-    nav .has-dropdown .dropdown li a:hover { background: rgba(255,255,255,0.08); }
+    nav .has-dropdown .dropdown li a:hover { background: #f5ece2; color: var(--saffron); }
     .btn-donate {
       background: var(--saffron) !important;
       color: #fff !important;
@@ -593,13 +596,19 @@
 <!-- ── Header ─────────────────────────────────────────────── -->
 <header>
   <div class="header-logo">
-    <!-- Pagdi SVG -->
-    <svg class="pagdi-mark" width="28" height="48" viewBox="0 0 80 130" fill="none" aria-hidden="true">
-      <circle cx="40" cy="5" r="6" fill="#e8c252"/>
-      <path d="M40 18 C30 18 26 20 24 23 C22 26 22 26 24 28 C26 30 30 29 40 29 C50 29 54 30 56 28 C58 26 58 26 56 23 C54 20 50 18 40 18 Z" fill="#e8613c" opacity="0.85"/>
-      <path d="M40 37 C28 37 22 39 20 43 C18 47 18 47 20 50 C22 53 28 52 40 52 C52 52 58 53 60 50 C62 47 62 47 60 43 C58 39 52 37 40 37 Z" fill="#c2547a"/>
-      <path d="M40 60 C26 60 18 62 16 67 C14 72 14 72 16 75 C18 78 26 77 40 77 C54 77 62 78 64 75 C66 72 66 72 64 67 C62 62 54 60 40 60 Z" fill="#e8c252"/>
-      <path d="M40 86 C24 86 14 89 12 95 C10 101 10 101 12 105 C14 109 24 108 40 108 C56 108 66 109 68 105 C70 101 70 101 68 95 C66 89 56 86 40 86 Z" fill="#e8613c"/>
+    <!-- Tree logo -->
+    <svg class="pagdi-mark" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Muktangan tree logo">
+      <rect x="19.5" y="28" width="3" height="9" rx="1.5" fill="#8B5E3C"/>
+      <ellipse cx="14" cy="38" rx="3.5" ry="2" fill="#e8613c" opacity=".7"/>
+      <ellipse cx="21" cy="39" rx="3.5" ry="2" fill="#c2547a" opacity=".7"/>
+      <ellipse cx="28" cy="38" rx="3.5" ry="2" fill="#5bab6e" opacity=".7"/>
+      <ellipse cx="21" cy="23" rx="10" ry="8" fill="#5bab6e" opacity=".9"/>
+      <ellipse cx="15" cy="18" rx="7" ry="6" fill="#e8613c" opacity=".9"/>
+      <ellipse cx="27" cy="18" rx="7" ry="6" fill="#e8c252" opacity=".95"/>
+      <ellipse cx="21" cy="12" rx="8" ry="7" fill="#c2547a" opacity=".9"/>
+      <ellipse cx="17" cy="8" rx="4.5" ry="4" fill="#5bab6e"/>
+      <ellipse cx="25" cy="8" rx="4.5" ry="4" fill="#e8613c"/>
+      <ellipse cx="21" cy="5" rx="4" ry="3.5" fill="#e8c252"/>
     </svg>
     <div class="logo-text">
       <h1>Muktangan</h1>

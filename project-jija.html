@@ -25,10 +25,13 @@
       --jija-rose:    #c2547a;
       --jija-border:  rgba(232,194,82,0.18);
 
-      /* Site palette (matches existing Muktangan site purple/teal nav) */
-      --site-nav-bg:  #1a0533;
-      --site-nav-fg:  #ffffff;
-      --site-footer:  #111827;
+      /* Muktangan brand tokens */
+      --brand-brown:#2d1f1a; --brand-cream:#fdf6f0; --brand-saffron:#e8613c; --brand-rose:#c2547a; --brand-gold:#c8860a; --brand-tan:#f5ece2;
+
+      /* Site palette — light nav */
+      --site-nav-bg:  #ffffff;
+      --site-nav-fg:  #2d1f1a;
+      --site-footer:  #3d2418;
     }
 
     html { scroll-behavior: smooth; }
@@ -43,14 +46,15 @@
 
     img { max-width: 100%; display: block; }
 
-    /* ── Shared site nav (matches existing Muktangan pages) ── */
+    /* ── Shared site nav (light Muktangan theme) ── */
     header.site-header {
-      background: var(--site-nav-bg);
+      background: #fff;
+      border-bottom: 1px solid #e8ddd4;
+      box-shadow: 0 2px 12px rgba(45,31,26,0.07);
       padding: 0 24px;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
 
     .header-inner {
@@ -70,17 +74,19 @@
       text-decoration: none;
     }
     .site-logo .name {
+      font-family: 'Fraunces', Georgia, serif;
       font-size: 18px;
       font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.01em;
+      color: #2d1f1a;
+      letter-spacing: -0.02em;
       line-height: 1;
     }
     .site-logo .tagline {
-      font-size: 10px;
-      color: #9b8ab5;
-      letter-spacing: 0.12em;
+      font-size: 9px;
+      color: #e8613c;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
+      font-weight: 600;
       line-height: 1;
     }
 
@@ -91,7 +97,7 @@
       flex-wrap: wrap;
     }
     nav.site-nav a {
-      color: #ccc;
+      color: #4a3328;
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
@@ -100,14 +106,15 @@
       transition: background 0.15s, color 0.15s;
       white-space: nowrap;
     }
-    nav.site-nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
-    nav.site-nav a.active { color: var(--jija-gold); }
+    nav.site-nav a:hover { background: #f5ece2; color: #e8613c; }
+    nav.site-nav a.active { color: #e8613c; }
     nav.site-nav a.donate-btn {
-      background: #7c3aed;
+      background: #e8613c;
       color: #fff;
       font-weight: 600;
+      border-radius: 999px;
     }
-    nav.site-nav a.donate-btn:hover { background: #6d28d9; }
+    nav.site-nav a.donate-btn:hover { background: #d4522e; }
 
     /* ── Hero ────────────────────────────────────────────── */
     .hero {
@@ -541,9 +548,26 @@
 <!-- ── Site header (matches existing Muktangan nav) ─────── -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="site-logo">
-      <span class="name">Muktangan</span>
-      <span class="tagline">Better Tomorrow</span>
+    <a href="index.html" class="site-logo" style="display:flex;align-items:center;gap:10px;flex-direction:row;">
+      <div class="logo-icon" style="display:flex;align-items:center;justify-content:center;width:42px;height:42px;flex-shrink:0;">
+<svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Muktangan tree logo" style="width:42px;height:42px;">
+  <rect x="19.5" y="28" width="3" height="9" rx="1.5" fill="#8B5E3C"/>
+  <ellipse cx="14" cy="38" rx="3.5" ry="2" fill="#e8613c" opacity=".7"/>
+  <ellipse cx="21" cy="39" rx="3.5" ry="2" fill="#c2547a" opacity=".7"/>
+  <ellipse cx="28" cy="38" rx="3.5" ry="2" fill="#5bab6e" opacity=".7"/>
+  <ellipse cx="21" cy="23" rx="10" ry="8" fill="#5bab6e" opacity=".9"/>
+  <ellipse cx="15" cy="18" rx="7" ry="6" fill="#e8613c" opacity=".9"/>
+  <ellipse cx="27" cy="18" rx="7" ry="6" fill="#e8c252" opacity=".95"/>
+  <ellipse cx="21" cy="12" rx="8" ry="7" fill="#c2547a" opacity=".9"/>
+  <ellipse cx="17" cy="8" rx="4.5" ry="4" fill="#5bab6e"/>
+  <ellipse cx="25" cy="8" rx="4.5" ry="4" fill="#e8613c"/>
+  <ellipse cx="21" cy="5" rx="4" ry="3.5" fill="#e8c252"/>
+</svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <span class="name">Muktangan</span>
+        <span class="tagline">Better Tomorrow</span>
+      </div>
     </a>
     <nav class="site-nav">
       <a href="index.html">Home</a>
@@ -576,7 +600,7 @@
     <h1>Jija</h1>
     <p class="hero-subname">Muktangan Foundation</p>
     <p class="hero-desc">
-      Educating parents and grandparents about newborn wellbeing — a global movement that connects paediatricians in 100 countries to their communities.
+      Educating parents and grandparents about newborn wellbeing — a global movement led by paediatricians in 100 countries who bring clinical expertise to their own communities.
     </p>
     <div class="hero-cta-row">
       <a href="#about" class="btn-primary">Learn more</a>
@@ -622,7 +646,7 @@
             Inspired by Dr Abhijeet (paediatrician) and led by Dr Ashwini — who has decades of work in safe motherhood and childhood — Jija brings trusted paediatric guidance into the hands of every family, in every language, in every country.
           </p>
           <p>
-            Our model is peer-to-peer: local paediatricians in each country are trained as community educators. They speak the language, understand the culture, and already hold the trust of their communities.
+            Our model is peer-to-peer: paediatricians in each country are the educators. They bring their clinical expertise and the trust their communities already place in them — and they lead the conversation with families in their own language and culture.
           </p>
         </div>
       </div>
@@ -653,7 +677,7 @@
       <div class="pillar-card">
         <div class="pillar-icon saffron">🩺</div>
         <h3>Empower Paediatricians</h3>
-        <p>Local paediatricians across 100 countries are trained as community educators. They carry Jija's structured curriculum and adapt it to their region's language, customs, and health system.</p>
+        <p>Paediatricians across 100 countries lead community education in their regions. They adapt Jija's evidence-based curriculum to their language, customs, and health system — and bring their authority as clinicians to every family they reach.</p>
       </div>
       <div class="pillar-card">
         <div class="pillar-icon rose">🌍</div>
@@ -674,7 +698,7 @@
     </p>
     <div class="reach-row">
       <span class="reach-chip">🇮🇳 India — Founding nation</span>
-      <span class="reach-chip">🌍 Africa — Expansion 2025</span>
+      <span class="reach-chip">🌍 Africa — Expansion in progress</span>
       <span class="reach-chip">🌎 Latin America — Planning</span>
       <span class="reach-chip">🌏 Southeast Asia — Planning</span>
       <span class="reach-chip">+ 96 more countries targeted</span>
